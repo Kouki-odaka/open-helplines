@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import { ComposableMap, Geographies, Geography } from 'react-simple-maps';
-import { MOCK_GLOBAL_DATA } from '@/lib/mock-data';
+import { useHelplinesData } from '@/lib/use-helplines-data';
 import { mapCountToBlueColor } from '@/lib/viz-tokens';
 import type { CountryGlobeData, HelplineCategory } from '@/types/helpline';
 
@@ -122,7 +122,8 @@ function buildCountrySnapshots(
 // ─── Component ────────────────────────────────────────────────────────────────
 
 export default function ChoroplethMap() {
-  const allCountries = MOCK_GLOBAL_DATA.countries;
+  const { data: helplinesData } = useHelplinesData();
+  const allCountries = helplinesData.countries;
   const allMonths = useMemo(
     () => generateMonthRange(TIME_RANGE_START, TIME_RANGE_END),
     []

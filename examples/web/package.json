@@ -4,6 +4,9 @@
   "private": true,
   "description": "Interactive visualization site for open-helplines data (globe, network, heatmap)",
   "scripts": {
+    "collect-data": "node scripts/collect-data.mjs",
+    "prebuild": "node scripts/collect-data.mjs",
+    "predev": "node scripts/collect-data.mjs",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",

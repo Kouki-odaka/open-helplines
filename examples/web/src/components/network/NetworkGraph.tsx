@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
-import { MOCK_GLOBAL_DATA } from '@/lib/mock-data';
+import { useHelplinesData } from '@/lib/use-helplines-data';
 import { getCategoryColor } from '@/lib/viz-tokens';
 import type { CountryGlobeData, HelplineCategory } from '@/types/helpline';
 
@@ -168,7 +168,8 @@ export default function NetworkGraph() {
   const [filterCategoryName, setFilterCategoryName] = useState('');
   const [hoveredCountryCode, setHoveredCountryCode] = useState<string | null>(null);
 
-  const allCountries = MOCK_GLOBAL_DATA.countries;
+  const { data: helplinesData } = useHelplinesData();
+  const allCountries = helplinesData.countries;
 
   const countrySelectOptions = allCountries.map((c) => ({
     value: c.countryCode,
