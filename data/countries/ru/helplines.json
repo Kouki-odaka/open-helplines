@@ -1,0 +1,54 @@
+{
+  "$schema": "../../../schemas/helpline.schema.json",
+  "country": "RU",
+  "records": [
+    {
+      "id": "ru-national-psychological-helpline",
+      "country": "RU",
+      "name": "National Psychological Help Hotline",
+      "local_name": "Телефон доверия (национальный)",
+      "category": "mental_health",
+      "secondary_categories": ["suicide_prevention", "general_crisis"],
+      "contacts": [
+        {
+          "method": "phone",
+          "number": "+78003334434",
+          "languages": ["ru"],
+          "hours": "24/7",
+          "free": true,
+          "anonymous": true
+        }
+      ],
+      "description": "Russia's national psychological helpline offering free, confidential emotional support and crisis intervention. Toll-free from all regions of Russia.",
+      "website": "https://pomoschryadom.ru/",
+      "verified_at": "2026-06-02",
+      "source": "https://pomoschryadom.ru/category/helplines",
+      "government_backed": false,
+      "tags": ["freephone", "anonymous", "nationwide"]
+    },
+    {
+      "id": "ru-childrens-crisis-hotline",
+      "country": "RU",
+      "name": "Children and Youth Crisis Hotline",
+      "local_name": "Единый общероссийский детский телефон доверия",
+      "category": "youth",
+      "secondary_categories": ["suicide_prevention", "general_crisis"],
+      "contacts": [
+        {
+          "method": "phone",
+          "number": "+78002000122",
+          "languages": ["ru"],
+          "hours": "24/7",
+          "free": true,
+          "anonymous": true
+        }
+      ],
+      "description": "Free 24/7 crisis hotline for children, teenagers, and their parents across Russia. Launched in 2010 by the Foundation for Support of Children in Difficult Life Situations. Confidential psychological help.",
+      "website": "https://telefon-doveria.ru/",
+      "verified_at": "2026-06-02",
+      "source": "https://telefon-doveria.ru/about/",
+      "government_backed": true,
+      "tags": ["youth", "children", "freephone", "government-backed"]
+    }
+  ]
+}

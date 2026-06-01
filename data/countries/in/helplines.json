@@ -1,0 +1,53 @@
+{
+  "$schema": "../../../schemas/helpline.schema.json",
+  "country": "IN",
+  "records": [
+    {
+      "id": "in-tele-manas",
+      "country": "IN",
+      "name": "Tele MANAS",
+      "local_name": "टेली मानस",
+      "category": "mental_health",
+      "secondary_categories": ["suicide_prevention", "general_crisis"],
+      "contacts": [
+        {
+          "method": "phone",
+          "number": "+9114416",
+          "languages": ["hi", "en", "bn", "te", "mr", "ta", "ur", "gu", "kn", "ml", "pa", "as", "mai", "sd", "sat", "ne", "kok", "doi", "ks", "mni"],
+          "hours": "24/7",
+          "free": true,
+          "anonymous": true
+        }
+      ],
+      "description": "India's National Tele Mental Health Programme operated by the Ministry of Health and Family Welfare. Free 24/7 support in 20 languages. Dial 14416 or toll-free 1800-89-14416. Launched October 2022.",
+      "website": "https://telemanas.mohfw.gov.in/",
+      "verified_at": "2026-06-02",
+      "source": "https://telemanas.mohfw.gov.in/",
+      "government_backed": true,
+      "tags": ["government", "multilingual", "national", "20-languages", "short-code"]
+    },
+    {
+      "id": "in-icall",
+      "country": "IN",
+      "name": "iCall",
+      "category": "mental_health",
+      "secondary_categories": ["suicide_prevention"],
+      "contacts": [
+        {
+          "method": "phone",
+          "number": "+919152987821",
+          "languages": ["en", "hi"],
+          "hours": "Mon–Sat 10:00–20:00 IST",
+          "free": true,
+          "anonymous": true
+        }
+      ],
+      "description": "Free professional counselling service run by TISS (Tata Institute of Social Sciences). Provides telephone, email, and chat support for emotional and psychological distress. Available Monday to Saturday, 10:00–20:00 IST.",
+      "website": "https://icallhelpline.org/",
+      "verified_at": "2026-06-02",
+      "source": "https://icallhelpline.org/",
+      "government_backed": false,
+      "tags": ["ngo", "professional-counselling", "tiss"]
+    }
+  ]
+}

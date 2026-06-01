@@ -1,0 +1,76 @@
+{
+  "$schema": "../../../schemas/helpline.schema.json",
+  "country": "JP",
+  "records": [
+    {
+      "id": "jp-yorisoi-hotline",
+      "country": "JP",
+      "name": "Yorisoi Hotline",
+      "local_name": "よりそいホットライン",
+      "category": "general_crisis",
+      "secondary_categories": ["suicide_prevention", "mental_health"],
+      "contacts": [
+        {
+          "method": "phone",
+          "number": "+81120279338",
+          "languages": ["ja", "en", "zh", "ko", "es", "pt", "fil", "th", "vi", "ne", "id"],
+          "hours": "24/7",
+          "free": true,
+          "anonymous": true
+        }
+      ],
+      "description": "24/7 free multilingual crisis support line for anyone in distress. Available in Japanese and 10 other languages. Operated by the NPO Counseling Center.",
+      "website": "https://www.since2011.net/yorisoi/",
+      "verified_at": "2026-06-02",
+      "source": "https://www.since2011.net/yorisoi/",
+      "government_backed": false,
+      "tags": ["multilingual", "24-7", "freephone"]
+    },
+    {
+      "id": "jp-inochi-no-denwa",
+      "country": "JP",
+      "name": "Inochi no Denwa",
+      "local_name": "いのちの電話",
+      "category": "suicide_prevention",
+      "contacts": [
+        {
+          "method": "phone",
+          "number": "+81120783556",
+          "languages": ["ja"],
+          "hours": "Daily 16:00–21:00 JST; 08:00 JST on 10th to 08:00 JST on 11th each month",
+          "free": true,
+          "anonymous": true
+        }
+      ],
+      "description": "Free telephone crisis line staffed by trained volunteers. Available daily 16:00–21:00 JST, with a 24-hour session on the 10th of each month. Established in 1971.",
+      "website": "https://www.inochinodenwa.org/",
+      "verified_at": "2026-06-02",
+      "source": "https://www.inochinodenwa.org/",
+      "government_backed": false,
+      "tags": ["volunteer-staffed", "suicide-prevention"]
+    },
+    {
+      "id": "jp-tell-lifeline",
+      "country": "JP",
+      "name": "TELL Lifeline",
+      "category": "general_crisis",
+      "secondary_categories": ["mental_health"],
+      "contacts": [
+        {
+          "method": "phone",
+          "number": "+818003008355",
+          "languages": ["en"],
+          "hours": "24/7",
+          "free": true,
+          "anonymous": true
+        }
+      ],
+      "description": "Toll-free English-language crisis and emotional support line in Japan. Operated since 1973 by TELL (Tokyo English Life Line), Japan's longest-running English-language support service.",
+      "website": "https://www.telljp.com/",
+      "verified_at": "2026-06-02",
+      "source": "https://www.telljp.com/",
+      "government_backed": false,
+      "tags": ["english-language", "expat-support", "freephone"]
+    }
+  ]
+}

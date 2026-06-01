@@ -1,0 +1,52 @@
+{
+  "$schema": "../../../schemas/helpline.schema.json",
+  "country": "GB",
+  "records": [
+    {
+      "id": "gb-samaritans",
+      "country": "GB",
+      "name": "Samaritans",
+      "category": "suicide_prevention",
+      "secondary_categories": ["general_crisis"],
+      "contacts": [
+        {
+          "method": "phone",
+          "number": "+44116123",
+          "languages": ["en"],
+          "hours": "24/7",
+          "free": true,
+          "anonymous": true
+        }
+      ],
+      "description": "Free 24/7 listening service for anyone struggling to cope or at risk of suicide. Calls do not appear on phone bills. Available from all UK and Irish landlines and mobiles.",
+      "website": "https://www.samaritans.org/",
+      "verified_at": "2026-06-02",
+      "source": "https://www.samaritans.org/how-we-can-help/contact-samaritan/talk-us-phone/",
+      "government_backed": false,
+      "tags": ["116-123", "volunteer-staffed", "confidential", "no-phone-bill"]
+    },
+    {
+      "id": "gb-shout-crisis-text-line",
+      "country": "GB",
+      "name": "Shout Crisis Text Line",
+      "category": "general_crisis",
+      "secondary_categories": ["mental_health", "youth"],
+      "contacts": [
+        {
+          "method": "text",
+          "number": "+4485258",
+          "languages": ["en"],
+          "hours": "24/7",
+          "free": true,
+          "anonymous": true
+        }
+      ],
+      "description": "UK's 24/7 free crisis text service. Text SHOUT to 85258 for confidential support from trained volunteers. Run by Shout 85258, powered by Crisis Text Line.",
+      "website": "https://giveusashout.org/",
+      "verified_at": "2026-06-02",
+      "source": "https://giveusashout.org/",
+      "government_backed": false,
+      "tags": ["text-only", "short-code", "85258", "youth-friendly"]
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "../../../schemas/helpline.schema.json",
+  "country": "CA",
+  "records": [
+    {
+      "id": "ca-988-suicide-crisis-helpline",
+      "country": "CA",
+      "name": "9-8-8: Suicide Crisis Helpline",
+      "category": "suicide_prevention",
+      "secondary_categories": ["mental_health", "general_crisis"],
+      "contacts": [
+        {
+          "method": "phone",
+          "number": "+1988",
+          "languages": ["en", "fr-CA"],
+          "hours": "24/7",
+          "free": true,
+          "anonymous": true
+        }
+      ],
+      "description": "Canada's national three-digit suicide crisis helpline. Call or text 9-8-8 for 24/7 bilingual (English/French) trauma-informed support. Coordinated by CAMH, launched November 2023. Federal investment of $120M confirmed for 2026.",
+      "website": "https://talksuicide.ca/",
+      "verified_at": "2026-06-02",
+      "source": "https://www.canada.ca/en/public-health/news/2026/01/government-of-canada-announces-renewed-support-for-the-9-8-8-suicide-crisis-helpline.html",
+      "government_backed": true,
+      "tags": ["988", "bilingual", "camh", "government-funded", "text-available", "short-code"]
+    }
+  ]
+}
