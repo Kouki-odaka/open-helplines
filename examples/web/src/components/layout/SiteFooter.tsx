@@ -4,22 +4,30 @@ export function SiteFooter() {
   return (
     <footer className="border-t border-neutral-border bg-neutral-surface mt-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-neutral-muted">
-        {/* Left: License and data */}
-        <div className="flex items-center gap-4">
-          <span>
-            Data:{' '}
+        {/* Left: License badges */}
+        <div className="flex items-center gap-3 flex-wrap">
+          <a
+            href="https://creativecommons.org/publicdomain/zero/1.0/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 hover:opacity-90 transition-opacity"
+            aria-label="Data: CC0 1.0 Public Domain (opens in new tab)"
+            title="Data: CC0 1.0 Universal Public Domain Dedication"
+          >
+            <CC0Badge aria-hidden="true" />
+          </a>
+          <span className="text-neutral-muted/50 hidden sm:inline">·</span>
+          <span className="text-xs">
+            Code:{' '}
             <a
-              href="https://creativecommons.org/publicdomain/zero/1.0/"
+              href="https://www.apache.org/licenses/LICENSE-2.0"
               target="_blank"
               rel="noopener noreferrer"
               className="text-brand-light hover:underline"
             >
-              CC0 1.0
-            </a>{' '}
-            (Public Domain)
+              Apache 2.0
+            </a>
           </span>
-          <span>·</span>
-          <span>Code: Apache 2.0</span>
         </div>
 
         {/* Center: Project info */}
@@ -42,6 +50,43 @@ export function SiteFooter() {
         </div>
       </div>
     </footer>
+  );
+}
+
+/** CC0 badge: white text on black rounded pill, matches CC.org style */
+function CC0Badge(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="80"
+      height="22"
+      viewBox="0 0 80 22"
+      aria-hidden="true"
+      {...props}
+    >
+      <rect width="80" height="22" rx="4" fill="#1F2937" />
+      <rect width="80" height="22" rx="4" fill="none" stroke="#4B5563" strokeWidth="1" />
+      <text
+        x="8"
+        y="15"
+        fontFamily="system-ui, sans-serif"
+        fontSize="10"
+        fontWeight="600"
+        fill="#9CA3AF"
+      >
+        Data:
+      </text>
+      <text
+        x="38"
+        y="15"
+        fontFamily="system-ui, sans-serif"
+        fontSize="10"
+        fontWeight="700"
+        fill="#93C5FD"
+      >
+        CC0 1.0
+      </text>
+    </svg>
   );
 }
 
