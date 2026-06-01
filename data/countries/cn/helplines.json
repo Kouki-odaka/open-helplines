@@ -1,0 +1,30 @@
+{
+  "$schema": "../../../schemas/helpline.schema.json",
+  "country": "CN",
+  "records": [
+    {
+      "id": "cn-beijing-crisis-hotline",
+      "country": "CN",
+      "name": "Beijing Suicide Research and Prevention Center Hotline",
+      "local_name": "北京心理危机研究与干预中心热线",
+      "category": "suicide_prevention",
+      "secondary_categories": ["mental_health"],
+      "contacts": [
+        {
+          "method": "phone",
+          "number": "+864001619995",
+          "languages": ["zh"],
+          "hours": "24/7",
+          "free": false,
+          "anonymous": true
+        }
+      ],
+      "description": "National 24/7 crisis intervention hotline operated by the Beijing Suicide Research and Prevention Center. 400 number charged at local rate nationwide. Also reachable at 010-82951332 (mobile callers in Beijing).",
+      "website": "https://www.crisis.org.cn/",
+      "verified_at": "2026-06-02",
+      "source": "https://www.crisis.org.cn/lists/11.html",
+      "government_backed": true,
+      "tags": ["government", "crisis-intervention", "local-rate", "hotline-400"]
+    }
+  ]
+}

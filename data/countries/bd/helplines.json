@@ -1,0 +1,30 @@
+{
+  "$schema": "../../../schemas/helpline.schema.json",
+  "country": "BD",
+  "records": [
+    {
+      "id": "bd-kaan-pete-roi",
+      "country": "BD",
+      "name": "Kaan Pete Roi",
+      "local_name": "কান পেতে রই",
+      "category": "suicide_prevention",
+      "secondary_categories": ["mental_health", "general_crisis"],
+      "contacts": [
+        {
+          "method": "phone",
+          "number": "+8809612119911",
+          "languages": ["bn"],
+          "hours": "Daily 15:00–03:00 BST",
+          "free": false,
+          "anonymous": true
+        }
+      ],
+      "description": "Bangladesh's first and only emotional support and suicide prevention helpline, staffed by trained volunteers. Available daily 15:00–03:00 BST. Standard call rates apply.",
+      "website": "https://kaanpeteroi.org/",
+      "verified_at": "2026-06-02",
+      "source": "https://kaanpeteroi.org/",
+      "government_backed": false,
+      "tags": ["volunteer-staffed", "suicide-prevention", "limited-hours"]
+    }
+  ]
+}
