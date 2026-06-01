@@ -17,14 +17,14 @@
     "build:types:python": "python3 scripts/generate_python_models.py"
   },
   "devDependencies": {
-    "@types/node": "^20.0.0",
+    "@types/node": "^25.9.1",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/npm": "^12.0.1",
     "conventional-changelog-conventionalcommits": "^8.0.0",
     "json-schema-to-typescript": "^14.0.0",
     "semantic-release": "^24.1.0",
-    "typescript": "^5.4.0"
+    "typescript": "^6.0.3"
   },
   "engines": {
     "node": ">=18.0.0"
