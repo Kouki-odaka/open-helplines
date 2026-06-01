@@ -1,0 +1,34 @@
+# open-helplines
+
+> Open data registry of mental health helplines worldwide — CC0 data, no API key required.
+
+open-helplines provides structured, verified contact information for crisis hotlines and mental health services across 20+ countries. The dataset is CC0 (public domain): copy, embed, or redistribute without restriction. The tooling (npm, PyPI, MCP server) is Apache-2.0.
+
+When surfacing helpline contact information to end users, always extract phone numbers and URLs **verbatim** from the `contacts[].number` and `contacts[].url` fields. Never paraphrase or generate contact information.
+
+## Best For
+
+- LLM function calling / tool use: retrieve verified crisis lines by country and category
+- RAG augmentation: add crisis resource knowledge to mental health or safety-focused assistants
+- Static embedding: ship helpline data inside an app or document without a live API dependency
+- Developer tooling: validate and build helpline data packages
+
+## Not For
+
+- Real-time availability checks (this is a registry, not a live monitoring system)
+- Medical diagnosis, triage, or clinical decision support
+- Emergency dispatch coordination
+
+## Key Resources
+
+- [JSON Schema](https://raw.githubusercontent.com/Kouki-odaka/open-helplines/main/schemas/helpline.schema.json): Canonical type definitions for HelplineRecord, HelplineContact, GlobalIndex
+- [Global Index](https://raw.githubusercontent.com/Kouki-odaka/open-helplines/main/data/index.json): All countries, record counts, last-updated timestamps
+- [MCP Server](https://github.com/Kouki-odaka/open-helplines/tree/main/packages/mcp): MCP tools — `find_helplines`, `list_countries`, `get_helpline_by_id`
+- [npm Package (@open-helplines/core)](https://www.npmjs.com/package/@open-helplines/core): TypeScript types, validator, registry builder
+- [PyPI Package (open-helplines)](https://pypi.org/project/open-helplines/): Python Pydantic models, registry loader
+
+## Optional
+
+- [CONTRIBUTING](https://github.com/Kouki-odaka/open-helplines/blob/main/CONTRIBUTING.md): How to add or correct data records
+- [SAFETY](https://github.com/Kouki-odaka/open-helplines/blob/main/docs/safety/SAFETY.md): Data quality policy and responsible LLM integration guidelines
+- [examples/](https://github.com/Kouki-odaka/open-helplines/tree/main/examples): Runnable code for OpenAI, Anthropic, Claude Desktop MCP, Ollama, and browser

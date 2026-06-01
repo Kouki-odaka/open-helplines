@@ -1,0 +1,17 @@
+{
+  "name": "open-helplines-example-openai",
+  "private": true,
+  "version": "0.0.0",
+  "description": "open-helplines × OpenAI function calling example",
+  "scripts": {
+    "start": "npx ts-node main.ts"
+  },
+  "dependencies": {
+    "openai": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.4.0"
+  }
+}
