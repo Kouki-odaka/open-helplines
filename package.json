@@ -17,11 +17,14 @@
     "build:types:python": "python3 scripts/generate_python_models.py"
   },
   "devDependencies": {
-    "@types/node": "^20.0.0",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/npm": "^12.0.1",
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
     "conventional-changelog-conventionalcommits": "^8.0.0",
+    "eslint": "^8.57.1",
     "json-schema-to-typescript": "^14.0.0",
     "semantic-release": "^24.1.0",
     "typescript": "^5.4.0"
