@@ -23,7 +23,7 @@
       "verified_at": "2026-06-02",
       "source": "https://www.samhsa.gov/mental-health/988",
       "government_backed": true,
-      "tags": ["988", "samhsa", "national", "bilingual", "text-available"]
+      "tags": ["hotline-988", "samhsa", "national", "bilingual", "text-available"]
     },
     {
       "id": "us-crisis-text-line",

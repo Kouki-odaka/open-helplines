@@ -7,7 +7,8 @@
  * Strategy pattern: this class is one Strategy in the ValidatorChain.
  */
 
-import Ajv, { type ErrorObject } from "ajv";
+// Ajv Draft 2020-12 — must use Ajv2020 variant, not the default (Draft 7) variant
+import Ajv2020, { type ErrorObject } from "ajv/dist/2020.js";
 import addFormats from "ajv-formats";
 import { readFileSync } from "node:fs";
 import type { HelplineRecord } from "../../types/helpline.js";
@@ -17,13 +18,14 @@ import type { ValidationError, ValidationResult, Validator } from "../index.js";
 // Ajv singleton per schema path (avoid repeated compilation)
 // ---------------------------------------------------------------------------
 
-const compiledValidators = new Map<string, ReturnType<Ajv["compile"]>>();
+const compiledValidators = new Map<string, ReturnType<Ajv2020["compile"]>>();
 
-function getCompiledValidator(schemaPath: string): ReturnType<Ajv["compile"]> {
+function getCompiledValidator(schemaPath: string): ReturnType<Ajv2020["compile"]> {
   const cached = compiledValidators.get(schemaPath);
   if (cached !== undefined) return cached;
 
-  const ajv = new Ajv({ strict: true, allErrors: true });
+  // strict: false — schema has non-standard annotation keywords (e.g. "version")
+  const ajv = new Ajv2020({ allErrors: true, strict: false });
   addFormats(ajv);
 
   const schemaContent = readFileSync(schemaPath, "utf8");
@@ -51,7 +53,7 @@ function extractRecordSchema(schema: Record<string, unknown>): object {
 
 export class SchemaValidator implements Validator {
   readonly name = "SchemaValidator";
-  private readonly validateFn: ReturnType<Ajv["compile"]>;
+  private readonly validateFn: ReturnType<Ajv2020["compile"]>;
 
   constructor(schemaPath: string) {
     this.validateFn = getCompiledValidator(schemaPath);
