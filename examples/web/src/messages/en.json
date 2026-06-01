@@ -1,0 +1,193 @@
+{
+  "nav": {
+    "home": "Open Helplines",
+    "globe": "Globe",
+    "network": "Network",
+    "heatmap": "Heatmap",
+    "about": "About",
+    "contribute": "Contribute",
+    "github": "GitHub",
+    "openMenu": "Open navigation menu",
+    "closeMenu": "Close menu"
+  },
+  "language": {
+    "label": "Language",
+    "en": "English",
+    "ja": "日本語",
+    "es": "Español"
+  },
+  "footer": {
+    "copyright": "Open Helplines contributors",
+    "codeLabel": "Code:",
+    "viewOnGithub": "View on GitHub",
+    "dataLicenseAriaLabel": "Data: CC0 1.0 Public Domain (opens in new tab)"
+  },
+  "common": {
+    "loading": "Loading…",
+    "error": "Something went wrong",
+    "visitWebsite": "Visit website →",
+    "openInNewTab": "opens in new tab"
+  },
+  "landing": {
+    "badge": "Open Data · CC0",
+    "headline": "Open data registry of mental health helplines {highlight}.",
+    "headlineHighlight": "worldwide",
+    "tagline": "Free · CC0 · No API key required. Use it in your app, service, or research — no strings attached.",
+    "ctaExploreGlobe": "Explore the Globe →",
+    "ctaViewOnGithub": "View on GitHub",
+    "exploreTitle": "Explore the data",
+    "contributeTitle": "Know a helpline that's missing?",
+    "contributeDescription": "Add it in minutes — JSON + pull request. We verify and merge quickly.",
+    "contributeButton": "Contribute data →",
+    "vizCards": {
+      "globe": {
+        "title": "Globe View",
+        "description": "Interactive 3D globe with helpline density by country"
+      },
+      "network": {
+        "title": "Network View",
+        "description": "Force-directed graph of categories, languages and contacts"
+      },
+      "heatmap": {
+        "title": "Heatmap View",
+        "description": "Geographic choropleth with temporal timeline"
+      }
+    },
+    "stats": {
+      "countries": "countries",
+      "helplines": "helplines",
+      "languages": "languages"
+    }
+  },
+  "globe": {
+    "pageTitle": "Globe View — Open Helplines",
+    "pageDescription": "Interactive 3D globe showing crisis helpline coverage by country worldwide.",
+    "ariaLabel": "Interactive 3D globe showing global crisis helpline coverage by country",
+    "loadingLabel": "Loading globe",
+    "colorMode": {
+      "label": "Color:",
+      "count": "Count",
+      "category": "Category",
+      "languages": "Languages"
+    },
+    "stats": {
+      "data": "Data:",
+      "countries": "{count} countries",
+      "helplines": "{count} helplines"
+    },
+    "tooltip": {
+      "helplines": "Helplines",
+      "languages": "Languages",
+      "categories": "Categories"
+    },
+    "panel": {
+      "helplineCount": "{count} helpline",
+      "helplineCountPlural": "{count} helplines",
+      "categories": "Categories",
+      "contactMethods": "Contact Methods",
+      "languages": "Languages ({count})",
+      "helplines": "Helplines",
+      "close": "Close panel",
+      "noRecords": "Detailed records will be available after data merge."
+    },
+    "accessibility": {
+      "tableLabel": "Helplines by country — globe data",
+      "tableCaption": "Number of crisis helplines per country, visualized as columns on the 3D globe. Countries with more helplines have taller columns.",
+      "colCountry": "Country",
+      "colCount": "Helpline Count",
+      "colCategory": "Primary Category",
+      "colLanguages": "Languages",
+      "colContacts": "Contact Methods"
+    }
+  },
+  "network": {
+    "pageTitle": "Network View — Open Helplines",
+    "pageDescription": "Force-directed network graph showing relationships between helplines, categories, languages, and contact methods.",
+    "filterCountry": "Filter by country",
+    "filterCategory": "Filter by category",
+    "allCountries": "All countries",
+    "allCategories": "All categories"
+  },
+  "heatmap": {
+    "pageTitle": "Heatmap View — Open Helplines",
+    "pageDescription": "Geographic choropleth heatmap showing helpline density by country with a temporal timeline.",
+    "filterCategory": "Filter category:",
+    "allCategories": "All categories",
+    "timeLabel": "Time:",
+    "play": "Play",
+    "pause": "Pause",
+    "faster": "Faster",
+    "slower": "Slower",
+    "noData": "No data",
+    "tooltipHelplines": "helplines"
+  },
+  "about": {
+    "pageTitle": "About — Open Helplines",
+    "pageDescription": "Learn about the Open Helplines project, its data, and how to contribute.",
+    "title": "About Open Helplines",
+    "whatIsThisTitle": "What is this?",
+    "whatIsThisText1": "Open Helplines is a free, open-source dataset of mental health and crisis support helplines from around the world. The data is structured, machine-readable, and released under the {cc0link} (Public Domain) license — meaning you can use it for any purpose, including commercial, without attribution.",
+    "whatIsThisText1CC0Link": "CC0 1.0 Universal",
+    "whatIsThisText2": "This visualization site helps explore the coverage and characteristics of global crisis support resources.",
+    "dataTitle": "The Data",
+    "dataItems": [
+      "Each helpline includes phone/text/chat contacts, languages, and operating hours",
+      "Categories: suicide prevention, mental health, crisis, domestic violence, LGBTQ+, and more",
+      "Data is verified periodically and community-maintained",
+      "Available in JSON format, compatible with the open-helplines npm package"
+    ],
+    "visualizationsTitle": "Visualizations",
+    "contributeTitle": "Contribute",
+    "contributeText": "We welcome contributions of helpline data from any country. If you know of a crisis support resource not in our database, please open a pull request or issue on GitHub.",
+    "contributeButton": "Contributing Guide →",
+    "licenseTitle": "License",
+    "licenseData": "Data:",
+    "licenseDataText": "CC0 1.0 Universal — No rights reserved. Use freely for any purpose.",
+    "licenseCode": "Code:",
+    "licenseCodeText": "Apache License 2.0"
+  },
+  "contribute": {
+    "pageTitle": "Contribute — Open Helplines",
+    "pageDescription": "How to contribute helpline data to the Open Helplines project.",
+    "title": "Contribute Data",
+    "subtitle": "Help us build the most comprehensive open directory of crisis support resources.",
+    "howToTitle": "How to add a helpline",
+    "howToSteps": [
+      "Fork the repository on {githubLink}",
+      "Find or create the file at {filePath}",
+      "Add your helpline using the JSON schema format (see example below)",
+      "Open a pull request — we review and merge quickly"
+    ],
+    "jsonFormatTitle": "JSON Format",
+    "guidelinesTitle": "Guidelines",
+    "guidelines": [
+      "One helpline per record (no aggregated listings)",
+      "Verify phone numbers and URLs before submitting",
+      "Include accurate operating hours (24/7 or specific times)",
+      "Use ISO 3166-1 alpha-2 country codes (e.g., “JP”, “US”)",
+      "Use BCP 47 language codes (e.g., “en”, “ja”, “es”)",
+      "Data must be factual and verifiable — no promotional content"
+    ],
+    "ctaGuide": "Full Contributing Guide →",
+    "ctaIssue": "Open an Issue"
+  },
+  "categories": {
+    "suicide_prevention": "Suicide Prevention",
+    "mental_health": "Mental Health",
+    "crisis": "Crisis Support",
+    "general_crisis": "General Crisis",
+    "domestic_violence": "Domestic Violence",
+    "child_abuse": "Child Protection",
+    "substance_abuse": "Substance Abuse",
+    "lgbtq": "LGBTQ+",
+    "veteran": "Veterans",
+    "other": "Other"
+  },
+  "contactMethods": {
+    "phone": "Phone",
+    "text": "Text/SMS",
+    "chat": "Online Chat",
+    "email": "Email",
+    "app": "Mobile App"
+  }
+}

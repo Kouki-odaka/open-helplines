@@ -1,7 +1,5 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import { SiteHeader } from '@/components/layout/SiteHeader';
-import { SiteFooter } from '@/components/layout/SiteFooter';
 
 export const metadata: Metadata = {
   title: {
@@ -15,31 +13,18 @@ export const metadata: Metadata = {
   openGraph: {
     siteName: 'Open Helplines',
     type: 'website',
-    locale: 'en_US',
   },
 };
 
-interface RootLayoutProps {
-  children: React.ReactNode;
-}
-
-export default function RootLayout({ children }: RootLayoutProps) {
+/**
+ * Root layout — provides the HTML shell.
+ * Header, Footer, and locale handling are in [locale]/layout.tsx.
+ */
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className="dark">
       <body className="min-h-screen flex flex-col bg-[#0a0e1a] text-gray-100">
-        {/* Skip-to-content link for keyboard / screen-reader users */}
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[9999] focus:bg-white focus:text-gray-900 focus:font-medium focus:text-sm focus:px-4 focus:py-2 focus:rounded-md focus:shadow-lg focus:outline-none"
-        >
-          Skip to main content
-        </a>
-
-        <SiteHeader />
-        <main id="main-content" className="flex-1" tabIndex={-1}>
-          {children}
-        </main>
-        <SiteFooter />
+        {children}
       </body>
     </html>
   );

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
+import { useTranslations } from 'next-intl';
 import { useHelplinesData } from '@/lib/use-helplines-data';
 import { getCategoryColor } from '@/lib/viz-tokens';
 import type { CountryGlobeData, HelplineCategory } from '@/types/helpline';
@@ -163,6 +164,7 @@ export default function NetworkGraph() {
   const svgRef = useRef<SVGSVGElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const simulationStopRef = useRef<(() => void) | null>(null);
+  const t = useTranslations('network');
 
   const [filterCountryCode, setFilterCountryCode] = useState('');
   const [filterCategoryName, setFilterCategoryName] = useState('');
@@ -429,15 +431,13 @@ export default function NetworkGraph() {
     <div className="w-full h-full flex flex-col">
       {/* ── Filter bar ──────────────────────────────────────────────────── */}
       <div className="flex items-center gap-3 px-4 py-2.5 border-b border-gray-800 bg-gray-950/60 flex-wrap">
-        <span className="text-xs text-gray-500 font-medium shrink-0">Filter</span>
-
         <select
           value={filterCountryCode}
           onChange={(e) => setFilterCountryCode(e.target.value)}
           className="text-xs bg-gray-800 text-gray-300 border border-gray-700 rounded px-2 py-1 focus:outline-none focus:ring-1 focus:ring-blue-500 min-w-[130px]"
-          aria-label="Filter by country"
+          aria-label={t('filterCountry')}
         >
-          <option value="">All Countries</option>
+          <option value="">{t('allCountries')}</option>
           {countrySelectOptions.map((opt) => (
             <option key={opt.value} value={opt.value}>
               {opt.label}
@@ -449,9 +449,9 @@ export default function NetworkGraph() {
           value={filterCategoryName}
           onChange={(e) => setFilterCategoryName(e.target.value)}
           className="text-xs bg-gray-800 text-gray-300 border border-gray-700 rounded px-2 py-1 focus:outline-none focus:ring-1 focus:ring-blue-500 min-w-[130px]"
-          aria-label="Filter by category"
+          aria-label={t('filterCategory')}
         >
-          <option value="">All Categories</option>
+          <option value="">{t('allCategories')}</option>
           {allCategoryNames.map((cat) => (
             <option key={cat} value={cat}>
               {cat.replace(/_/g, ' ')}
