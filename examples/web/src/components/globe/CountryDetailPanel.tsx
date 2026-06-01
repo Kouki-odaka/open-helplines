@@ -14,10 +14,22 @@ export function CountryDetailPanel({ countryData, onClose }: CountryDetailPanelP
 
   return (
     <aside
-      className="absolute top-0 right-0 h-full w-80 max-w-full bg-neutral-surface border-l border-neutral-border shadow-xl z-10 overflow-y-auto scrollbar-hidden"
+      className={[
+        // Mobile: bottom sheet anchored to the bottom of the viewport
+        'fixed bottom-0 left-0 right-0 max-h-[60vh] rounded-t-2xl',
+        // Desktop (md+): right sidebar filling the parent container
+        'md:absolute md:bottom-auto md:left-auto md:top-0 md:right-0 md:h-full md:max-h-none md:w-80 md:rounded-none',
+        // Shared
+        'bg-neutral-surface border-t md:border-t-0 md:border-l border-neutral-border shadow-xl z-10 overflow-y-auto scrollbar-hidden',
+      ].join(' ')}
       role="complementary"
       aria-label={`Helplines for ${countryData.countryName}`}
     >
+      {/* Mobile drag handle (visible on small screens only) */}
+      <div className="md:hidden flex justify-center pt-2.5 pb-1" aria-hidden="true">
+        <div className="w-10 h-1 bg-gray-600 rounded-full" />
+      </div>
+
       {/* Header */}
       <div className="sticky top-0 bg-neutral-surface border-b border-neutral-border px-4 py-3 flex items-center justify-between">
         <div className="flex items-center gap-2">
