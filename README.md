@@ -1,5 +1,5 @@
-[![License: Apache-2.0](https://img.shields.io/badge/code-Apache--2.0-blue)](LICENSE)
-[![Data: CC0](https://img.shields.io/badge/data-CC0%201.0-lightgrey)](LICENSE-DATA)
+[![License: CC0-1.0 (data)](https://img.shields.io/badge/data-CC0--1.0-blue.svg)](LICENSE-DATA)
+[![License: Apache-2.0 (code)](https://img.shields.io/badge/code-Apache--2.0-green.svg)](LICENSE)
 [![npm](https://img.shields.io/npm/v/@open-helplines/core)](https://www.npmjs.com/package/@open-helplines/core)
 [![PyPI](https://img.shields.io/pypi/v/open-helplines)](https://pypi.org/project/open-helplines/)
 [![CI](https://github.com/Kouki-odaka/open-helplines/actions/workflows/pr.yml/badge.svg)](https://github.com/Kouki-odaka/open-helplines/actions/workflows/pr.yml)
@@ -102,6 +102,21 @@ curl -s https://raw.githubusercontent.com/Kouki-odaka/open-helplines/main/data/c
 
 ---
 
+## License
+
+open-helplines uses **dual licensing**:
+
+| Component | License | Why |
+|:---|:---|:---|
+| **Data** (`data/**`, `dist/by-*/*.json`) | [CC0 1.0](LICENSE-DATA) | Maximally usable, no friction for crisis tools |
+| **Code** (TypeScript, Python, scripts, workflows) | [Apache-2.0](LICENSE) | Patent protection, attribution-friendly |
+
+You may use the data in any commercial or non-commercial product, including AI systems, without attribution. The code requires the Apache-2.0 notice.
+
+See [NOTICE](NOTICE) for the dual-license declaration and [docs/LICENSING.md](docs/LICENSING.md) for a detailed explanation including commercial use, AI training, and derivative work policies.
+
+---
+
 ## Use with…
 
 ### OpenAI function calling
@@ -194,17 +209,6 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for data format, quality requirements, an
 | [ADR-002](docs/adr/ADR-002-cc0-data-apache-code.md) | CC0 data + Apache-2.0 code dual-license |
 | [ADR-003](docs/adr/ADR-003-per-country-files.md) | Per-country file structure |
 | [ADR-004](docs/adr/ADR-004-mcp-server-design.md) | MCP server — stdio transport, 3 tools |
-
----
-
-## License
-
-| Artifact | License |
-|----------|---------|
-| `data/` | [CC0 1.0 Universal](LICENSE-DATA) — public domain, no restrictions |
-| Code (`packages/`, `schemas/`, `scripts/`) | [Apache-2.0](LICENSE) |
-
-Data is CC0: embed, copy, redistribute, use in AI training — no attribution required.
 
 ---
 

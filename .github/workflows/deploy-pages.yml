@@ -1,0 +1,82 @@
+# SPDX-License-Identifier: Apache-2.0
+# deploy-pages.yml — Build and deploy examples/web to GitHub Pages
+#
+# Trigger: push to main that touches examples/web/**
+# Output:  Static files in examples/web/out/ deployed to GitHub Pages
+#
+# GitHub Pages settings required (one-time, manual):
+#   Repository → Settings → Pages → Source: GitHub Actions
+
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'examples/web/**'
+      - '.github/workflows/deploy-pages.yml'
+  # Allow manual trigger
+  workflow_dispatch:
+
+# Allow one deployment at a time
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+# Required permissions for Pages deployment
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    name: Build static site
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: examples/web/package-lock.json
+
+      - name: Install dependencies
+        working-directory: examples/web
+        run: npm ci
+
+      - name: Type check
+        working-directory: examples/web
+        run: npm run type-check
+
+      - name: Lint
+        working-directory: examples/web
+        run: npm run lint
+
+      - name: Build static export
+        working-directory: examples/web
+        run: npm run build
+        env:
+          # Ensure basePath is set for GitHub Pages
+          NEXT_PUBLIC_BASE_PATH: /open-helplines
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: examples/web/out
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deploy
+        uses: actions/deploy-pages@v4
