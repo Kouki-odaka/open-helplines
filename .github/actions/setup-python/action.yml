@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 # composite action: setup-python
 # Installs Python + restores pip cache + installs packages/python in editable mode.
 # Used by _validate.yml (cross-cutting job) and _publish.yml (pypi target).

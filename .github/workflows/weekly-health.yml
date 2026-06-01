@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 # weekly-health.yml — Scheduled registry health check
 #
 # Runs every Monday at 03:00 UTC (low-traffic window).

@@ -1,0 +1,68 @@
+# SPDX-License-Identifier: Apache-2.0
+# dependabot.yml — Automated dependency update configuration
+#
+# Updates npm, pip, and GitHub Actions dependencies on a weekly schedule.
+# PRs are auto-created and will run the full PR validation pipeline.
+
+version: 2
+
+updates:
+  # ── npm workspace (root + packages/core + packages/mcp) ─────────────────
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "04:00"
+      timezone: Asia/Tokyo
+    open-pull-requests-limit: 10
+    labels:
+      - dependencies
+      - npm
+    commit-message:
+      prefix: "chore(deps)"
+      include: scope
+    groups:
+      typescript-tooling:
+        patterns:
+          - "typescript"
+          - "@types/*"
+          - "eslint*"
+      semantic-release:
+        patterns:
+          - "semantic-release"
+          - "@semantic-release/*"
+          - "conventional-changelog*"
+
+  # ── Python (packages/python) ─────────────────────────────────────────────
+  - package-ecosystem: pip
+    directory: /packages/python
+    schedule:
+      interval: weekly
+      day: monday
+      time: "04:00"
+      timezone: Asia/Tokyo
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+      - python
+    commit-message:
+      prefix: "chore(deps)"
+      include: scope
+
+  # ── GitHub Actions ────────────────────────────────────────────────────────
+  # Note: SHA pins are updated automatically — dependabot resolves the new SHA.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "04:00"
+      timezone: Asia/Tokyo
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+      - github-actions
+    commit-message:
+      prefix: "chore(deps)"
+      include: scope

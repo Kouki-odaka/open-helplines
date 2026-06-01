@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 # gitleaks.yml — Secret scanning via Gitleaks
 #
 # Scans every push and pull_request for accidentally committed secrets.

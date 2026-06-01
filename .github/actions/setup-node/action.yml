@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 # composite action: setup-node
 # Installs Node.js + restores npm cache.
 # Used by _validate.yml and _publish.yml to keep install steps DRY.

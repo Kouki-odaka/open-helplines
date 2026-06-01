@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 # pr.yml — Pull Request validation gate
 #
 # Triggered on every pull_request event targeting main.
