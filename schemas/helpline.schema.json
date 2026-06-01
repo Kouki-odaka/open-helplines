@@ -135,6 +135,10 @@
         "government_backed"
       ],
       "properties": {
+        "$comment": {
+          "type": "string",
+          "description": "Machine-readable annotation or SPDX identifier. Not displayed to end users."
+        },
         "id": {
           "type": "string",
           "description": "Globally unique record slug: '{country_lower}-{slug}', e.g. 'jp-inochi-no-denwa'",
@@ -218,6 +222,10 @@
         "$schema": {
           "type": "string",
           "description": "Schema reference for IDE validation"
+        },
+        "$comment": {
+          "type": "string",
+          "description": "SPDX-License-Identifier or other machine-readable annotation. Recommended: 'SPDX-License-Identifier: CC0-1.0'"
         },
         "country": {
           "$ref": "#/$defs/CountryCode"
