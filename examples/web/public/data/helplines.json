@@ -1,0 +1,1092 @@
+{
+  "generatedAt": "2026-06-01T20:55:09.432Z",
+  "totalRecords": 21,
+  "countries": [
+    {
+      "countryCode": "BD",
+      "countryName": "Bangladesh",
+      "lat": 23.685,
+      "lng": 90.3563,
+      "helplineCount": 1,
+      "categories": [
+        "suicide_prevention",
+        "mental_health",
+        "general_crisis"
+      ],
+      "contactMethods": [
+        "phone"
+      ],
+      "languages": [
+        "bn"
+      ],
+      "records": [
+        {
+          "id": "bd-kaan-pete-roi",
+          "country": "BD",
+          "name": "Kaan Pete Roi",
+          "local_name": "কান পেতে রই",
+          "category": "suicide_prevention",
+          "secondary_categories": [
+            "mental_health",
+            "general_crisis"
+          ],
+          "contacts": [
+            {
+              "method": "phone",
+              "number": "+8809612119911",
+              "languages": [
+                "bn"
+              ],
+              "hours": "Daily 15:00–03:00 BST",
+              "free": false,
+              "anonymous": true
+            }
+          ],
+          "description": "Bangladesh's first and only emotional support and suicide prevention helpline, staffed by trained volunteers. Available daily 15:00–03:00 BST. Standard call rates apply.",
+          "website": "https://kaanpeteroi.org/",
+          "verified_at": "2026-06-02",
+          "source": "https://kaanpeteroi.org/",
+          "government_backed": false,
+          "tags": [
+            "volunteer-staffed",
+            "suicide-prevention",
+            "limited-hours"
+          ]
+        }
+      ]
+    },
+    {
+      "countryCode": "BR",
+      "countryName": "Brazil",
+      "lat": -14.235,
+      "lng": -51.9253,
+      "helplineCount": 1,
+      "categories": [
+        "suicide_prevention",
+        "general_crisis"
+      ],
+      "contactMethods": [
+        "phone",
+        "chat"
+      ],
+      "languages": [
+        "pt"
+      ],
+      "records": [
+        {
+          "id": "br-cvv-188",
+          "country": "BR",
+          "name": "CVV — Centro de Valorização da Vida",
+          "local_name": "CVV — Ligue 188",
+          "category": "suicide_prevention",
+          "secondary_categories": [
+            "general_crisis"
+          ],
+          "contacts": [
+            {
+              "method": "phone",
+              "number": "+55188",
+              "languages": [
+                "pt"
+              ],
+              "hours": "24/7",
+              "free": true,
+              "anonymous": true
+            },
+            {
+              "method": "chat",
+              "url": "https://cvv.org.br/chat/",
+              "languages": [
+                "pt"
+              ],
+              "hours": "24/7",
+              "free": true,
+              "anonymous": true
+            }
+          ],
+          "description": "Brazil's national free emotional support and suicide prevention service. Dial 188 from any phone, free of charge. Operated by CVV (Centre for Life Valuing) in partnership with the Ministry of Health since 2015.",
+          "website": "https://cvv.org.br/",
+          "verified_at": "2026-06-02",
+          "source": "https://cvv.org.br/ligue-188/",
+          "government_backed": true,
+          "tags": [
+            "hotline-188",
+            "government-partnership",
+            "chat-available"
+          ]
+        }
+      ]
+    },
+    {
+      "countryCode": "CA",
+      "countryName": "Canada",
+      "lat": 56.1304,
+      "lng": -106.3468,
+      "helplineCount": 1,
+      "categories": [
+        "suicide_prevention",
+        "mental_health",
+        "general_crisis"
+      ],
+      "contactMethods": [
+        "phone"
+      ],
+      "languages": [
+        "en",
+        "fr-CA"
+      ],
+      "records": [
+        {
+          "id": "ca-988-suicide-crisis-helpline",
+          "country": "CA",
+          "name": "9-8-8: Suicide Crisis Helpline",
+          "category": "suicide_prevention",
+          "secondary_categories": [
+            "mental_health",
+            "general_crisis"
+          ],
+          "contacts": [
+            {
+              "method": "phone",
+              "number": "+1988",
+              "languages": [
+                "en",
+                "fr-CA"
+              ],
+              "hours": "24/7",
+              "free": true,
+              "anonymous": true
+            }
+          ],
+          "description": "Canada's national three-digit suicide crisis helpline. Call or text 9-8-8 for 24/7 bilingual (English/French) trauma-informed support. Coordinated by CAMH, launched November 2023. Federal investment of $120M confirmed for 2026.",
+          "website": "https://talksuicide.ca/",
+          "verified_at": "2026-06-02",
+          "source": "https://www.canada.ca/en/public-health/news/2026/01/government-of-canada-announces-renewed-support-for-the-9-8-8-suicide-crisis-helpline.html",
+          "government_backed": true,
+          "tags": [
+            "hotline-988",
+            "bilingual",
+            "camh",
+            "government-funded",
+            "text-available",
+            "short-code"
+          ]
+        }
+      ]
+    },
+    {
+      "countryCode": "CN",
+      "countryName": "China",
+      "lat": 35.8617,
+      "lng": 104.1954,
+      "helplineCount": 1,
+      "categories": [
+        "suicide_prevention",
+        "mental_health"
+      ],
+      "contactMethods": [
+        "phone"
+      ],
+      "languages": [
+        "zh"
+      ],
+      "records": [
+        {
+          "id": "cn-beijing-crisis-hotline",
+          "country": "CN",
+          "name": "Beijing Suicide Research and Prevention Center Hotline",
+          "local_name": "北京心理危机研究与干预中心热线",
+          "category": "suicide_prevention",
+          "secondary_categories": [
+            "mental_health"
+          ],
+          "contacts": [
+            {
+              "method": "phone",
+              "number": "+864001619995",
+              "languages": [
+                "zh"
+              ],
+              "hours": "24/7",
+              "free": false,
+              "anonymous": true
+            }
+          ],
+          "description": "National 24/7 crisis intervention hotline operated by the Beijing Suicide Research and Prevention Center. 400 number charged at local rate nationwide. Also reachable at 010-82951332 (mobile callers in Beijing).",
+          "website": "https://www.crisis.org.cn/",
+          "verified_at": "2026-06-02",
+          "source": "https://www.crisis.org.cn/lists/11.html",
+          "government_backed": true,
+          "tags": [
+            "government",
+            "crisis-intervention",
+            "local-rate",
+            "hotline-400"
+          ]
+        }
+      ]
+    },
+    {
+      "countryCode": "DE",
+      "countryName": "Germany",
+      "lat": 51.1657,
+      "lng": 10.4515,
+      "helplineCount": 1,
+      "categories": [
+        "general_crisis",
+        "suicide_prevention",
+        "mental_health"
+      ],
+      "contactMethods": [
+        "phone"
+      ],
+      "languages": [
+        "de"
+      ],
+      "records": [
+        {
+          "id": "de-telefonseelsorge",
+          "country": "DE",
+          "name": "Telefonseelsorge",
+          "category": "general_crisis",
+          "secondary_categories": [
+            "suicide_prevention",
+            "mental_health"
+          ],
+          "contacts": [
+            {
+              "method": "phone",
+              "number": "+498001110111",
+              "languages": [
+                "de"
+              ],
+              "hours": "24/7",
+              "free": true,
+              "anonymous": true
+            },
+            {
+              "method": "phone",
+              "number": "+498001110222",
+              "languages": [
+                "de"
+              ],
+              "hours": "24/7",
+              "free": true,
+              "anonymous": true
+            }
+          ],
+          "description": "Germany's national pastoral telephone counselling service, operated jointly by the Protestant and Catholic churches. Two freephone numbers available 24/7. Suicide prevention is a core service.",
+          "website": "https://www.telefonseelsorge.de/",
+          "verified_at": "2026-06-02",
+          "source": "https://www.telefonseelsorge.de/",
+          "government_backed": false,
+          "tags": [
+            "freephone",
+            "anonymous",
+            "church-operated",
+            "nationwide"
+          ]
+        }
+      ]
+    },
+    {
+      "countryCode": "FR",
+      "countryName": "France",
+      "lat": 46.2276,
+      "lng": 2.2137,
+      "helplineCount": 1,
+      "categories": [
+        "suicide_prevention",
+        "mental_health"
+      ],
+      "contactMethods": [
+        "phone"
+      ],
+      "languages": [
+        "fr"
+      ],
+      "records": [
+        {
+          "id": "fr-3114",
+          "country": "FR",
+          "name": "3114 — Numéro national de prévention du suicide",
+          "local_name": "3114",
+          "category": "suicide_prevention",
+          "secondary_categories": [
+            "mental_health"
+          ],
+          "contacts": [
+            {
+              "method": "phone",
+              "number": "+33333114",
+              "languages": [
+                "fr"
+              ],
+              "hours": "24/7",
+              "free": true,
+              "anonymous": true
+            }
+          ],
+          "description": "France's national suicide prevention line, managed by the Ministry of Health. Staffed by specially trained healthcare professionals (nurses and psychologists) 24/7. Also supports professionals and bereaved.",
+          "website": "https://3114.fr/",
+          "verified_at": "2026-06-02",
+          "source": "https://3114.fr/",
+          "government_backed": true,
+          "tags": [
+            "government",
+            "nationwide",
+            "professional-staffed"
+          ]
+        }
+      ]
+    },
+    {
+      "countryCode": "GB",
+      "countryName": "United Kingdom",
+      "lat": 55.3781,
+      "lng": -3.436,
+      "helplineCount": 2,
+      "categories": [
+        "suicide_prevention",
+        "general_crisis",
+        "mental_health",
+        "youth"
+      ],
+      "contactMethods": [
+        "phone",
+        "text"
+      ],
+      "languages": [
+        "en"
+      ],
+      "records": [
+        {
+          "id": "gb-samaritans",
+          "country": "GB",
+          "name": "Samaritans",
+          "category": "suicide_prevention",
+          "secondary_categories": [
+            "general_crisis"
+          ],
+          "contacts": [
+            {
+              "method": "phone",
+              "number": "+44116123",
+              "languages": [
+                "en"
+              ],
+              "hours": "24/7",
+              "free": true,
+              "anonymous": true
+            }
+          ],
+          "description": "Free 24/7 listening service for anyone struggling to cope or at risk of suicide. Calls do not appear on phone bills. Available from all UK and Irish landlines and mobiles.",
+          "website": "https://www.samaritans.org/",
+          "verified_at": "2026-06-02",
+          "source": "https://www.samaritans.org/how-we-can-help/contact-samaritan/talk-us-phone/",
+          "government_backed": false,
+          "tags": [
+            "line-116-123",
+            "volunteer-staffed",
+            "confidential",
+            "no-phone-bill"
+          ]
+        },
+        {
+          "id": "gb-shout-crisis-text-line",
+          "country": "GB",
+          "name": "Shout Crisis Text Line",
+          "category": "general_crisis",
+          "secondary_categories": [
+            "mental_health",
+            "youth"
+          ],
+          "contacts": [
+            {
+              "method": "text",
+              "number": "+4485258",
+              "languages": [
+                "en"
+              ],
+              "hours": "24/7",
+              "free": true,
+              "anonymous": true
+            }
+          ],
+          "description": "UK's 24/7 free crisis text service. Text SHOUT to 85258 for confidential support from trained volunteers. Run by Shout 85258, powered by Crisis Text Line.",
+          "website": "https://giveusashout.org/",
+          "verified_at": "2026-06-02",
+          "source": "https://giveusashout.org/",
+          "government_backed": false,
+          "tags": [
+            "text-only",
+            "short-code",
+            "code-85258",
+            "youth-friendly"
+          ]
+        }
+      ]
+    },
+    {
+      "countryCode": "ID",
+      "countryName": "Indonesia",
+      "lat": -0.7893,
+      "lng": 113.9213,
+      "helplineCount": 1,
+      "categories": [
+        "mental_health",
+        "general_crisis"
+      ],
+      "contactMethods": [
+        "phone"
+      ],
+      "languages": [
+        "id"
+      ],
+      "records": [
+        {
+          "id": "id-sejiwa-119",
+          "country": "ID",
+          "name": "SEJIWA — Ministry of Health Crisis Line",
+          "local_name": "SEJIWA — Layanan Kesehatan Jiwa Kementerian Kesehatan",
+          "category": "mental_health",
+          "secondary_categories": [
+            "general_crisis"
+          ],
+          "contacts": [
+            {
+              "method": "phone",
+              "number": "+62119",
+              "languages": [
+                "id"
+              ],
+              "hours": "24/7",
+              "free": true,
+              "anonymous": true
+            }
+          ],
+          "description": "Indonesia's government mental health counselling service operated by the Ministry of Health (Kemenkes). Dial 119 extension 8 for the SEJIWA psychological counselling line. General emergency line connects to SEJIWA on ext. 8.",
+          "website": "https://kemenkes.go.id/",
+          "verified_at": "2026-06-02",
+          "source": "https://www.intothelightid.org/tentang-bunuh-diri/hotline-bunuh-diri-di-indonesia/",
+          "government_backed": true,
+          "tags": [
+            "government",
+            "hotline-119",
+            "ext-8",
+            "kemenkes"
+          ]
+        }
+      ]
+    },
+    {
+      "countryCode": "IN",
+      "countryName": "India",
+      "lat": 20.5937,
+      "lng": 78.9629,
+      "helplineCount": 2,
+      "categories": [
+        "mental_health",
+        "suicide_prevention",
+        "general_crisis"
+      ],
+      "contactMethods": [
+        "phone"
+      ],
+      "languages": [
+        "hi",
+        "en",
+        "bn",
+        "te",
+        "mr",
+        "ta",
+        "ur",
+        "gu",
+        "kn",
+        "ml",
+        "pa",
+        "as",
+        "mai",
+        "sd",
+        "sat",
+        "ne",
+        "kok",
+        "doi",
+        "ks",
+        "mni"
+      ],
+      "records": [
+        {
+          "id": "in-tele-manas",
+          "country": "IN",
+          "name": "Tele MANAS",
+          "local_name": "टेली मानस",
+          "category": "mental_health",
+          "secondary_categories": [
+            "suicide_prevention",
+            "general_crisis"
+          ],
+          "contacts": [
+            {
+              "method": "phone",
+              "number": "+9114416",
+              "languages": [
+                "hi",
+                "en",
+                "bn",
+                "te",
+                "mr",
+                "ta",
+                "ur",
+                "gu",
+                "kn",
+                "ml",
+                "pa",
+                "as",
+                "mai",
+                "sd",
+                "sat",
+                "ne",
+                "kok",
+                "doi",
+                "ks",
+                "mni"
+              ],
+              "hours": "24/7",
+              "free": true,
+              "anonymous": true
+            }
+          ],
+          "description": "India's National Tele Mental Health Programme operated by the Ministry of Health and Family Welfare. Free 24/7 support in 20 languages. Dial 14416 or toll-free 1800-89-14416. Launched October 2022.",
+          "website": "https://telemanas.mohfw.gov.in/",
+          "verified_at": "2026-06-02",
+          "source": "https://telemanas.mohfw.gov.in/",
+          "government_backed": true,
+          "tags": [
+            "government",
+            "multilingual",
+            "national",
+            "twenty-languages",
+            "short-code"
+          ]
+        },
+        {
+          "id": "in-icall",
+          "country": "IN",
+          "name": "iCall",
+          "category": "mental_health",
+          "secondary_categories": [
+            "suicide_prevention"
+          ],
+          "contacts": [
+            {
+              "method": "phone",
+              "number": "+919152987821",
+              "languages": [
+                "en",
+                "hi"
+              ],
+              "hours": "Mon–Sat 10:00–20:00 IST",
+              "free": true,
+              "anonymous": true
+            }
+          ],
+          "description": "Free professional counselling service run by TISS (Tata Institute of Social Sciences). Provides telephone, email, and chat support for emotional and psychological distress. Available Monday to Saturday, 10:00–20:00 IST.",
+          "website": "https://icallhelpline.org/",
+          "verified_at": "2026-06-02",
+          "source": "https://icallhelpline.org/",
+          "government_backed": false,
+          "tags": [
+            "ngo",
+            "professional-counselling",
+            "tiss"
+          ]
+        }
+      ]
+    },
+    {
+      "countryCode": "JP",
+      "countryName": "Japan",
+      "lat": 36.2048,
+      "lng": 138.2529,
+      "helplineCount": 3,
+      "categories": [
+        "general_crisis",
+        "suicide_prevention",
+        "mental_health"
+      ],
+      "contactMethods": [
+        "phone"
+      ],
+      "languages": [
+        "ja",
+        "en",
+        "zh",
+        "ko",
+        "es",
+        "pt",
+        "fil",
+        "th",
+        "vi",
+        "ne",
+        "id"
+      ],
+      "records": [
+        {
+          "id": "jp-yorisoi-hotline",
+          "country": "JP",
+          "name": "Yorisoi Hotline",
+          "local_name": "よりそいホットライン",
+          "category": "general_crisis",
+          "secondary_categories": [
+            "suicide_prevention",
+            "mental_health"
+          ],
+          "contacts": [
+            {
+              "method": "phone",
+              "number": "+81120279338",
+              "languages": [
+                "ja",
+                "en",
+                "zh",
+                "ko",
+                "es",
+                "pt",
+                "fil",
+                "th",
+                "vi",
+                "ne",
+                "id"
+              ],
+              "hours": "24/7",
+              "free": true,
+              "anonymous": true
+            }
+          ],
+          "description": "24/7 free multilingual crisis support line for anyone in distress. Available in Japanese and 10 other languages. Operated by the NPO Counseling Center.",
+          "website": "https://www.since2011.net/yorisoi/",
+          "verified_at": "2026-06-02",
+          "source": "https://www.since2011.net/yorisoi/",
+          "government_backed": false,
+          "tags": [
+            "multilingual",
+            "always-on",
+            "freephone"
+          ]
+        },
+        {
+          "id": "jp-inochi-no-denwa",
+          "country": "JP",
+          "name": "Inochi no Denwa",
+          "local_name": "いのちの電話",
+          "category": "suicide_prevention",
+          "contacts": [
+            {
+              "method": "phone",
+              "number": "+81120783556",
+              "languages": [
+                "ja"
+              ],
+              "hours": "Daily 16:00–21:00 JST; 08:00 JST on 10th to 08:00 JST on 11th each month",
+              "free": true,
+              "anonymous": true
+            }
+          ],
+          "description": "Free telephone crisis line staffed by trained volunteers. Available daily 16:00–21:00 JST, with a 24-hour session on the 10th of each month. Established in 1971.",
+          "website": "https://www.inochinodenwa.org/",
+          "verified_at": "2026-06-02",
+          "source": "https://www.inochinodenwa.org/",
+          "government_backed": false,
+          "tags": [
+            "volunteer-staffed",
+            "suicide-prevention"
+          ]
+        },
+        {
+          "id": "jp-tell-lifeline",
+          "country": "JP",
+          "name": "TELL Lifeline",
+          "category": "general_crisis",
+          "secondary_categories": [
+            "mental_health"
+          ],
+          "contacts": [
+            {
+              "method": "phone",
+              "number": "+818003008355",
+              "languages": [
+                "en"
+              ],
+              "hours": "24/7",
+              "free": true,
+              "anonymous": true
+            }
+          ],
+          "description": "Toll-free English-language crisis and emotional support line in Japan. Operated since 1973 by TELL (Tokyo English Life Line), Japan's longest-running English-language support service.",
+          "website": "https://www.telljp.com/",
+          "verified_at": "2026-06-02",
+          "source": "https://www.telljp.com/",
+          "government_backed": false,
+          "tags": [
+            "english-language",
+            "expat-support",
+            "freephone"
+          ]
+        }
+      ]
+    },
+    {
+      "countryCode": "KR",
+      "countryName": "South Korea",
+      "lat": 35.9078,
+      "lng": 127.7669,
+      "helplineCount": 1,
+      "categories": [
+        "suicide_prevention",
+        "mental_health",
+        "general_crisis"
+      ],
+      "contactMethods": [
+        "phone"
+      ],
+      "languages": [
+        "ko"
+      ],
+      "records": [
+        {
+          "id": "kr-109-suicide-crisis",
+          "country": "KR",
+          "name": "109 Suicide Prevention Crisis Line",
+          "local_name": "자살예방 상담전화 109",
+          "category": "suicide_prevention",
+          "secondary_categories": [
+            "mental_health",
+            "general_crisis"
+          ],
+          "contacts": [
+            {
+              "method": "phone",
+              "number": "+82109",
+              "languages": [
+                "ko"
+              ],
+              "hours": "24/7",
+              "free": true,
+              "anonymous": true
+            }
+          ],
+          "description": "South Korea's unified national suicide prevention crisis line, operated by the Ministry of Health and Welfare. Consolidated from nine separate helplines including the former 1393 in January 2024.",
+          "website": "https://www.mohw.go.kr/",
+          "verified_at": "2026-06-02",
+          "source": "https://www.mohw.go.kr/board.es?mid=a10503010100&bid=0027&act=view&list_no=1479607",
+          "government_backed": true,
+          "tags": [
+            "government",
+            "consolidated",
+            "short-code",
+            "formerly-1393"
+          ]
+        }
+      ]
+    },
+    {
+      "countryCode": "MX",
+      "countryName": "Mexico",
+      "lat": 23.6345,
+      "lng": -102.5528,
+      "helplineCount": 1,
+      "categories": [
+        "suicide_prevention",
+        "mental_health",
+        "general_crisis"
+      ],
+      "contactMethods": [
+        "phone"
+      ],
+      "languages": [
+        "es"
+      ],
+      "records": [
+        {
+          "id": "mx-saptel",
+          "country": "MX",
+          "name": "SAPTEL — Suicide & Crisis Intervention",
+          "local_name": "SAPTEL — Sistema de Atención por Teléfono",
+          "category": "suicide_prevention",
+          "secondary_categories": [
+            "mental_health",
+            "general_crisis"
+          ],
+          "contacts": [
+            {
+              "method": "phone",
+              "number": "+525552598121",
+              "languages": [
+                "es"
+              ],
+              "hours": "24/7",
+              "free": false,
+              "anonymous": true
+            }
+          ],
+          "description": "Mexico's primary 24/7 crisis and suicide prevention telephone service, operated by the Mexican Psychiatric Association for over 30 years. Standard call rates apply. Staffed by psychologists.",
+          "website": "https://www.saptel.org.mx/",
+          "verified_at": "2026-06-02",
+          "source": "https://www.saptel.org.mx/contacto.html",
+          "government_backed": false,
+          "tags": [
+            "local-rate",
+            "psychiatry-association",
+            "nationwide"
+          ]
+        }
+      ]
+    },
+    {
+      "countryCode": "PH",
+      "countryName": "Philippines",
+      "lat": 12.8797,
+      "lng": 121.774,
+      "helplineCount": 1,
+      "categories": [
+        "general_crisis",
+        "suicide_prevention",
+        "mental_health"
+      ],
+      "contactMethods": [
+        "phone"
+      ],
+      "languages": [
+        "fil",
+        "en"
+      ],
+      "records": [
+        {
+          "id": "ph-ncmh-crisis-hotline",
+          "country": "PH",
+          "name": "NCMH Crisis Hotline",
+          "local_name": "National Center for Mental Health Crisis Hotline",
+          "category": "general_crisis",
+          "secondary_categories": [
+            "suicide_prevention",
+            "mental_health"
+          ],
+          "contacts": [
+            {
+              "method": "phone",
+              "number": "+6321553",
+              "languages": [
+                "fil",
+                "en"
+              ],
+              "hours": "24/7",
+              "free": false,
+              "anonymous": true
+            },
+            {
+              "method": "phone",
+              "number": "+639178998727",
+              "languages": [
+                "fil",
+                "en"
+              ],
+              "hours": "24/7",
+              "free": false,
+              "anonymous": true
+            }
+          ],
+          "description": "24/7 psychological first aid and crisis support operated by the National Center for Mental Health (NCMH), Department of Health. Reach via landline 1553 or mobile 0917-899-8727 (USAP).",
+          "website": "https://ncmh.gov.ph/",
+          "verified_at": "2026-06-02",
+          "source": "https://doh.gov.ph/NCMH-Crisis-Hotline",
+          "government_backed": true,
+          "tags": [
+            "government",
+            "doh",
+            "ncmh",
+            "usap"
+          ]
+        }
+      ]
+    },
+    {
+      "countryCode": "RU",
+      "countryName": "Russia",
+      "lat": 61.524,
+      "lng": 105.3188,
+      "helplineCount": 2,
+      "categories": [
+        "mental_health",
+        "suicide_prevention",
+        "general_crisis",
+        "youth"
+      ],
+      "contactMethods": [
+        "phone"
+      ],
+      "languages": [
+        "ru"
+      ],
+      "records": [
+        {
+          "id": "ru-national-psychological-helpline",
+          "country": "RU",
+          "name": "National Psychological Help Hotline",
+          "local_name": "Телефон доверия (национальный)",
+          "category": "mental_health",
+          "secondary_categories": [
+            "suicide_prevention",
+            "general_crisis"
+          ],
+          "contacts": [
+            {
+              "method": "phone",
+              "number": "+78003334434",
+              "languages": [
+                "ru"
+              ],
+              "hours": "24/7",
+              "free": true,
+              "anonymous": true
+            }
+          ],
+          "description": "Russia's national psychological helpline offering free, confidential emotional support and crisis intervention. Toll-free from all regions of Russia.",
+          "website": "https://pomoschryadom.ru/",
+          "verified_at": "2026-06-02",
+          "source": "https://pomoschryadom.ru/category/helplines",
+          "government_backed": false,
+          "tags": [
+            "freephone",
+            "anonymous",
+            "nationwide"
+          ]
+        },
+        {
+          "id": "ru-childrens-crisis-hotline",
+          "country": "RU",
+          "name": "Children and Youth Crisis Hotline",
+          "local_name": "Единый общероссийский детский телефон доверия",
+          "category": "youth",
+          "secondary_categories": [
+            "suicide_prevention",
+            "general_crisis"
+          ],
+          "contacts": [
+            {
+              "method": "phone",
+              "number": "+78002000122",
+              "languages": [
+                "ru"
+              ],
+              "hours": "24/7",
+              "free": true,
+              "anonymous": true
+            }
+          ],
+          "description": "Free 24/7 crisis hotline for children, teenagers, and their parents across Russia. Launched in 2010 by the Foundation for Support of Children in Difficult Life Situations. Confidential psychological help.",
+          "website": "https://telefon-doveria.ru/",
+          "verified_at": "2026-06-02",
+          "source": "https://telefon-doveria.ru/about/",
+          "government_backed": true,
+          "tags": [
+            "youth",
+            "children",
+            "freephone",
+            "government-backed"
+          ]
+        }
+      ]
+    },
+    {
+      "countryCode": "US",
+      "countryName": "United States",
+      "lat": 37.0902,
+      "lng": -95.7129,
+      "helplineCount": 2,
+      "categories": [
+        "suicide_prevention",
+        "mental_health",
+        "general_crisis",
+        "youth"
+      ],
+      "contactMethods": [
+        "phone",
+        "text"
+      ],
+      "languages": [
+        "en",
+        "es"
+      ],
+      "records": [
+        {
+          "id": "us-988-lifeline",
+          "country": "US",
+          "name": "988 Suicide & Crisis Lifeline",
+          "category": "suicide_prevention",
+          "secondary_categories": [
+            "mental_health",
+            "general_crisis"
+          ],
+          "contacts": [
+            {
+              "method": "phone",
+              "number": "+18002738255",
+              "languages": [
+                "en",
+                "es"
+              ],
+              "hours": "24/7",
+              "free": true,
+              "anonymous": true
+            }
+          ],
+          "description": "US national crisis network providing 24/7 free and confidential support for people in suicidal crisis or mental health distress. Dial or text 988. Funded by SAMHSA and administered by Vibrant Emotional Health.",
+          "website": "https://988lifeline.org/",
+          "verified_at": "2026-06-02",
+          "source": "https://www.samhsa.gov/mental-health/988",
+          "government_backed": true,
+          "tags": [
+            "hotline-988",
+            "samhsa",
+            "national",
+            "bilingual",
+            "text-available"
+          ]
+        },
+        {
+          "id": "us-crisis-text-line",
+          "country": "US",
+          "name": "Crisis Text Line",
+          "category": "general_crisis",
+          "secondary_categories": [
+            "mental_health",
+            "youth"
+          ],
+          "contacts": [
+            {
+              "method": "text",
+              "number": "+1741741",
+              "languages": [
+                "en"
+              ],
+              "hours": "24/7",
+              "free": true,
+              "anonymous": true
+            }
+          ],
+          "description": "24/7 free crisis support via text message. Text HOME to 741741 from anywhere in the USA to reach a trained Crisis Counselor. Particularly accessible for those who cannot speak aloud.",
+          "website": "https://www.crisistextline.org/",
+          "verified_at": "2026-06-02",
+          "source": "https://www.crisistextline.org/",
+          "government_backed": false,
+          "tags": [
+            "text-only",
+            "short-code",
+            "youth-friendly"
+          ]
+        }
+      ]
+    }
+  ]
+}

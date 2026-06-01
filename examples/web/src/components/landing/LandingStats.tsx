@@ -1,11 +1,14 @@
-import { MOCK_GLOBAL_DATA } from '@/lib/mock-data';
+'use client';
+
+import { useHelplinesData } from '@/lib/use-helplines-data';
 
 /**
  * LandingStats — shows high-level statistics on the landing page.
- * Data will be replaced by real aggregated stats post Task #1 merge.
+ * Reflects real counts from the collected helplines dataset.
  */
 export function LandingStats() {
-  const { countries, totalRecords } = MOCK_GLOBAL_DATA;
+  const { data } = useHelplinesData();
+  const { countries, totalRecords } = data;
   const allLanguages = new Set(countries.flatMap((c) => c.languages));
 
   const stats = [

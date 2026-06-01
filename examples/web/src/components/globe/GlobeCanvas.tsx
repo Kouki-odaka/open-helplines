@@ -17,7 +17,7 @@
 
 import { useEffect, useRef, useCallback, useState } from 'react';
 import type { CountryGlobeData } from '@/types/helpline';
-import { MOCK_GLOBAL_DATA } from '@/lib/mock-data';
+import { useHelplinesData } from '@/lib/use-helplines-data';
 import {
   mapCountToColumnHeight,
   mapCountToBlueColor,
@@ -81,7 +81,7 @@ export default function GlobeCanvas() {
   const [colorMode, setColorMode] = useState<ColorMode>('count');
   const [isReady, setIsReady] = useState(false);
 
-  const globeData = MOCK_GLOBAL_DATA;
+  const { data: globeData } = useHelplinesData();
 
   const resumeAutoRotate = useCallback(() => {
     const globe = globeInstanceRef.current;
