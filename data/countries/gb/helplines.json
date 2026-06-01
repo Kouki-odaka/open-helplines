@@ -23,7 +23,7 @@
       "verified_at": "2026-06-02",
       "source": "https://www.samaritans.org/how-we-can-help/contact-samaritan/talk-us-phone/",
       "government_backed": false,
-      "tags": ["116-123", "volunteer-staffed", "confidential", "no-phone-bill"]
+      "tags": ["line-116-123", "volunteer-staffed", "confidential", "no-phone-bill"]
     },
     {
       "id": "gb-shout-crisis-text-line",
@@ -46,7 +46,7 @@
       "verified_at": "2026-06-02",
       "source": "https://giveusashout.org/",
       "government_backed": false,
-      "tags": ["text-only", "short-code", "85258", "youth-friendly"]
+      "tags": ["text-only", "short-code", "code-85258", "youth-friendly"]
     }
   ]
 }
