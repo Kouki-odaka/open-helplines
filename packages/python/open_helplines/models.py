@@ -82,7 +82,7 @@ class HelplineRecord(BaseModel):
 
     @field_validator("id")
     @classmethod
-    def validate_id_country_prefix(cls, value: str, info: object) -> str:  # type: ignore[override]
+    def validate_id_country_prefix(cls, value: str, info: object) -> str:
         return value
 
 

@@ -1,0 +1,30 @@
+{
+  "$schema": "../../../schemas/helpline.schema.json",
+  "country": "MX",
+  "records": [
+    {
+      "id": "mx-saptel",
+      "country": "MX",
+      "name": "SAPTEL — Suicide & Crisis Intervention",
+      "local_name": "SAPTEL — Sistema de Atención por Teléfono",
+      "category": "suicide_prevention",
+      "secondary_categories": ["mental_health", "general_crisis"],
+      "contacts": [
+        {
+          "method": "phone",
+          "number": "+525552598121",
+          "languages": ["es"],
+          "hours": "24/7",
+          "free": false,
+          "anonymous": true
+        }
+      ],
+      "description": "Mexico's primary 24/7 crisis and suicide prevention telephone service, operated by the Mexican Psychiatric Association for over 30 years. Standard call rates apply. Staffed by psychologists.",
+      "website": "https://www.saptel.org.mx/",
+      "verified_at": "2026-06-02",
+      "source": "https://www.saptel.org.mx/contacto.html",
+      "government_backed": false,
+      "tags": ["local-rate", "psychiatry-association", "nationwide"]
+    }
+  ]
+}

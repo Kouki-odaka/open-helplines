@@ -1,0 +1,30 @@
+{
+  "$schema": "../../../schemas/helpline.schema.json",
+  "country": "KR",
+  "records": [
+    {
+      "id": "kr-109-suicide-crisis",
+      "country": "KR",
+      "name": "109 Suicide Prevention Crisis Line",
+      "local_name": "자살예방 상담전화 109",
+      "category": "suicide_prevention",
+      "secondary_categories": ["mental_health", "general_crisis"],
+      "contacts": [
+        {
+          "method": "phone",
+          "number": "+82109",
+          "languages": ["ko"],
+          "hours": "24/7",
+          "free": true,
+          "anonymous": true
+        }
+      ],
+      "description": "South Korea's unified national suicide prevention crisis line, operated by the Ministry of Health and Welfare. Consolidated from nine separate helplines including the former 1393 in January 2024.",
+      "website": "https://www.mohw.go.kr/",
+      "verified_at": "2026-06-02",
+      "source": "https://www.mohw.go.kr/board.es?mid=a10503010100&bid=0027&act=view&list_no=1479607",
+      "government_backed": true,
+      "tags": ["government", "consolidated", "short-code", "formerly-1393"]
+    }
+  ]
+}
