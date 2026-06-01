@@ -4,6 +4,7 @@
   "title": "open-helplines JSON Schema",
   "description": "Schema for the open-helplines global mental health hotline registry. Data is CC0 1.0; schema and tooling are Apache-2.0.",
   "version": "1.0.0",
+  "$comment": "SPDX-License-Identifier: Apache-2.0. This schema is licensed under Apache 2.0; data files conforming to this schema (data/**/*.json) are published under CC0-1.0. See LICENSE and LICENSE-DATA in the repository root.",
 
   "$defs": {
 
@@ -297,6 +298,5 @@
 
   },
 
-  "$comment": "Root of this schema validates a HelplineDataFile (per-country data file)",
   "$ref": "#/$defs/HelplineDataFile"
 }

@@ -94,6 +94,35 @@ python3 scripts/generate_python_models.py
 npm run build
 ```
 
+## License Policy (Dual Licensing)
+
+This repository uses dual licensing:
+- **Code** (TypeScript, Python, YAML workflows, scripts): Apache-2.0
+- **Data** (`data/**/*.json`, `dist/**/*.json`): CC0-1.0
+
+### SPDX Header Rules (mandatory for all new files)
+
+| File type | First line |
+|-----------|-----------|
+| `.ts` / `.js` / `.mjs` files | `// SPDX-License-Identifier: Apache-2.0` |
+| `.yml` / `.yaml` workflow files (`.github/workflows/*.yml`, `.github/actions/**/action.yml`) | `# SPDX-License-Identifier: Apache-2.0` |
+| `.py` files | `# SPDX-License-Identifier: Apache-2.0` |
+| JSON config files, schemas | `"$comment": "SPDX-License-Identifier: Apache-2.0 ..."` field |
+| JSON data files (`data/**/*.json`) | `"$comment": "SPDX-License-Identifier: CC0-1.0 ..."` field |
+| Markdown docs | No SPDX header required (license stated in repo root) |
+
+### Why dual license
+
+- **Data must be maximally usable (CC0)** — life-critical crisis contact info must not have
+  license friction. An LLM embedding a phone number in a response should never need to worry
+  about attribution requirements.
+- **Code keeps Apache-2.0 for patent protection** — the explicit patent grant in Apache-2.0
+  protects both contributors and users if any claim is ever made against the tooling.
+- **CC0 and Apache-2.0 are compatible** — a project can contain both without conflict.
+
+See `NOTICE` for third-party dependency acknowledgments, `LICENSE` for Apache-2.0 full text,
+and `LICENSE-DATA` for CC0 1.0 full text.
+
 ## Architecture decisions
 
 See `docs/adr/` for rationale on major decisions:
@@ -102,6 +131,8 @@ See `docs/adr/` for rationale on major decisions:
 - [ADR-002](docs/adr/ADR-002-cc0-data-apache-code.md) — Dual-license strategy
 - [ADR-003](docs/adr/ADR-003-per-country-files.md) — Per-country file structure
 - [ADR-004](docs/adr/ADR-004-mcp-server-design.md) — MCP server design
+- [ADR-005](docs/adr/ADR-005-distribution-strategy.md) — npm + PyPI + MCP 3-channel distribution
+- [ADR-006](docs/adr/ADR-006-versioning-strategy.md) — Hybrid SemVer + CalVer versioning
 
 ## Safety note
 

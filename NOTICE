@@ -1,0 +1,29 @@
+open-helplines
+Copyright 2026 Kouki Odaka (Kouki-odaka)
+
+This product includes software developed as part of the open-helplines project.
+
+Code in this repository is licensed under the Apache License 2.0
+(see LICENSE file). Data files in data/ and JSON outputs in dist/
+are licensed under CC0 1.0 Universal (see LICENSE-DATA file).
+
+-------------------------------------------------------------------------------
+
+This software depends on the following third-party libraries:
+
+ajv (MIT) — https://github.com/ajv-validator/ajv
+ajv-formats (MIT) — https://github.com/ajv-validator/ajv-formats
+@modelcontextprotocol/sdk (MIT) — https://github.com/modelcontextprotocol/typescript-sdk
+json-schema-to-typescript (MIT) — https://github.com/bcherny/json-schema-to-typescript
+
+Python dependencies:
+pydantic (MIT) — https://github.com/pydantic/pydantic
+httpx (BSD) — https://github.com/encode/httpx
+datamodel-code-generator (MIT) — https://github.com/koxudaxi/datamodel-code-generator
+
+-------------------------------------------------------------------------------
+
+The helpline data in data/ is dedicated to the public domain under CC0 1.0
+Universal to the fullest extent permitted by law. For jurisdictions where CC0
+is not recognized, a perpetual, irrevocable, royalty-free license to use,
+copy, modify, and distribute the data is hereby granted.
