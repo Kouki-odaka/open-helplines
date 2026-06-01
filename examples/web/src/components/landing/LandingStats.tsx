@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { useHelplinesData } from '@/lib/use-helplines-data';
 
 /**
@@ -7,14 +8,15 @@ import { useHelplinesData } from '@/lib/use-helplines-data';
  * Reflects real counts from the collected helplines dataset.
  */
 export function LandingStats() {
+  const t = useTranslations('landing.stats');
   const { data } = useHelplinesData();
   const { countries, totalRecords } = data;
   const allLanguages = new Set(countries.flatMap((c) => c.languages));
 
   const stats = [
-    { value: countries.length, label: 'countries' },
-    { value: `${totalRecords}+`, label: 'helplines' },
-    { value: allLanguages.size, label: 'languages' },
+    { value: countries.length, label: t('countries') },
+    { value: `${totalRecords}+`, label: t('helplines') },
+    { value: allLanguages.size, label: t('languages') },
   ];
 
   return (

@@ -1,0 +1,193 @@
+{
+  "nav": {
+    "home": "Open Helplines",
+    "globe": "地球儀",
+    "network": "ネットワーク",
+    "heatmap": "ヒートマップ",
+    "about": "About",
+    "contribute": "データ提供",
+    "github": "GitHub",
+    "openMenu": "ナビゲーションメニューを開く",
+    "closeMenu": "メニューを閉じる"
+  },
+  "language": {
+    "label": "言語",
+    "en": "English",
+    "ja": "日本語",
+    "es": "Español"
+  },
+  "footer": {
+    "copyright": "Open Helplines コントリビューター",
+    "codeLabel": "コード:",
+    "viewOnGithub": "GitHubで見る",
+    "dataLicenseAriaLabel": "データ: CC0 1.0 パブリックドメイン（新しいタブで開く）"
+  },
+  "common": {
+    "loading": "読み込み中…",
+    "error": "エラーが発生しました",
+    "visitWebsite": "ウェブサイトを見る →",
+    "openInNewTab": "新しいタブで開く"
+  },
+  "landing": {
+    "badge": "オープンデータ · CC0",
+    "headline": "{highlight}のメンタルヘルス相談窓口をオープンデータで。",
+    "headlineHighlight": "世界中",
+    "tagline": "無料・CC0・APIキー不要。アプリ、サービス、研究に制限なく利用できます。",
+    "ctaExploreGlobe": "地球儀で探す →",
+    "ctaViewOnGithub": "GitHubで見る",
+    "exploreTitle": "データを探索する",
+    "contributeTitle": "まだ登録されていない相談窓口をご存知ですか？",
+    "contributeDescription": "JSONファイルとプルリクエストで数分で追加できます。迅速にレビュー・マージします。",
+    "contributeButton": "データを提供する →",
+    "vizCards": {
+      "globe": {
+        "title": "地球儀ビュー",
+        "description": "国別の相談窓口密度を表示するインタラクティブな3D地球儀"
+      },
+      "network": {
+        "title": "ネットワークビュー",
+        "description": "カテゴリ・言語・連絡手段の関係を示す力指向グラフ"
+      },
+      "heatmap": {
+        "title": "ヒートマップビュー",
+        "description": "時系列タイムライン付きの地理的コロプレス図"
+      }
+    },
+    "stats": {
+      "countries": "か国",
+      "helplines": "件の相談窓口",
+      "languages": "言語"
+    }
+  },
+  "globe": {
+    "pageTitle": "地球儀ビュー — Open Helplines",
+    "pageDescription": "世界中の危機相談窓口の分布を示すインタラクティブな3D地球儀",
+    "ariaLabel": "世界の危機相談窓口の分布を示すインタラクティブな3D地球儀",
+    "loadingLabel": "地球儀を読み込み中",
+    "colorMode": {
+      "label": "色分け:",
+      "count": "件数",
+      "category": "カテゴリ",
+      "languages": "言語数"
+    },
+    "stats": {
+      "data": "データ:",
+      "countries": "{count}か国",
+      "helplines": "{count}件"
+    },
+    "tooltip": {
+      "helplines": "相談窓口",
+      "languages": "対応言語",
+      "categories": "カテゴリ"
+    },
+    "panel": {
+      "helplineCount": "{count}件の相談窓口",
+      "helplineCountPlural": "{count}件の相談窓口",
+      "categories": "カテゴリ",
+      "contactMethods": "連絡手段",
+      "languages": "対応言語 ({count})",
+      "helplines": "相談窓口一覧",
+      "close": "パネルを閉じる",
+      "noRecords": "詳細データはデータマージ後に表示されます。"
+    },
+    "accessibility": {
+      "tableLabel": "国別相談窓口一覧 — 地球儀データ",
+      "tableCaption": "国別の危機相談窓口数。件数が多い国ほど高い柱で表示されます。",
+      "colCountry": "国",
+      "colCount": "相談窓口数",
+      "colCategory": "主カテゴリ",
+      "colLanguages": "対応言語",
+      "colContacts": "連絡手段"
+    }
+  },
+  "network": {
+    "pageTitle": "ネットワークビュー — Open Helplines",
+    "pageDescription": "相談窓口・カテゴリ・言語・連絡手段の関係を示す力指向ネットワークグラフ",
+    "filterCountry": "国で絞り込む",
+    "filterCategory": "カテゴリで絞り込む",
+    "allCountries": "すべての国",
+    "allCategories": "すべてのカテゴリ"
+  },
+  "heatmap": {
+    "pageTitle": "ヒートマップビュー — Open Helplines",
+    "pageDescription": "時系列タイムライン付きの国別相談窓口密度コロプレス図",
+    "filterCategory": "カテゴリ:",
+    "allCategories": "すべてのカテゴリ",
+    "timeLabel": "時期:",
+    "play": "再生",
+    "pause": "一時停止",
+    "faster": "速く",
+    "slower": "遅く",
+    "noData": "データなし",
+    "tooltipHelplines": "件の相談窓口"
+  },
+  "about": {
+    "pageTitle": "About — Open Helplines",
+    "pageDescription": "Open Helplinesプロジェクトのデータと貢献方法について",
+    "title": "Open Helplinesについて",
+    "whatIsThisTitle": "このプロジェクトは？",
+    "whatIsThisText1": "Open Helplinesは、世界中のメンタルヘルス・危機相談窓口の無料オープンソースデータセットです。データは構造化・機械可読な形式で、{cc0link}（パブリックドメイン）ライセンスで公開されています。商用利用を含むあらゆる目的に、帰属表示なしで利用できます。",
+    "whatIsThisText1CC0Link": "CC0 1.0 Universal",
+    "whatIsThisText2": "このビジュアライゼーションサイトでは、世界の危機相談リソースの分布と特性を探索できます。",
+    "dataTitle": "データについて",
+    "dataItems": [
+      "各相談窓口には電話・テキスト・チャットの連絡先、対応言語、営業時間が含まれます",
+      "カテゴリ：自殺防止、メンタルヘルス、危機対応、家庭内暴力、LGBTQ+など",
+      "データは定期的に検証され、コミュニティで管理されています",
+      "JSON形式で提供、open-helplines npmパッケージと互換性あり"
+    ],
+    "visualizationsTitle": "ビジュアライゼーション",
+    "contributeTitle": "コントリビューション",
+    "contributeText": "どの国のデータ提供も歓迎します。データベースに未登録の危機相談リソースをご存知でしたら、GitHubのプルリクエストまたはIssueでお知らせください。",
+    "contributeButton": "コントリビュートガイド →",
+    "licenseTitle": "ライセンス",
+    "licenseData": "データ:",
+    "licenseDataText": "CC0 1.0 Universal — 権利放棄。あらゆる目的に自由に利用できます。",
+    "licenseCode": "コード:",
+    "licenseCodeText": "Apache License 2.0"
+  },
+  "contribute": {
+    "pageTitle": "データ提供 — Open Helplines",
+    "pageDescription": "Open Helplinesプロジェクトへのデータ提供方法",
+    "title": "データを提供する",
+    "subtitle": "危機相談リソースの最も包括的なオープンディレクトリの構築にご協力ください。",
+    "howToTitle": "相談窓口の追加方法",
+    "howToSteps": [
+      "{githubLink}でリポジトリをフォークする",
+      "{filePath}のファイルを作成または編集する",
+      "JSONスキーマ形式に従って相談窓口を追加する（下記例を参照）",
+      "プルリクエストを送信する — 迅速にレビュー・マージします"
+    ],
+    "jsonFormatTitle": "JSON形式",
+    "guidelinesTitle": "ガイドライン",
+    "guidelines": [
+      "1件のレコードに1つの相談窓口（複数のまとめ登録は不可）",
+      "送信前に電話番号とURLを確認する",
+      "営業時間を正確に記載する（24時間対応または具体的な時間）",
+      "ISO 3166-1 alpha-2の国コードを使用する（例：「JP」、「US」）",
+      "BCP 47の言語コードを使用する（例：「en」、「ja」、「es」）",
+      "データは事実に基づき検証可能なものに限る — 宣伝的内容は不可"
+    ],
+    "ctaGuide": "コントリビュートガイドを読む →",
+    "ctaIssue": "Issueを開く"
+  },
+  "categories": {
+    "suicide_prevention": "自殺防止",
+    "mental_health": "メンタルヘルス",
+    "crisis": "危機支援",
+    "general_crisis": "総合危機対応",
+    "domestic_violence": "家庭内暴力",
+    "child_abuse": "児童保護",
+    "substance_abuse": "薬物依存",
+    "lgbtq": "LGBTQ+",
+    "veteran": "退役軍人",
+    "other": "その他"
+  },
+  "contactMethods": {
+    "phone": "電話",
+    "text": "テキスト/SMS",
+    "chat": "オンラインチャット",
+    "email": "メール",
+    "app": "モバイルアプリ"
+  }
+}

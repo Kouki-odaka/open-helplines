@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import { ComposableMap, Geographies, Geography } from 'react-simple-maps';
+import { useTranslations } from 'next-intl';
 import { useHelplinesData } from '@/lib/use-helplines-data';
 import { mapCountToBlueColor } from '@/lib/viz-tokens';
 import type { CountryGlobeData, HelplineCategory } from '@/types/helpline';
@@ -122,6 +123,7 @@ function buildCountrySnapshots(
 // ─── Component ────────────────────────────────────────────────────────────────
 
 export default function ChoroplethMap() {
+  const t = useTranslations('heatmap');
   const { data: helplinesData } = useHelplinesData();
   const allCountries = helplinesData.countries;
   const allMonths = useMemo(
@@ -265,9 +267,9 @@ export default function ChoroplethMap() {
           value={filterCategory}
           onChange={(e) => setFilterCategory(e.target.value)}
           className="text-xs bg-gray-800 text-gray-300 border border-gray-700 rounded px-2 py-1 focus:outline-none focus:ring-1 focus:ring-blue-500 min-w-[140px]"
-          aria-label="Filter by category"
+          aria-label={t('filterCategory')}
         >
-          <option value="">All Categories</option>
+          <option value="">{t('allCategories')}</option>
           {allCategoryNames.map((cat) => (
             <option key={cat} value={cat}>
               {cat.replace(/_/g, ' ')}
@@ -304,7 +306,7 @@ export default function ChoroplethMap() {
             aria-label={isPlaying ? 'Pause time playback' : 'Play time playback'}
           >
             <span aria-hidden="true">{isPlaying ? '⏸' : '▶'}</span>
-            {isPlaying ? 'Pause' : 'Play'}
+            {isPlaying ? t('pause') : t('play')}
           </button>
 
           <button

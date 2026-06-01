@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import type { ColorMode } from './GlobeCanvas';
 
 interface GlobeStatsOverlayProps {
@@ -8,12 +9,6 @@ interface GlobeStatsOverlayProps {
   colorMode: ColorMode;
   onColorModeChange: (mode: ColorMode) => void;
 }
-
-const COLOR_MODE_OPTIONS: { value: ColorMode; label: string }[] = [
-  { value: 'count',     label: 'Count' },
-  { value: 'category',  label: 'Category' },
-  { value: 'languages', label: 'Languages' },
-];
 
 /**
  * GlobeStatsOverlay — bottom bar with color mode toggle and stats.
@@ -25,6 +20,14 @@ export function GlobeStatsOverlay({
   colorMode,
   onColorModeChange,
 }: GlobeStatsOverlayProps) {
+  const t = useTranslations('globe');
+
+  const colorModeOptions: { value: ColorMode; label: string }[] = [
+    { value: 'count',     label: t('colorMode.count') },
+    { value: 'category',  label: t('colorMode.category') },
+    { value: 'languages', label: t('colorMode.languages') },
+  ];
+
   return (
     <div
       className="absolute bottom-0 left-0 right-0 bg-gray-950/85 backdrop-blur-sm border-t border-gray-800 px-4 py-2 flex flex-wrap items-center gap-4 text-sm z-10"
@@ -34,14 +37,14 @@ export function GlobeStatsOverlay({
       {/* Color mode selector */}
       <div className="flex items-center gap-2">
         <span className="text-gray-500 text-xs" id="color-mode-label">
-          Color:
+          {t('colorMode.label')}
         </span>
         <div
           className="flex items-center gap-1"
           role="group"
           aria-labelledby="color-mode-label"
         >
-          {COLOR_MODE_OPTIONS.map(({ value, label }) => (
+          {colorModeOptions.map(({ value, label }) => (
             <button
               key={value}
               onClick={() => onColorModeChange(value)}
@@ -62,10 +65,14 @@ export function GlobeStatsOverlay({
 
       {/* Stats */}
       <div className="ml-auto text-xs text-gray-500">
-        Data:{' '}
-        <span className="text-gray-300 font-medium">{totalCountries} countries</span>
+        {t('stats.data')}{' '}
+        <span className="text-gray-300 font-medium">
+          {t('stats.countries', { count: totalCountries })}
+        </span>
         {' · '}
-        <span className="text-gray-300 font-medium">{totalHelplines} helplines</span>
+        <span className="text-gray-300 font-medium">
+          {t('stats.helplines', { count: totalHelplines })}
+        </span>
       </div>
     </div>
   );

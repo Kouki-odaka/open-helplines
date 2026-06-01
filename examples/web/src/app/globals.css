@@ -6,7 +6,9 @@
 @import '@fontsource-variable/inter';
 @import '@fontsource/noto-sans/400.css';
 @import '@fontsource/noto-sans/600.css';
+/* Japanese (CJK) font — loaded for all locales to avoid FOUT on lang switch */
 @import '@fontsource/noto-sans-jp/400.css';
+@import '@fontsource/noto-sans-jp/700.css';
 
 @layer base {
   :root {
@@ -24,6 +26,12 @@
     font-family: 'Inter var', 'Noto Sans', 'Noto Sans JP', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Japanese locale: prioritise Noto Sans JP for correct CJK rendering */
+  :lang(ja) {
+    font-family: 'Noto Sans JP', 'Inter var', system-ui, sans-serif;
+    word-break: break-all;
   }
 
   /* Accessible focus ring for all interactive elements */

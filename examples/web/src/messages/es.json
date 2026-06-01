@@ -1,0 +1,193 @@
+{
+  "nav": {
+    "home": "Open Helplines",
+    "globe": "Globo",
+    "network": "Red",
+    "heatmap": "Mapa de calor",
+    "about": "Acerca de",
+    "contribute": "Contribuir",
+    "github": "GitHub",
+    "openMenu": "Abrir menú de navegación",
+    "closeMenu": "Cerrar menú"
+  },
+  "language": {
+    "label": "Idioma",
+    "en": "English",
+    "ja": "日本語",
+    "es": "Español"
+  },
+  "footer": {
+    "copyright": "Colaboradores de Open Helplines",
+    "codeLabel": "Código:",
+    "viewOnGithub": "Ver en GitHub",
+    "dataLicenseAriaLabel": "Datos: CC0 1.0 Dominio Público (abre en nueva pestaña)"
+  },
+  "common": {
+    "loading": "Cargando…",
+    "error": "Algo salió mal",
+    "visitWebsite": "Visitar sitio web →",
+    "openInNewTab": "abre en nueva pestaña"
+  },
+  "landing": {
+    "badge": "Datos abiertos · CC0",
+    "headline": "Registro de datos abiertos de líneas de ayuda de salud mental {highlight}.",
+    "headlineHighlight": "en todo el mundo",
+    "tagline": "Gratis · CC0 · Sin clave de API. Úsalo en tu aplicación, servicio o investigación — sin restricciones.",
+    "ctaExploreGlobe": "Explorar el globo →",
+    "ctaViewOnGithub": "Ver en GitHub",
+    "exploreTitle": "Explorar los datos",
+    "contributeTitle": "¿Conoces una línea de ayuda que falta?",
+    "contributeDescription": "Agrégala en minutos — JSON + pull request. Revisamos y fusionamos rápidamente.",
+    "contributeButton": "Contribuir datos →",
+    "vizCards": {
+      "globe": {
+        "title": "Vista de globo",
+        "description": "Globo 3D interactivo con densidad de líneas de ayuda por país"
+      },
+      "network": {
+        "title": "Vista de red",
+        "description": "Grafo de fuerza dirigida de categorías, idiomas y contactos"
+      },
+      "heatmap": {
+        "title": "Vista de mapa de calor",
+        "description": "Coropleta geográfica con línea de tiempo temporal"
+      }
+    },
+    "stats": {
+      "countries": "países",
+      "helplines": "líneas de ayuda",
+      "languages": "idiomas"
+    }
+  },
+  "globe": {
+    "pageTitle": "Vista de globo — Open Helplines",
+    "pageDescription": "Globo 3D interactivo que muestra la cobertura de líneas de crisis por país en todo el mundo.",
+    "ariaLabel": "Globo 3D interactivo que muestra la cobertura global de líneas de crisis por país",
+    "loadingLabel": "Cargando globo",
+    "colorMode": {
+      "label": "Color:",
+      "count": "Por cantidad",
+      "category": "Por categoría",
+      "languages": "Por idiomas"
+    },
+    "stats": {
+      "data": "Datos:",
+      "countries": "{count} países",
+      "helplines": "{count} líneas"
+    },
+    "tooltip": {
+      "helplines": "Líneas de ayuda",
+      "languages": "Idiomas",
+      "categories": "Categorías"
+    },
+    "panel": {
+      "helplineCount": "{count} línea de ayuda",
+      "helplineCountPlural": "{count} líneas de ayuda",
+      "categories": "Categorías",
+      "contactMethods": "Medios de contacto",
+      "languages": "Idiomas ({count})",
+      "helplines": "Líneas de ayuda",
+      "close": "Cerrar panel",
+      "noRecords": "Los registros detallados estarán disponibles después de la fusión de datos."
+    },
+    "accessibility": {
+      "tableLabel": "Líneas de ayuda por país — datos del globo",
+      "tableCaption": "Número de líneas de crisis por país, visualizado como columnas en el globo 3D. Los países con más líneas tienen columnas más altas.",
+      "colCountry": "País",
+      "colCount": "Cantidad de líneas",
+      "colCategory": "Categoría principal",
+      "colLanguages": "Idiomas",
+      "colContacts": "Medios de contacto"
+    }
+  },
+  "network": {
+    "pageTitle": "Vista de red — Open Helplines",
+    "pageDescription": "Grafo de red de fuerza dirigida que muestra relaciones entre líneas de ayuda, categorías, idiomas y medios de contacto.",
+    "filterCountry": "Filtrar por país",
+    "filterCategory": "Filtrar por categoría",
+    "allCountries": "Todos los países",
+    "allCategories": "Todas las categorías"
+  },
+  "heatmap": {
+    "pageTitle": "Vista de mapa de calor — Open Helplines",
+    "pageDescription": "Mapa de calor coropleta que muestra la densidad de líneas de ayuda por país con una línea de tiempo temporal.",
+    "filterCategory": "Filtrar categoría:",
+    "allCategories": "Todas las categorías",
+    "timeLabel": "Tiempo:",
+    "play": "Reproducir",
+    "pause": "Pausar",
+    "faster": "Más rápido",
+    "slower": "Más lento",
+    "noData": "Sin datos",
+    "tooltipHelplines": "líneas de ayuda"
+  },
+  "about": {
+    "pageTitle": "Acerca de — Open Helplines",
+    "pageDescription": "Información sobre el proyecto Open Helplines, sus datos y cómo contribuir.",
+    "title": "Acerca de Open Helplines",
+    "whatIsThisTitle": "¿Qué es esto?",
+    "whatIsThisText1": "Open Helplines es un conjunto de datos libre y de código abierto sobre líneas de ayuda de salud mental y apoyo en crisis de todo el mundo. Los datos son estructurados, legibles por máquina y publicados bajo la licencia {cc0link} (Dominio Público), lo que significa que puedes usarlos para cualquier propósito, incluyendo comercial, sin atribución.",
+    "whatIsThisText1CC0Link": "CC0 1.0 Universal",
+    "whatIsThisText2": "Este sitio de visualización ayuda a explorar la cobertura y características de los recursos de apoyo en crisis a nivel mundial.",
+    "dataTitle": "Los datos",
+    "dataItems": [
+      "Cada línea de ayuda incluye contactos de teléfono/texto/chat, idiomas y horarios de atención",
+      "Categorías: prevención del suicidio, salud mental, crisis, violencia doméstica, LGBTQ+, y más",
+      "Los datos se verifican periódicamente y son mantenidos por la comunidad",
+      "Disponibles en formato JSON, compatibles con el paquete npm open-helplines"
+    ],
+    "visualizationsTitle": "Visualizaciones",
+    "contributeTitle": "Contribuir",
+    "contributeText": "Aceptamos contribuciones de datos de líneas de ayuda de cualquier país. Si conoces un recurso de apoyo en crisis que no está en nuestra base de datos, abre un pull request o un issue en GitHub.",
+    "contributeButton": "Guía de contribución →",
+    "licenseTitle": "Licencia",
+    "licenseData": "Datos:",
+    "licenseDataText": "CC0 1.0 Universal — Sin derechos reservados. Uso libre para cualquier propósito.",
+    "licenseCode": "Código:",
+    "licenseCodeText": "Apache License 2.0"
+  },
+  "contribute": {
+    "pageTitle": "Contribuir — Open Helplines",
+    "pageDescription": "Cómo contribuir datos de líneas de ayuda al proyecto Open Helplines.",
+    "title": "Contribuir datos",
+    "subtitle": "Ayúdanos a construir el directorio abierto más completo de recursos de apoyo en crisis.",
+    "howToTitle": "Cómo agregar una línea de ayuda",
+    "howToSteps": [
+      "Haz un fork del repositorio en {githubLink}",
+      "Encuentra o crea el archivo en {filePath}",
+      "Agrega tu línea de ayuda usando el formato de esquema JSON (ver ejemplo abajo)",
+      "Abre un pull request — revisamos y fusionamos rápidamente"
+    ],
+    "jsonFormatTitle": "Formato JSON",
+    "guidelinesTitle": "Directrices",
+    "guidelines": [
+      "Un registro por línea de ayuda (sin listados agregados)",
+      "Verifica los números de teléfono y URLs antes de enviar",
+      "Incluye horarios de atención precisos (24/7 o horas específicas)",
+      "Usa códigos de país ISO 3166-1 alpha-2 (ej., \"JP\", \"US\")",
+      "Usa códigos de idioma BCP 47 (ej., \"en\", \"ja\", \"es\")",
+      "Los datos deben ser verificables — sin contenido promocional"
+    ],
+    "ctaGuide": "Guía completa de contribución →",
+    "ctaIssue": "Abrir un Issue"
+  },
+  "categories": {
+    "suicide_prevention": "Prevención del suicidio",
+    "mental_health": "Salud mental",
+    "crisis": "Apoyo en crisis",
+    "general_crisis": "Crisis general",
+    "domestic_violence": "Violencia doméstica",
+    "child_abuse": "Protección infantil",
+    "substance_abuse": "Abuso de sustancias",
+    "lgbtq": "LGBTQ+",
+    "veteran": "Veteranos",
+    "other": "Otro"
+  },
+  "contactMethods": {
+    "phone": "Teléfono",
+    "text": "Texto/SMS",
+    "chat": "Chat en línea",
+    "email": "Correo electrónico",
+    "app": "Aplicación móvil"
+  }
+}

@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import type { CountryDetailPanelProps } from '@/types/helpline';
 import { formatCategoryLabel, formatContactMethodLabel } from '@/lib/data-aggregator';
 
@@ -8,24 +9,29 @@ import { formatCategoryLabel, formatContactMethodLabel } from '@/lib/data-aggreg
  * Slides in from the right when a country is selected on the globe.
  */
 export function CountryDetailPanel({ countryData, onClose }: CountryDetailPanelProps) {
+  const t = useTranslations('globe.panel');
+  const tCommon = useTranslations('common');
+
   if (!countryData) {
     return null;
   }
 
+  const helplineCountLabel =
+    countryData.helplineCount === 1
+      ? t('helplineCount', { count: countryData.helplineCount })
+      : t('helplineCountPlural', { count: countryData.helplineCount });
+
   return (
     <aside
       className={[
-        // Mobile: bottom sheet anchored to the bottom of the viewport
         'fixed bottom-0 left-0 right-0 max-h-[60vh] rounded-t-2xl',
-        // Desktop (md+): right sidebar filling the parent container
         'md:absolute md:bottom-auto md:left-auto md:top-0 md:right-0 md:h-full md:max-h-none md:w-80 md:rounded-none',
-        // Shared
         'bg-neutral-surface border-t md:border-t-0 md:border-l border-neutral-border shadow-xl z-10 overflow-y-auto scrollbar-hidden',
       ].join(' ')}
       role="complementary"
       aria-label={`Helplines for ${countryData.countryName}`}
     >
-      {/* Mobile drag handle (visible on small screens only) */}
+      {/* Mobile drag handle */}
       <div className="md:hidden flex justify-center pt-2.5 pb-1" aria-hidden="true">
         <div className="w-10 h-1 bg-gray-600 rounded-full" />
       </div>
@@ -37,18 +43,14 @@ export function CountryDetailPanel({ countryData, onClose }: CountryDetailPanelP
             {getFlagEmoji(countryData.countryCode)}
           </span>
           <div>
-            <h2 className="font-semibold text-sm leading-tight">
-              {countryData.countryName}
-            </h2>
-            <p className="text-xs text-neutral-muted">
-              {countryData.helplineCount} helpline{countryData.helplineCount !== 1 ? 's' : ''}
-            </p>
+            <h2 className="font-semibold text-sm leading-tight">{countryData.countryName}</h2>
+            <p className="text-xs text-neutral-muted">{helplineCountLabel}</p>
           </div>
         </div>
         <button
           onClick={onClose}
           className="text-neutral-muted hover:text-neutral-text transition-colors p-1 rounded"
-          aria-label="Close panel"
+          aria-label={t('close')}
         >
           ✕
         </button>
@@ -57,7 +59,7 @@ export function CountryDetailPanel({ countryData, onClose }: CountryDetailPanelP
       {/* Categories */}
       <section className="px-4 py-3 border-b border-neutral-border">
         <h3 className="text-xs font-medium text-neutral-muted uppercase tracking-wider mb-2">
-          Categories
+          {t('categories')}
         </h3>
         <div className="flex flex-wrap gap-1.5">
           {countryData.categories.map((category) => (
@@ -74,7 +76,7 @@ export function CountryDetailPanel({ countryData, onClose }: CountryDetailPanelP
       {/* Contact methods */}
       <section className="px-4 py-3 border-b border-neutral-border">
         <h3 className="text-xs font-medium text-neutral-muted uppercase tracking-wider mb-2">
-          Contact Methods
+          {t('contactMethods')}
         </h3>
         <div className="flex flex-wrap gap-1.5">
           {countryData.contactMethods.map((method) => (
@@ -91,18 +93,16 @@ export function CountryDetailPanel({ countryData, onClose }: CountryDetailPanelP
       {/* Languages */}
       <section className="px-4 py-3 border-b border-neutral-border">
         <h3 className="text-xs font-medium text-neutral-muted uppercase tracking-wider mb-2">
-          Languages ({countryData.languages.length})
+          {t('languages', { count: countryData.languages.length })}
         </h3>
-        <p className="text-sm text-neutral-muted">
-          {countryData.languages.join(', ')}
-        </p>
+        <p className="text-sm text-neutral-muted">{countryData.languages.join(', ')}</p>
       </section>
 
       {/* Helpline records */}
       {countryData.records.length > 0 ? (
         <section className="px-4 py-3">
           <h3 className="text-xs font-medium text-neutral-muted uppercase tracking-wider mb-3">
-            Helplines
+            {t('helplines')}
           </h3>
           <ul className="space-y-3">
             {countryData.records.map((record) => (
@@ -132,7 +132,7 @@ export function CountryDetailPanel({ countryData, onClose }: CountryDetailPanelP
                     rel="noopener noreferrer"
                     className="text-xs text-brand-light hover:underline mt-1 inline-block"
                   >
-                    Visit website →
+                    {tCommon('visitWebsite')}
                   </a>
                 )}
               </li>
@@ -141,7 +141,7 @@ export function CountryDetailPanel({ countryData, onClose }: CountryDetailPanelP
         </section>
       ) : (
         <section className="px-4 py-3 text-center text-sm text-neutral-muted">
-          <p>Detailed records will be available after data merge.</p>
+          <p>{t('noRecords')}</p>
         </section>
       )}
     </aside>

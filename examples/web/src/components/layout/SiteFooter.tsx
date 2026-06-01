@@ -1,4 +1,9 @@
+'use client';
+
+import { useTranslations } from 'next-intl';
+
 export function SiteFooter() {
+  const t = useTranslations('footer');
   const currentYear = new Date().getFullYear();
 
   return (
@@ -11,14 +16,14 @@ export function SiteFooter() {
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-1.5 hover:opacity-90 transition-opacity"
-            aria-label="Data: CC0 1.0 Public Domain (opens in new tab)"
+            aria-label={t('dataLicenseAriaLabel')}
             title="Data: CC0 1.0 Universal Public Domain Dedication"
           >
             <CC0Badge aria-hidden="true" />
           </a>
           <span className="text-neutral-muted/50 hidden sm:inline">·</span>
           <span className="text-xs">
-            Code:{' '}
+            {t('codeLabel')}{' '}
             <a
               href="https://www.apache.org/licenses/LICENSE-2.0"
               target="_blank"
@@ -32,7 +37,7 @@ export function SiteFooter() {
 
         {/* Center: Project info */}
         <span className="text-neutral-muted/70 text-xs">
-          © {currentYear} Open Helplines contributors
+          © {currentYear} {t('copyright')}
         </span>
 
         {/* Right: GitHub link */}
@@ -42,7 +47,7 @@ export function SiteFooter() {
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-1.5 text-neutral-muted hover:text-neutral-text transition-colors"
-            aria-label="View source on GitHub"
+            aria-label={t('viewOnGithub')}
           >
             <GitHubIcon aria-hidden="true" />
             <span>GitHub</span>
