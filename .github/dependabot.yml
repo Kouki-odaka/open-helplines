@@ -33,6 +33,12 @@ updates:
           - "semantic-release"
           - "@semantic-release/*"
           - "conventional-changelog*"
+    # Skip major version bumps for npm packages.
+    # Major upgrades require explicit evaluation and manual PR.
+    ignore:
+      - dependency-name: "*"
+        update-types:
+          - "version-update:semver-major"
 
   # ── Python (packages/python) ─────────────────────────────────────────────
   - package-ecosystem: pip
