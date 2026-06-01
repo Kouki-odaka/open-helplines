@@ -1,0 +1,302 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Kouki-odaka/open-helplines/raw/main/schemas/helpline.schema.json",
+  "title": "open-helplines JSON Schema",
+  "description": "Schema for the open-helplines global mental health hotline registry. Data is CC0 1.0; schema and tooling are Apache-2.0.",
+  "version": "1.0.0",
+
+  "$defs": {
+
+    "LanguageCode": {
+      "type": "string",
+      "description": "BCP-47 language tag, e.g. 'en', 'ja', 'fr-CA'",
+      "pattern": "^[a-z]{2,3}(-[A-Z][a-z]{3})?(-[A-Z]{2}|[0-9]{3})?(-[a-zA-Z0-9]{5,8})?$",
+      "examples": ["en", "ja", "fr-CA", "zh-Hans", "pt-BR"]
+    },
+
+    "CountryCode": {
+      "type": "string",
+      "description": "ISO 3166-1 alpha-2 country code (uppercase)",
+      "pattern": "^[A-Z]{2}$",
+      "examples": ["JP", "US", "GB", "AU"]
+    },
+
+    "E164PhoneNumber": {
+      "type": "string",
+      "description": "Phone number in E.164 format: '+' followed by 1-15 digits",
+      "pattern": "^\\+[1-9]\\d{1,14}$",
+      "examples": ["+18002738255", "+81120783556", "+4408457909090"]
+    },
+
+    "IsoDate": {
+      "type": "string",
+      "description": "Calendar date in ISO 8601 format: YYYY-MM-DD",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "examples": ["2026-06-01", "2025-12-31"]
+    },
+
+    "HttpUrl": {
+      "type": "string",
+      "description": "Absolute HTTPS URL",
+      "pattern": "^https://[^\\s]+$",
+      "examples": ["https://www.inochi-no-denwa.net/", "https://988lifeline.org"]
+    },
+
+    "ServiceCategory": {
+      "type": "string",
+      "description": "Primary service category of the helpline",
+      "enum": [
+        "suicide_prevention",
+        "mental_health",
+        "domestic_violence",
+        "sexual_violence",
+        "substance_abuse",
+        "youth",
+        "lgbtq",
+        "veterans",
+        "elder",
+        "grief",
+        "general_crisis",
+        "other"
+      ]
+    },
+
+    "ContactMethod": {
+      "type": "string",
+      "description": "How users can reach the helpline",
+      "enum": ["phone", "text", "chat", "email", "app"]
+    },
+
+    "HelplineContact": {
+      "type": "object",
+      "description": "A single contact endpoint for a helpline service",
+      "additionalProperties": false,
+      "required": ["method", "languages", "hours", "free"],
+      "properties": {
+        "method": {
+          "$ref": "#/$defs/ContactMethod"
+        },
+        "number": {
+          "$ref": "#/$defs/E164PhoneNumber",
+          "description": "Required when method is 'phone' or 'text'"
+        },
+        "url": {
+          "$ref": "#/$defs/HttpUrl",
+          "description": "Required when method is 'chat', 'email', or 'app'"
+        },
+        "languages": {
+          "type": "array",
+          "description": "BCP-47 language codes supported by this contact endpoint",
+          "items": { "$ref": "#/$defs/LanguageCode" },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "hours": {
+          "type": "string",
+          "description": "Operating hours in local time. Use '24/7' for round-the-clock service, otherwise a human-readable string (e.g. 'Mon–Fri 09:00–21:00 JST')",
+          "minLength": 1,
+          "maxLength": 100,
+          "examples": ["24/7", "Mon–Fri 09:00–21:00 JST", "Daily 16:00–21:00 AEST"]
+        },
+        "free": {
+          "type": "boolean",
+          "description": "True if the service is free of charge for callers"
+        },
+        "anonymous": {
+          "type": "boolean",
+          "description": "True if the caller can remain anonymous; false if identification is required"
+        }
+      },
+      "if": {
+        "properties": { "method": { "enum": ["phone", "text"] } }
+      },
+      "then": {
+        "required": ["number"]
+      },
+      "else": {
+        "required": ["url"]
+      }
+    },
+
+    "HelplineRecord": {
+      "type": "object",
+      "description": "A single mental health helpline or crisis support service",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "country",
+        "name",
+        "category",
+        "contacts",
+        "description",
+        "verified_at",
+        "source",
+        "government_backed"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Globally unique record slug: '{country_lower}-{slug}', e.g. 'jp-inochi-no-denwa'",
+          "pattern": "^[a-z]{2}-[a-z0-9][a-z0-9-]*[a-z0-9]$",
+          "examples": ["jp-inochi-no-denwa", "us-988-lifeline", "gb-samaritans"]
+        },
+        "country": {
+          "$ref": "#/$defs/CountryCode"
+        },
+        "name": {
+          "type": "string",
+          "description": "Human-readable organization name in English",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "local_name": {
+          "type": "string",
+          "description": "Name in the local language. Omit if identical to 'name'.",
+          "minLength": 1,
+          "maxLength": 200,
+          "examples": ["いのちの電話", "청소년사이버상담센터"]
+        },
+        "category": {
+          "$ref": "#/$defs/ServiceCategory",
+          "description": "Primary service category"
+        },
+        "secondary_categories": {
+          "type": "array",
+          "description": "Additional categories if this service serves multiple populations",
+          "items": { "$ref": "#/$defs/ServiceCategory" },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "contacts": {
+          "type": "array",
+          "description": "All available contact methods for this helpline. At least one required.",
+          "items": { "$ref": "#/$defs/HelplineContact" },
+          "minItems": 1
+        },
+        "description": {
+          "type": "string",
+          "description": "Short description of the service in English. Maximum 280 characters (one tweet).",
+          "minLength": 10,
+          "maxLength": 280
+        },
+        "website": {
+          "$ref": "#/$defs/HttpUrl",
+          "description": "Primary website of the organization"
+        },
+        "verified_at": {
+          "$ref": "#/$defs/IsoDate",
+          "description": "Date the record was last manually verified as operational. Must be within the past 24 months."
+        },
+        "source": {
+          "$ref": "#/$defs/HttpUrl",
+          "description": "Authoritative source URL or citation for the data (e.g. official government page, Wikipedia with references)"
+        },
+        "government_backed": {
+          "type": "boolean",
+          "description": "True if this service is officially endorsed or funded by a national or regional government"
+        },
+        "tags": {
+          "type": "array",
+          "description": "Additional searchable tags. Use lowercase hyphenated slugs.",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*[a-z0-9]$"
+          },
+          "uniqueItems": true,
+          "examples": [["text-only", "under-25", "japanese-only"]]
+        }
+      }
+    },
+
+    "HelplineDataFile": {
+      "type": "object",
+      "description": "Shape of each country's helplines.json file (e.g. data/countries/jp/helplines.json)",
+      "additionalProperties": false,
+      "required": ["country", "records"],
+      "properties": {
+        "$schema": {
+          "type": "string",
+          "description": "Schema reference for IDE validation"
+        },
+        "country": {
+          "$ref": "#/$defs/CountryCode"
+        },
+        "records": {
+          "type": "array",
+          "description": "All helpline records for this country",
+          "items": { "$ref": "#/$defs/HelplineRecord" },
+          "minItems": 1
+        }
+      }
+    },
+
+    "CountryIndex": {
+      "type": "object",
+      "description": "One entry in the global index per country",
+      "additionalProperties": false,
+      "required": ["country", "name", "data_files", "record_count", "updated_at"],
+      "properties": {
+        "country": {
+          "$ref": "#/$defs/CountryCode"
+        },
+        "name": {
+          "type": "string",
+          "description": "English country name",
+          "minLength": 1
+        },
+        "data_files": {
+          "type": "array",
+          "description": "Paths to JSON data files relative to repository root",
+          "items": { "type": "string" },
+          "minItems": 1
+        },
+        "record_count": {
+          "type": "integer",
+          "description": "Total number of HelplineRecord entries for this country",
+          "minimum": 0
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "ISO 8601 datetime of the last data update",
+          "format": "date-time"
+        }
+      }
+    },
+
+    "GlobalIndex": {
+      "type": "object",
+      "description": "Shape of data/index.json — machine-generated global index",
+      "additionalProperties": false,
+      "required": ["schema_version", "generated_at", "countries", "total_records"],
+      "properties": {
+        "$schema": {
+          "type": "string"
+        },
+        "schema_version": {
+          "type": "string",
+          "description": "Semantic version of the schema that produced this index",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$"
+        },
+        "generated_at": {
+          "type": "string",
+          "description": "ISO 8601 datetime when this index was last rebuilt",
+          "format": "date-time"
+        },
+        "countries": {
+          "type": "array",
+          "description": "Index entry for each country in the registry",
+          "items": { "$ref": "#/$defs/CountryIndex" }
+        },
+        "total_records": {
+          "type": "integer",
+          "description": "Total helpline records across all countries",
+          "minimum": 0
+        }
+      }
+    }
+
+  },
+
+  "$comment": "Root of this schema validates a HelplineDataFile (per-country data file)",
+  "$ref": "#/$defs/HelplineDataFile"
+}

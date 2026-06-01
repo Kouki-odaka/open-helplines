@@ -12,10 +12,13 @@
     "test": "npm run test --workspaces --if-present",
     "validate": "npm run -w packages/core validate",
     "typecheck": "npm run typecheck --workspaces --if-present",
-    "lint": "eslint packages/*/src --ext .ts"
+    "lint": "eslint packages/*/src --ext .ts",
+    "build:types": "node scripts/generate-types.mjs",
+    "build:types:python": "python3 scripts/generate_python_models.py"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
+    "json-schema-to-typescript": "^14.0.0",
     "typescript": "^5.4.0"
   },
   "engines": {
