@@ -1,0 +1,38 @@
+{
+  "$schema": "../../../schemas/helpline.schema.json",
+  "country": "BR",
+  "records": [
+    {
+      "id": "br-cvv-188",
+      "country": "BR",
+      "name": "CVV — Centro de Valorização da Vida",
+      "local_name": "CVV — Ligue 188",
+      "category": "suicide_prevention",
+      "secondary_categories": ["general_crisis"],
+      "contacts": [
+        {
+          "method": "phone",
+          "number": "+55188",
+          "languages": ["pt"],
+          "hours": "24/7",
+          "free": true,
+          "anonymous": true
+        },
+        {
+          "method": "chat",
+          "url": "https://cvv.org.br/chat/",
+          "languages": ["pt"],
+          "hours": "24/7",
+          "free": true,
+          "anonymous": true
+        }
+      ],
+      "description": "Brazil's national free emotional support and suicide prevention service. Dial 188 from any phone, free of charge. Operated by CVV (Centre for Life Valuing) in partnership with the Ministry of Health since 2015.",
+      "website": "https://cvv.org.br/",
+      "verified_at": "2026-06-02",
+      "source": "https://cvv.org.br/ligue-188/",
+      "government_backed": true,
+      "tags": ["hotline-188", "government-partnership", "chat-available"]
+    }
+  ]
+}

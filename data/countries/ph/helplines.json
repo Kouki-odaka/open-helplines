@@ -1,0 +1,38 @@
+{
+  "$schema": "../../../schemas/helpline.schema.json",
+  "country": "PH",
+  "records": [
+    {
+      "id": "ph-ncmh-crisis-hotline",
+      "country": "PH",
+      "name": "NCMH Crisis Hotline",
+      "local_name": "National Center for Mental Health Crisis Hotline",
+      "category": "general_crisis",
+      "secondary_categories": ["suicide_prevention", "mental_health"],
+      "contacts": [
+        {
+          "method": "phone",
+          "number": "+6321553",
+          "languages": ["fil", "en"],
+          "hours": "24/7",
+          "free": false,
+          "anonymous": true
+        },
+        {
+          "method": "phone",
+          "number": "+639178998727",
+          "languages": ["fil", "en"],
+          "hours": "24/7",
+          "free": false,
+          "anonymous": true
+        }
+      ],
+      "description": "24/7 psychological first aid and crisis support operated by the National Center for Mental Health (NCMH), Department of Health. Reach via landline 1553 or mobile 0917-899-8727 (USAP).",
+      "website": "https://ncmh.gov.ph/",
+      "verified_at": "2026-06-02",
+      "source": "https://doh.gov.ph/NCMH-Crisis-Hotline",
+      "government_backed": true,
+      "tags": ["government", "doh", "ncmh", "usap"]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "../../../schemas/helpline.schema.json",
+  "country": "FR",
+  "records": [
+    {
+      "id": "fr-3114",
+      "country": "FR",
+      "name": "3114 — Numéro national de prévention du suicide",
+      "local_name": "3114",
+      "category": "suicide_prevention",
+      "secondary_categories": ["mental_health"],
+      "contacts": [
+        {
+          "method": "phone",
+          "number": "+33333114",
+          "languages": ["fr"],
+          "hours": "24/7",
+          "free": true,
+          "anonymous": true
+        }
+      ],
+      "description": "France's national suicide prevention line, managed by the Ministry of Health. Staffed by specially trained healthcare professionals (nurses and psychologists) 24/7. Also supports professionals and bereaved.",
+      "website": "https://3114.fr/",
+      "verified_at": "2026-06-02",
+      "source": "https://3114.fr/",
+      "government_backed": true,
+      "tags": ["government", "nationwide", "professional-staffed"]
+    }
+  ]
+}
