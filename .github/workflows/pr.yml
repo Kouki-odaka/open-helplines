@@ -1,0 +1,37 @@
+# pr.yml — Pull Request validation gate
+#
+# Triggered on every pull_request event targeting main.
+# Calls _validate.yml with check-external: false (fast path for PRs).
+# Concurrency group cancels redundant runs for the same PR number.
+#
+# Design patterns:
+#   Fail-Fast  : delegated to _validate.yml (preflight → matrix → cross-cutting)
+#   Concurrency: cancel-in-progress keeps only the newest run per PR
+
+name: Pull Request
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - ready_for_review
+
+# Cancel any in-progress run for the same PR when new commits arrive.
+concurrency:
+  group: pr-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Validate PR
+    # Skip draft PRs — only run when ready for review
+    if: github.event.pull_request.draft == false
+    uses: ./.github/workflows/_validate.yml
+    with:
+      check-external: false   # External health is opt-in; PRs use fast path
+      node-version: '20'
+      python-version: '3.12'

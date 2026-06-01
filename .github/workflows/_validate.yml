@@ -1,0 +1,213 @@
+# _validate.yml — Reusable validation pipeline
+#
+# Design patterns applied:
+#   Fan-out/Fan-in : validate-matrix runs 20 countries in parallel; cross-cutting fans in
+#   Fail-Fast      : preflight must pass before matrix starts (fail-fast: true on preflight)
+#   Fail-Graceful  : matrix uses fail-fast: false so all countries report independently
+#   Bulkhead       : external-health is isolated with continue-on-error: true
+#
+# Called by pr.yml and release.yml via `uses: ./.github/workflows/_validate.yml`
+
+name: Validate (reusable)
+
+on:
+  workflow_call:
+    inputs:
+      check-external:
+        description: Whether to run external URL liveness checks (bulkhead job)
+        type: boolean
+        default: false
+      node-version:
+        description: Node.js version
+        type: string
+        default: '20'
+      python-version:
+        description: Python version
+        type: string
+        default: '3.12'
+
+jobs:
+  # ── Stage 1: Preflight ────────────────────────────────────────────────────
+  # Fail-Fast gate: lint + typecheck before spinning up 20 matrix runners.
+  preflight:
+    name: Preflight — lint + typecheck
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - name: Setup Node.js
+        uses: ./.github/actions/setup-node
+        with:
+          node-version: ${{ inputs.node-version }}
+
+      - name: Typecheck all packages
+        run: npm run typecheck
+
+      - name: Lint source files
+        run: npm run lint
+
+  # ── Stage 2: Fan-out matrix validate (20 countries) ──────────────────────
+  # Each country runs on its own runner in parallel.
+  # fail-fast: false ensures all 20 results are collected even if one fails.
+  validate-matrix:
+    name: Validate [${{ matrix.country }}]
+    needs: preflight
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        country:
+          - jp
+          - us
+          - gb
+          - cn
+          - in
+          - id
+          - br
+          - mx
+          - pk
+          - bd
+          - ru
+          - de
+          - fr
+          - eg
+          - ng
+          - ph
+          - vn
+          - kr
+          - tr
+          - ca
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - name: Setup Node.js
+        uses: ./.github/actions/setup-node
+        with:
+          node-version: ${{ inputs.node-version }}
+
+      - name: Build @open-helplines/core
+        run: npm run build -w packages/core
+
+      - name: Validate country data — ${{ matrix.country }}
+        uses: ./.github/actions/validate-country
+        with:
+          country: ${{ matrix.country }}
+
+      - name: Upload validation report
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: validation-report-${{ matrix.country }}
+          path: validation-${{ matrix.country }}.json
+          if-no-files-found: ignore
+          retention-days: 7
+
+  # ── Stage 3: Fan-in cross-cutting checks ─────────────────────────────────
+  # Runs after ALL matrix jobs complete (pass or skip).
+  # Checks index integrity, Python models, and aggregates reports.
+  cross-cutting:
+    name: Cross-cutting — index integrity + Python
+    needs: validate-matrix
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - name: Setup Node.js
+        uses: ./.github/actions/setup-node
+        with:
+          node-version: ${{ inputs.node-version }}
+
+      - name: Setup Python
+        uses: ./.github/actions/setup-python
+        with:
+          python-version: ${{ inputs.python-version }}
+
+      - name: Build @open-helplines/core
+        run: npm run build -w packages/core
+
+      - name: Index integrity check (all countries)
+        run: npm run validate
+
+      - name: Python type-check
+        run: mypy packages/python/open_helplines --strict
+
+      - name: Python unit tests
+        run: pytest packages/python/tests -v --tb=short
+
+      - name: Download all validation reports
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          path: validation-reports
+          pattern: validation-report-*
+
+      - name: Aggregate results → Job Summary
+        run: |
+          echo "## 🌍 Validation Summary" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Country | Status |" >> "$GITHUB_STEP_SUMMARY"
+          echo "|---------|--------|" >> "$GITHUB_STEP_SUMMARY"
+          for f in validation-reports/validation-report-*/validation-*.json; do
+            country=$(basename "$f" .json | sed 's/validation-//')
+            status=$(node -e "try{const d=require('./$f');console.log(d.status||'pass')}catch{console.log('unknown')}" 2>/dev/null || echo "unknown")
+            icon="✅"
+            [ "$status" = "skip" ] && icon="⏭️"
+            [ "$status" = "fail" ] && icon="❌"
+            echo "| ${country^^} | $icon $status |" >> "$GITHUB_STEP_SUMMARY"
+          done
+
+  # ── Stage 4: External health check (Bulkhead) ────────────────────────────
+  # Isolated from main pipeline via continue-on-error: true.
+  # External URL failures must not block merges — only raise awareness.
+  external-health:
+    name: External URL health check (bulkhead)
+    needs: cross-cutting
+    if: ${{ inputs.check-external }}
+    runs-on: ubuntu-latest
+    continue-on-error: true # Bulkhead: network flakiness must not block CI
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - name: Setup Node.js
+        uses: ./.github/actions/setup-node
+        with:
+          node-version: ${{ inputs.node-version }}
+
+      - name: Build @open-helplines/core
+        run: npm run build -w packages/core
+
+      - name: Check hotline URL liveness
+        id: url-check
+        run: |
+          node packages/core/dist/cli.js health-check \
+            --timeout 15000 \
+            --output json \
+            > health-check-results.json 2>&1 || true
+          echo "Health check complete"
+
+      - name: Upload health check results
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: health-check-results
+          path: health-check-results.json
+          if-no-files-found: ignore
+          retention-days: 30
+
+      - name: Summarize URL health
+        if: always()
+        run: |
+          echo "## 🔗 External URL Health (informational)" >> "$GITHUB_STEP_SUMMARY"
+          echo "_Failures here do not block the pipeline — external URLs may be transient._" >> "$GITHUB_STEP_SUMMARY"
+          if [ -f health-check-results.json ]; then
+            node -e "
+              const r = require('./health-check-results.json');
+              const rows = (r.results||[]).map(x =>
+                \`| \${x.country} | \${x.url} | \${x.ok ? '✅' : '❌'} \${x.status||x.error} |\`
+              ).join('\n');
+              console.log('| Country | URL | Status |\\n|---------|-----|--------|\\n' + rows);
+            " >> "$GITHUB_STEP_SUMMARY" 2>/dev/null || echo "No structured results available." >> "$GITHUB_STEP_SUMMARY"
+          fi

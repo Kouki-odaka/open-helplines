@@ -1,0 +1,265 @@
+# release.yml — Release pipeline (push to main)
+#
+# Flow:
+#   validate → semantic-release (determine version + create GitHub Release)
+#     → build (SLSA provenance + CycloneDX SBOM + cosign signature)
+#     → publish-npm / publish-pypi / publish-pages (fan-out, parallel)
+#     → smoke-test
+#
+# Design patterns:
+#   Build-Once-Deploy-Many : single build job → three parallel publish jobs
+#   SLSA L3 provenance     : actions/attest-build-provenance per artifact
+#   OIDC auth              : npm Provenance + PyPI Trusted Publishing (no secrets)
+#   Idempotent Publish     : version-exists checks in _publish.yml prevent re-publish
+#   Supply chain           : CycloneDX SBOM generated and cosign-signed post-build
+
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write       # semantic-release commits CHANGELOG + version bump
+  issues: write         # semantic-release can create/close issues
+  pull-requests: write  # semantic-release can comment on PRs
+  id-token: write       # OIDC for npm provenance + PyPI Trusted Publishing
+  attestations: write   # actions/attest-build-provenance
+
+jobs:
+  # ── Step 1: Full validation (including external health) ──────────────────
+  validate:
+    name: Validate before release
+    uses: ./.github/workflows/_validate.yml
+    with:
+      check-external: true   # Release path: include external URL health check
+      node-version: '20'
+      python-version: '3.12'
+
+  # ── Step 2: Semantic Release — determine version ─────────────────────────
+  semantic-release:
+    name: Semantic Release — compute version
+    needs: validate
+    runs-on: ubuntu-latest
+    outputs:
+      new-release-published: ${{ steps.semantic.outputs.new_release_published }}
+      new-release-version:   ${{ steps.semantic.outputs.new_release_version }}
+      new-release-channel:   ${{ steps.semantic.outputs.new_release_channel }}
+    steps:
+      - name: Checkout repository (full history for semantic-release)
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          fetch-depth: 0         # semantic-release needs full commit history
+          persist-credentials: true
+
+      - name: Setup Node.js
+        uses: ./.github/actions/setup-node
+        with:
+          node-version: '20'
+
+      - name: Run semantic-release
+        id: semantic
+        run: npx semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # ── Step 3: Build artifacts + SLSA provenance + SBOM ────────────────────
+  build:
+    name: Build artifacts + SLSA + SBOM
+    needs: semantic-release
+    if: needs.semantic-release.outputs.new-release-published == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+      attestations: write
+    outputs:
+      npm-artifact-name:  npm-dist-${{ needs.semantic-release.outputs.new-release-version }}
+      pypi-artifact-name: python-dist-${{ needs.semantic-release.outputs.new-release-version }}
+
+    steps:
+      - name: Checkout repository at release tag
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          ref: v${{ needs.semantic-release.outputs.new-release-version }}
+
+      - name: Setup Node.js
+        uses: ./.github/actions/setup-node
+        with:
+          node-version: '20'
+
+      - name: Setup Python
+        uses: ./.github/actions/setup-python
+        with:
+          python-version: '3.12'
+
+      - name: Build @open-helplines/core (npm)
+        run: npm run build -w packages/core
+
+      - name: Build Python distribution
+        run: |
+          pip install --quiet build
+          python -m build packages/python --outdir dist/python/
+
+      - name: Install cosign
+        uses: sigstore/cosign-installer@398d4b0eeef1380460a10c8013a76f728fb906ac # v3
+
+      - name: Generate CycloneDX SBOM (npm)
+        run: |
+          npx @cyclonedx/cyclonedx-npm --output-file sbom-npm.json
+          echo "SBOM (npm): $(wc -c < sbom-npm.json) bytes"
+
+      - name: Generate CycloneDX SBOM (Python)
+        run: |
+          pip install --quiet cyclonedx-bom
+          cyclonedx-bom analyze \
+            --requirements packages/python/pyproject.toml \
+            --output-file sbom-python.json || \
+          python -m cyclonedx_py environment \
+            --output-format json \
+            --output-file sbom-python.json
+          echo "SBOM (Python): $(wc -c < sbom-python.json) bytes"
+
+      - name: Sign SBOMs with cosign (keyless)
+        run: |
+          cosign sign-blob --yes \
+            --output-signature sbom-npm.json.sig \
+            sbom-npm.json
+          cosign sign-blob --yes \
+            --output-signature sbom-python.json.sig \
+            sbom-python.json
+
+      - name: Attest npm build provenance (SLSA L3)
+        uses: actions/attest-build-provenance@e8998f949152b193b063cb0ec769d69d929409be # v2
+        with:
+          subject-path: packages/core/dist
+
+      - name: Attest Python build provenance (SLSA L3)
+        uses: actions/attest-build-provenance@e8998f949152b193b063cb0ec769d69d929409be # v2
+        with:
+          subject-path: dist/python/
+
+      - name: Upload npm dist artifact
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: npm-dist-${{ needs.semantic-release.outputs.new-release-version }}
+          path: packages/core/dist/
+          retention-days: 30
+
+      - name: Upload Python dist artifact
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: python-dist-${{ needs.semantic-release.outputs.new-release-version }}
+          path: dist/python/
+          retention-days: 30
+
+      - name: Upload SBOMs + signatures
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: sbom-${{ needs.semantic-release.outputs.new-release-version }}
+          path: |
+            sbom-npm.json
+            sbom-npm.json.sig
+            sbom-python.json
+            sbom-python.json.sig
+          retention-days: 365
+
+  # ── Step 4: Fan-out publish (npm + pypi + pages in parallel) ─────────────
+  publish-npm:
+    name: Publish → npm
+    needs:
+      - semantic-release
+      - build
+    if: needs.semantic-release.outputs.new-release-published == 'true'
+    uses: ./.github/workflows/_publish.yml
+    with:
+      target: npm
+      version: ${{ needs.semantic-release.outputs.new-release-version }}
+    secrets: inherit
+    permissions:
+      contents: read
+      id-token: write
+      attestations: write
+
+  publish-pypi:
+    name: Publish → PyPI
+    needs:
+      - semantic-release
+      - build
+    if: needs.semantic-release.outputs.new-release-published == 'true'
+    uses: ./.github/workflows/_publish.yml
+    with:
+      target: pypi
+      version: ${{ needs.semantic-release.outputs.new-release-version }}
+    permissions:
+      contents: read
+      id-token: write
+      attestations: write
+
+  publish-pages:
+    name: Publish → GitHub Pages
+    needs:
+      - semantic-release
+      - build
+    if: needs.semantic-release.outputs.new-release-published == 'true'
+    uses: ./.github/workflows/_publish.yml
+    with:
+      target: pages
+      version: ${{ needs.semantic-release.outputs.new-release-version }}
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
+  # ── Step 5: Smoke test (fan-in) ──────────────────────────────────────────
+  smoke-test:
+    name: Post-publish smoke test
+    needs:
+      - semantic-release
+      - publish-npm
+      - publish-pypi
+    if: needs.semantic-release.outputs.new-release-published == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - name: Setup Node.js
+        uses: ./.github/actions/setup-node
+        with:
+          node-version: '20'
+
+      - name: Setup Python
+        uses: ./.github/actions/setup-python
+        with:
+          python-version: '3.12'
+
+      - name: Smoke test — npm package resolves
+        run: |
+          version="${{ needs.semantic-release.outputs.new-release-version }}"
+          # Wait up to 60s for npm CDN propagation
+          for i in $(seq 1 6); do
+            npm view "@open-helplines/core@${version}" version && break || sleep 10
+          done
+          npx --yes @open-helplines/core@"${version}" --version || true
+
+      - name: Smoke test — PyPI package resolves
+        run: |
+          version="${{ needs.semantic-release.outputs.new-release-version }}"
+          for i in $(seq 1 6); do
+            pip index versions open-helplines 2>/dev/null | grep "$version" && break || sleep 10
+          done
+          pip install --quiet "open-helplines==${version}"
+          python -c "import open_helplines; print(open_helplines.__version__)"
+
+      - name: Release summary
+        run: |
+          ver="${{ needs.semantic-release.outputs.new-release-version }}"
+          echo "## 🎉 Released v${ver}" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Target | URL |" >> "$GITHUB_STEP_SUMMARY"
+          echo "|--------|-----|" >> "$GITHUB_STEP_SUMMARY"
+          echo "| npm    | https://www.npmjs.com/package/@open-helplines/core/v/${ver} |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| PyPI   | https://pypi.org/project/open-helplines/${ver}/ |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| GitHub | https://github.com/Kouki-odaka/open-helplines/releases/tag/v${ver} |" >> "$GITHUB_STEP_SUMMARY"

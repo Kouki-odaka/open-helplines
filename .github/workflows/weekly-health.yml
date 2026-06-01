@@ -1,0 +1,229 @@
+# weekly-health.yml — Scheduled registry health check
+#
+# Runs every Monday at 03:00 UTC (low-traffic window).
+# Also triggerable manually via workflow_dispatch for on-demand checks.
+#
+# Jobs:
+#   1. url-liveness  — cURL each hotline URL; collect failures
+#   2. stale-data    — flag data not updated in >6 months
+#   3. report        — aggregate results; open GitHub Issue if any failures
+#
+# Design patterns:
+#   Bulkhead  : individual URL failures do not abort the pipeline (continue-on-error)
+#   AI-native : structured JSON output from each check (AI-parseable for triage)
+
+name: Weekly Health Check
+
+on:
+  schedule:
+    - cron: '0 3 * * 1'  # Every Monday at 03:00 UTC
+  workflow_dispatch:
+    inputs:
+      dry-run:
+        description: Dry run — report results without opening issues
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+  issues: write   # Needed to open health-report issues
+
+jobs:
+  # ── Job 1: URL liveness check ─────────────────────────────────────────────
+  url-liveness:
+    name: URL liveness — all countries
+    runs-on: ubuntu-latest
+    outputs:
+      failure-count: ${{ steps.count.outputs.failure_count }}
+      results-artifact: url-liveness-${{ github.run_id }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - name: Setup Node.js
+        uses: ./.github/actions/setup-node
+        with:
+          node-version: '20'
+
+      - name: Build @open-helplines/core
+        run: npm run build -w packages/core
+
+      - name: Check URL liveness for all countries
+        id: liveness
+        continue-on-error: true # Bulkhead: do not abort on individual failures
+        run: |
+          node packages/core/dist/cli.js health-check \
+            --all-countries \
+            --timeout 20000 \
+            --retries 2 \
+            --output json \
+            > url-liveness-results.json 2>&1
+          echo "Liveness check complete"
+
+      - name: Count failures
+        id: count
+        run: |
+          if [ -f url-liveness-results.json ]; then
+            failures=$(node -e "
+              const r = require('./url-liveness-results.json');
+              const n = (r.results||[]).filter(x => !x.ok).length;
+              console.log(n);
+            " 2>/dev/null || echo "0")
+          else
+            failures=0
+          fi
+          echo "failure_count=$failures" >> "$GITHUB_OUTPUT"
+          echo "URL failures: $failures"
+
+      - name: Upload liveness results
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: url-liveness-${{ github.run_id }}
+          path: url-liveness-results.json
+          retention-days: 30
+
+  # ── Job 2: Stale data check ────────────────────────────────────────────────
+  stale-data:
+    name: Stale data — last-verified dates
+    runs-on: ubuntu-latest
+    outputs:
+      stale-count: ${{ steps.check.outputs.stale_count }}
+      results-artifact: stale-data-${{ github.run_id }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - name: Setup Node.js
+        uses: ./.github/actions/setup-node
+        with:
+          node-version: '20'
+
+      - name: Build @open-helplines/core
+        run: npm run build -w packages/core
+
+      - name: Check stale data (last_verified > 180 days ago)
+        id: check
+        run: |
+          node packages/core/dist/cli.js stale-check \
+            --max-age-days 180 \
+            --output json \
+            > stale-data-results.json 2>&1 || true
+          stale=$(node -e "
+            const r = require('./stale-data-results.json');
+            console.log((r.stale||[]).length);
+          " 2>/dev/null || echo "0")
+          echo "stale_count=$stale" >> "$GITHUB_OUTPUT"
+          echo "Stale entries: $stale"
+
+      - name: Upload stale data results
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: stale-data-${{ github.run_id }}
+          path: stale-data-results.json
+          retention-days: 30
+
+  # ── Job 3: Aggregate and file GitHub Issue ─────────────────────────────────
+  report:
+    name: Report — aggregate and open issue if needed
+    needs:
+      - url-liveness
+      - stale-data
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - name: Download URL liveness results
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: url-liveness-${{ github.run_id }}
+
+      - name: Download stale data results
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: stale-data-${{ github.run_id }}
+
+      - name: Aggregate results and generate issue body
+        id: aggregate
+        run: |
+          url_failures="${{ needs.url-liveness.outputs.failure-count }}"
+          stale_count="${{ needs.stale-data.outputs.stale-count }}"
+          date=$(date -u +%Y-%m-%d)
+
+          cat > issue-body.md << EOF
+          ## 📋 Weekly Health Report — $date
+
+          | Check | Result |
+          |-------|--------|
+          | 🔗 Dead URLs | $url_failures failure(s) |
+          | 📅 Stale data (>180 days) | $stale_count entry(entries) |
+
+          ### Dead URL Details
+
+          \`\`\`json
+          $(cat url-liveness-results.json 2>/dev/null | node -e "
+            const d = require('fs').readFileSync('/dev/stdin','utf8');
+            try {
+              const r = JSON.parse(d);
+              const fails = (r.results||[]).filter(x=>!x.ok);
+              console.log(JSON.stringify({failures: fails}, null, 2));
+            } catch { console.log('{}'); }
+          " 2>/dev/null || echo '{"failures":[]}')
+          \`\`\`
+
+          ### Stale Data Details
+
+          \`\`\`json
+          $(cat stale-data-results.json 2>/dev/null | node -e "
+            const d = require('fs').readFileSync('/dev/stdin','utf8');
+            try {
+              const r = JSON.parse(d);
+              console.log(JSON.stringify({stale: r.stale||[]}, null, 2));
+            } catch { console.log('{}'); }
+          " 2>/dev/null || echo '{"stale":[]}')
+          \`\`\`
+
+          ---
+          _Generated by [weekly-health.yml](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})_
+          EOF
+
+          # Determine if we need to file an issue
+          should_file=false
+          [ "$url_failures" -gt 0 ] && should_file=true
+          [ "$stale_count" -gt 0 ] && should_file=true
+
+          echo "should_file=$should_file" >> "$GITHUB_OUTPUT"
+          echo "url_failures=$url_failures" >> "$GITHUB_OUTPUT"
+          echo "stale_count=$stale_count" >> "$GITHUB_OUTPUT"
+          echo "date=$date" >> "$GITHUB_OUTPUT"
+
+      - name: Write job summary
+        run: |
+          echo "## 🏥 Weekly Health Check — ${{ steps.aggregate.outputs.date }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "- 🔗 Dead URLs: **${{ steps.aggregate.outputs.url_failures }}**" >> "$GITHUB_STEP_SUMMARY"
+          echo "- 📅 Stale entries: **${{ steps.aggregate.outputs.stale_count }}**" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Open GitHub Issue for failures
+        if: |
+          steps.aggregate.outputs.should_file == 'true' &&
+          (github.event_name != 'workflow_dispatch' || github.event.inputs.dry-run == 'false')
+        run: |
+          gh issue create \
+            --title "🏥 Weekly Health Report — ${{ steps.aggregate.outputs.date }}: ${{ steps.aggregate.outputs.url_failures }} dead URL(s), ${{ steps.aggregate.outputs.stale_count }} stale entry(entries)" \
+            --body-file issue-body.md \
+            --label "health-report,automated" \
+            --repo "${{ github.repository }}"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Dry-run summary
+        if: |
+          steps.aggregate.outputs.should_file == 'true' &&
+          github.event_name == 'workflow_dispatch' &&
+          github.event.inputs.dry-run == 'true'
+        run: |
+          echo "::notice::DRY RUN — would have opened issue. See job summary for details."
+          cat issue-body.md >> "$GITHUB_STEP_SUMMARY"

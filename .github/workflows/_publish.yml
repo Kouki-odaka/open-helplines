@@ -1,0 +1,189 @@
+# _publish.yml — Reusable publish pipeline
+#
+# Design patterns applied:
+#   Build-Once-Deploy-Many : artifacts are built once and passed via inputs/artifacts
+#   Idempotent Publish     : npm/pypi skip if version already exists (--no-git-checks / check-exists)
+#   SLSA L3 provenance     : actions/attest-build-provenance generates signed attestation
+#   OIDC auth              : npm Provenance + PyPI Trusted Publishing (no long-lived secrets)
+#
+# Called by release.yml via `uses: ./.github/workflows/_publish.yml`
+# with `target: npm | pypi | pages` and the resolved semver `version`.
+
+name: Publish (reusable)
+
+on:
+  workflow_call:
+    inputs:
+      target:
+        description: Publish target — npm | pypi | pages
+        type: string
+        required: true
+      version:
+        description: Semver version string (without v-prefix), e.g. 1.2.3
+        type: string
+        required: true
+      node-version:
+        description: Node.js version for npm/pages targets
+        type: string
+        default: '20'
+      python-version:
+        description: Python version for pypi target
+        type: string
+        default: '3.12'
+
+permissions:
+  contents: read
+
+jobs:
+  # ── npm: publish @open-helplines/core ───────────────────────────────────
+  publish-npm:
+    name: Publish @open-helplines/core@${{ inputs.version }} → npm
+    if: inputs.target == 'npm'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write      # Required for npm OIDC provenance
+      attestations: write  # Required for SLSA attestation
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - name: Setup Node.js with npm registry
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: ${{ inputs.node-version }}
+          cache: npm
+          registry-url: https://registry.npmjs.org
+
+      - name: Install dependencies
+        run: npm ci --prefer-offline
+
+      - name: Build @open-helplines/core
+        run: npm run build -w packages/core
+
+      - name: Check if version already published (idempotent)
+        id: check-npm
+        run: |
+          pkg="@open-helplines/core"
+          ver="${{ inputs.version }}"
+          if npm view "${pkg}@${ver}" version 2>/dev/null | grep -q "^${ver}$"; then
+            echo "already_published=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::${pkg}@${ver} is already on npm — skipping publish"
+          else
+            echo "already_published=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Publish to npm with provenance
+        if: steps.check-npm.outputs.already_published == 'false'
+        run: npm publish packages/core --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Generate SLSA build provenance attestation
+        if: steps.check-npm.outputs.already_published == 'false'
+        uses: actions/attest-build-provenance@e8998f949152b193b063cb0ec769d69d929409be # v2
+        with:
+          subject-path: packages/core/dist
+
+  # ── PyPI: publish open-helplines ────────────────────────────────────────
+  publish-pypi:
+    name: Publish open-helplines==${{ inputs.version }} → PyPI
+    if: inputs.target == 'pypi'
+    runs-on: ubuntu-latest
+    environment: pypi  # GitHub Environment guard for Trusted Publishing
+    permissions:
+      contents: read
+      id-token: write      # Required for PyPI Trusted Publishing (OIDC)
+      attestations: write  # Required for SLSA attestation
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - name: Setup Python
+        uses: ./.github/actions/setup-python
+        with:
+          python-version: ${{ inputs.python-version }}
+
+      - name: Install build tools
+        run: pip install --quiet build twine
+
+      - name: Check if version already on PyPI (idempotent)
+        id: check-pypi
+        run: |
+          pkg="open-helplines"
+          ver="${{ inputs.version }}"
+          if pip index versions "$pkg" 2>/dev/null | grep -q "$ver"; then
+            echo "already_published=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::${pkg}==${ver} is already on PyPI — skipping publish"
+          else
+            echo "already_published=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Build distribution artifacts
+        if: steps.check-pypi.outputs.already_published == 'false'
+        run: python -m build packages/python --outdir dist/
+
+      - name: Upload distribution artifacts
+        if: steps.check-pypi.outputs.already_published == 'false'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: python-dist-${{ inputs.version }}
+          path: dist/
+          retention-days: 30
+
+      - name: Publish to PyPI via Trusted Publishing (OIDC)
+        if: steps.check-pypi.outputs.already_published == 'false'
+        uses: pypa/gh-action-pypi-publish@67339c736fd9354cd4f8cb0b744f2b82a74b5c70 # v1.12.3
+        with:
+          packages-dir: dist/
+          print-hash: true
+          verbose: true
+
+      - name: Generate SLSA build provenance attestation
+        if: steps.check-pypi.outputs.already_published == 'false'
+        uses: actions/attest-build-provenance@e8998f949152b193b063cb0ec769d69d929409be # v2
+        with:
+          subject-path: dist/
+
+  # ── GitHub Pages: publish data registry site ────────────────────────────
+  publish-pages:
+    name: Publish data registry → GitHub Pages
+    if: inputs.target == 'pages'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - name: Setup Node.js
+        uses: ./.github/actions/setup-node
+        with:
+          node-version: ${{ inputs.node-version }}
+
+      - name: Build @open-helplines/core
+        run: npm run build -w packages/core
+
+      - name: Build static registry site
+        run: node packages/core/dist/cli.js build-site --output site/
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
+        with:
+          path: site/
+
+      - name: Deploy to GitHub Pages
+        id: deploy
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4

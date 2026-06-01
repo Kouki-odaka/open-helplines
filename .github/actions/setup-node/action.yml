@@ -1,0 +1,23 @@
+# composite action: setup-node
+# Installs Node.js + restores npm cache.
+# Used by _validate.yml and _publish.yml to keep install steps DRY.
+name: Setup Node.js with npm cache
+description: Install Node.js and run npm ci with offline cache — shared composite action
+
+inputs:
+  node-version:
+    description: Node.js version to use
+    default: '20'
+
+runs:
+  using: composite
+  steps:
+    - name: Setup Node.js ${{ inputs.node-version }}
+      uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+      with:
+        node-version: ${{ inputs.node-version }}
+        cache: npm
+
+    - name: Install npm dependencies (ci)
+      shell: bash
+      run: npm ci --prefer-offline

@@ -1,0 +1,33 @@
+# CODEOWNERS — automatic review requests for sensitive paths
+#
+# Format: <pattern> <owner> [<owner>...]
+# Rules evaluated top-to-bottom; last matching rule wins.
+# See: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# ── Default: all files require owner review ─────────────────────────────────
+*                           @Kouki-odaka
+
+# ── Data files: hotline records (CC0) ───────────────────────────────────────
+data/                       @Kouki-odaka
+data/countries/             @Kouki-odaka
+
+# ── JSON Schema definitions ──────────────────────────────────────────────────
+schemas/                    @Kouki-odaka
+
+# ── GitHub Actions + workflows ───────────────────────────────────────────────
+.github/                    @Kouki-odaka
+.github/workflows/          @Kouki-odaka
+.github/actions/            @Kouki-odaka
+
+# ── Package manifests (supply chain) ────────────────────────────────────────
+package.json                @Kouki-odaka
+package-lock.json           @Kouki-odaka
+packages/*/package.json     @Kouki-odaka
+packages/python/pyproject.toml @Kouki-odaka
+
+# ── TypeScript config ────────────────────────────────────────────────────────
+tsconfig.base.json          @Kouki-odaka
+packages/*/tsconfig.json    @Kouki-odaka
+
+# ── Release config ───────────────────────────────────────────────────────────
+.releaserc.json             @Kouki-odaka

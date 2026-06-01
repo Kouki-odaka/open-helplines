@@ -1,0 +1,42 @@
+# gitleaks.yml — Secret scanning via Gitleaks
+#
+# Scans every push and pull_request for accidentally committed secrets.
+# Uses the official gitleaks/gitleaks-action — no extra configuration needed
+# for default patterns (API keys, tokens, credentials).
+#
+# Design patterns:
+#   Supply Chain: pinned to SHA, not mutable tag
+#   Fail-Fast   : hard failure on detected secrets (exit 1 default)
+#   Bulkhead    : only runs on push/PR — no cron to avoid noisy false-positives
+
+name: Secret Scan (Gitleaks)
+
+on:
+  push:
+    branches:
+      - main
+      - 'feat/**'
+      - 'fix/**'
+      - 'chore/**'
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  gitleaks:
+    name: Scan for leaked secrets
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          fetch-depth: 0  # Full history — detect secrets in any commit, not just HEAD
+
+      - name: Run Gitleaks secret scan
+        uses: gitleaks/gitleaks-action@ff98106e4c7b2bc287b24eaf42907196329070c7 # v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }} # Optional: set for team features
