@@ -1,0 +1,29 @@
+{
+  "name": "open-helplines-workspace",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Open-source global mental health hotline registry — CC0 data + Apache-2.0 tooling",
+  "workspaces": [
+    "packages/core",
+    "packages/mcp"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "test": "npm run test --workspaces --if-present",
+    "validate": "npm run -w packages/core validate",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "lint": "eslint packages/*/src --ext .ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.4.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Kouki-odaka/open-helplines.git"
+  },
+  "license": "Apache-2.0"
+}

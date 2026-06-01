@@ -1,0 +1,40 @@
+# Node
+node_modules/
+dist/
+build/
+.cache/
+*.tsbuildinfo
+.turbo/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+dist/
+*.dist-info/
+.venv/
+venv/
+.pytest_cache/
+htmlcov/
+.coverage
+*.cover
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Env
+.env
+.env.local
+*.env
+
+# Generated types (committed as part of CI artifact, not source)
+# packages/core/src/generated/
+# packages/python/open_helplines/generated/
