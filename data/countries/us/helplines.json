@@ -1,0 +1,52 @@
+{
+  "$schema": "../../../schemas/helpline.schema.json",
+  "country": "US",
+  "records": [
+    {
+      "id": "us-988-lifeline",
+      "country": "US",
+      "name": "988 Suicide & Crisis Lifeline",
+      "category": "suicide_prevention",
+      "secondary_categories": ["mental_health", "general_crisis"],
+      "contacts": [
+        {
+          "method": "phone",
+          "number": "+18002738255",
+          "languages": ["en", "es"],
+          "hours": "24/7",
+          "free": true,
+          "anonymous": true
+        }
+      ],
+      "description": "US national crisis network providing 24/7 free and confidential support for people in suicidal crisis or mental health distress. Dial or text 988. Funded by SAMHSA and administered by Vibrant Emotional Health.",
+      "website": "https://988lifeline.org/",
+      "verified_at": "2026-06-02",
+      "source": "https://www.samhsa.gov/mental-health/988",
+      "government_backed": true,
+      "tags": ["hotline-988", "samhsa", "national", "bilingual", "text-available"]
+    },
+    {
+      "id": "us-crisis-text-line",
+      "country": "US",
+      "name": "Crisis Text Line",
+      "category": "general_crisis",
+      "secondary_categories": ["mental_health", "youth"],
+      "contacts": [
+        {
+          "method": "text",
+          "number": "+1741741",
+          "languages": ["en"],
+          "hours": "24/7",
+          "free": true,
+          "anonymous": true
+        }
+      ],
+      "description": "24/7 free crisis support via text message. Text HOME to 741741 from anywhere in the USA to reach a trained Crisis Counselor. Particularly accessible for those who cannot speak aloud.",
+      "website": "https://www.crisistextline.org/",
+      "verified_at": "2026-06-02",
+      "source": "https://www.crisistextline.org/",
+      "government_backed": false,
+      "tags": ["text-only", "short-code", "youth-friendly"]
+    }
+  ]
+}

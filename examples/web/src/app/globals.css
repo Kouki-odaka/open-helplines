@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Load Inter variable font */
+@import '@fontsource-variable/inter';
+@import '@fontsource/noto-sans/400.css';
+@import '@fontsource/noto-sans/600.css';
+@import '@fontsource/noto-sans-jp/400.css';
+
+@layer base {
+  :root {
+    --color-focus-ring: #60a5fa;
+  }
+
+  html {
+    background-color: #0a0e1a;
+    color: #f1f5f9;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    min-height: 100vh;
+    font-family: 'Inter var', 'Noto Sans', 'Noto Sans JP', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Accessible focus ring for all interactive elements */
+  *:focus-visible {
+    outline: 2px solid var(--color-focus-ring);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Respect reduced-motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer utilities {
+  /* Hide scrollbar while preserving scroll functionality */
+  .scrollbar-hidden {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Screen-reader only text */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  /* Prose maximum line length */
+  .prose-max {
+    max-width: 70ch;
+  }
+}

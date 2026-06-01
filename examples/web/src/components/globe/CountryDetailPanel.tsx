@@ -1,0 +1,145 @@
+'use client';
+
+import type { CountryDetailPanelProps } from '@/types/helpline';
+import { formatCategoryLabel, formatContactMethodLabel } from '@/lib/data-aggregator';
+
+/**
+ * CountryDetailPanel — right sidebar showing helpline details for a selected country.
+ * Slides in from the right when a country is selected on the globe.
+ */
+export function CountryDetailPanel({ countryData, onClose }: CountryDetailPanelProps) {
+  if (!countryData) {
+    return null;
+  }
+
+  return (
+    <aside
+      className="absolute top-0 right-0 h-full w-80 max-w-full bg-neutral-surface border-l border-neutral-border shadow-xl z-10 overflow-y-auto scrollbar-hidden"
+      role="complementary"
+      aria-label={`Helplines for ${countryData.countryName}`}
+    >
+      {/* Header */}
+      <div className="sticky top-0 bg-neutral-surface border-b border-neutral-border px-4 py-3 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <span className="text-2xl" aria-hidden="true">
+            {getFlagEmoji(countryData.countryCode)}
+          </span>
+          <div>
+            <h2 className="font-semibold text-sm leading-tight">
+              {countryData.countryName}
+            </h2>
+            <p className="text-xs text-neutral-muted">
+              {countryData.helplineCount} helpline{countryData.helplineCount !== 1 ? 's' : ''}
+            </p>
+          </div>
+        </div>
+        <button
+          onClick={onClose}
+          className="text-neutral-muted hover:text-neutral-text transition-colors p-1 rounded"
+          aria-label="Close panel"
+        >
+          ✕
+        </button>
+      </div>
+
+      {/* Categories */}
+      <section className="px-4 py-3 border-b border-neutral-border">
+        <h3 className="text-xs font-medium text-neutral-muted uppercase tracking-wider mb-2">
+          Categories
+        </h3>
+        <div className="flex flex-wrap gap-1.5">
+          {countryData.categories.map((category) => (
+            <span
+              key={category}
+              className="text-xs bg-neutral-border px-2 py-0.5 rounded-full text-neutral-text"
+            >
+              {formatCategoryLabel(category)}
+            </span>
+          ))}
+        </div>
+      </section>
+
+      {/* Contact methods */}
+      <section className="px-4 py-3 border-b border-neutral-border">
+        <h3 className="text-xs font-medium text-neutral-muted uppercase tracking-wider mb-2">
+          Contact Methods
+        </h3>
+        <div className="flex flex-wrap gap-1.5">
+          {countryData.contactMethods.map((method) => (
+            <span
+              key={method}
+              className="text-xs bg-brand/20 text-brand-light px-2 py-0.5 rounded-full"
+            >
+              {formatContactMethodLabel(method)}
+            </span>
+          ))}
+        </div>
+      </section>
+
+      {/* Languages */}
+      <section className="px-4 py-3 border-b border-neutral-border">
+        <h3 className="text-xs font-medium text-neutral-muted uppercase tracking-wider mb-2">
+          Languages ({countryData.languages.length})
+        </h3>
+        <p className="text-sm text-neutral-muted">
+          {countryData.languages.join(', ')}
+        </p>
+      </section>
+
+      {/* Helpline records */}
+      {countryData.records.length > 0 ? (
+        <section className="px-4 py-3">
+          <h3 className="text-xs font-medium text-neutral-muted uppercase tracking-wider mb-3">
+            Helplines
+          </h3>
+          <ul className="space-y-3">
+            {countryData.records.map((record) => (
+              <li
+                key={record.id}
+                className="bg-neutral-bg border border-neutral-border rounded-lg p-3"
+              >
+                <h4 className="font-medium text-sm mb-1">{record.name}</h4>
+                {record.local_name && (
+                  <p className="text-xs text-neutral-muted mb-1">{record.local_name}</p>
+                )}
+                <p className="text-xs text-neutral-muted line-clamp-2 mb-2">
+                  {record.description}
+                </p>
+                {record.contacts.map((contact, index) => (
+                  <div key={index} className="text-xs flex items-center gap-2 mt-1">
+                    <span className="text-brand-light font-mono">
+                      {contact.number ?? contact.url ?? '-'}
+                    </span>
+                    <span className="text-neutral-muted">{contact.hours}</span>
+                  </div>
+                ))}
+                {record.website && (
+                  <a
+                    href={record.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs text-brand-light hover:underline mt-1 inline-block"
+                  >
+                    Visit website →
+                  </a>
+                )}
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : (
+        <section className="px-4 py-3 text-center text-sm text-neutral-muted">
+          <p>Detailed records will be available after data merge.</p>
+        </section>
+      )}
+    </aside>
+  );
+}
+
+function getFlagEmoji(countryCode: string): string {
+  const codePoints = countryCode
+    .toUpperCase()
+    .split('')
+    .map((char) => 127397 + char.charCodeAt(0));
+  return String.fromCodePoint(...codePoints);
+}
