@@ -193,6 +193,19 @@
     "email": "Email",
     "app": "Mobile App"
   },
+  "emergency": {
+    "heading": "Are you in crisis right now? Help is available — you are not alone.",
+    "callButton": "Call",
+    "smsButton": "Text",
+    "chatButton": "Online chat",
+    "callAriaLabel": "Call crisis line:",
+    "smsAriaLabel": "Text crisis line:",
+    "chatAriaLabel": "Open chat for",
+    "dismissAriaLabel": "Dismiss emergency banner",
+    "allowLocationForBetterResults": "Allow location to find the nearest helpline",
+    "available24h": "Available 24/7",
+    "internationalFallback": "Find a helpline near you"
+  },
   "donate": {
     "pageTitle": "Donate — Open Helplines",
     "pageDescription": "Support the mental health helplines and crisis services that save lives around the world.",

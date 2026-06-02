@@ -20,6 +20,8 @@ Two gaps in the current landscape:
 
 open-helplines fills the gap: verified, structured, CC0 data with a stable JSON Schema, TypeScript types, Python models, and an MCP server — so any developer or LLM can access the registry without cost, attribution, or API keys.
 
+The visualization site includes an **Emergency First Resolver**: when a user searches crisis-related terms, a CVD-safe banner instantly surfaces the nearest 24/7 helpline with one-tap call/text/chat links (see [`docs/features/emergency-first-resolver.md`](docs/features/emergency-first-resolver.md)).
+
 ---
 
 ## For LLM developers
