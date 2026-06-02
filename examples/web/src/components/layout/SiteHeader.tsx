@@ -50,7 +50,7 @@ export function SiteHeader({ locale }: SiteHeaderProps) {
   const menuItems = [
     { href: '/about',         labelKey: 'about' as const },
     { href: '/contribute',    labelKey: 'contribute' as const },
-    { href: '/crisis-finder', labelKey: 'crisisFinder' as const },
+    { href: '/private',       labelKey: 'crisisFinder' as const },
     { href: '/donate',        labelKey: 'donate' as const },
   ] as const;
 
