@@ -193,6 +193,19 @@
     "email": "Correo electrónico",
     "app": "Aplicación móvil"
   },
+  "emergency": {
+    "heading": "¿Estás en crisis ahora mismo? Hay ayuda disponible — no estás solo/a.",
+    "callButton": "Llamar",
+    "smsButton": "Mensaje de texto",
+    "chatButton": "Chat en línea",
+    "callAriaLabel": "Llamar a la línea de crisis:",
+    "smsAriaLabel": "Enviar texto a la línea de crisis:",
+    "chatAriaLabel": "Abrir chat para",
+    "dismissAriaLabel": "Cerrar banner de emergencia",
+    "allowLocationForBetterResults": "Permitir ubicación para encontrar la línea de ayuda más cercana",
+    "available24h": "Disponible 24/7",
+    "internationalFallback": "Encuentra una línea de ayuda cerca de ti"
+  },
   "donate": {
     "pageTitle": "Donar — Open Helplines",
     "pageDescription": "Apoya las líneas de ayuda de salud mental y los servicios de crisis que salvan vidas en todo el mundo.",

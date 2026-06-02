@@ -193,6 +193,19 @@
     "email": "メール",
     "app": "モバイルアプリ"
   },
+  "emergency": {
+    "heading": "今、危機的な状況にいますか？あなたは一人ではありません — 今すぐ支援を受けられます。",
+    "callButton": "電話する",
+    "smsButton": "テキスト",
+    "chatButton": "オンラインチャット",
+    "callAriaLabel": "危機相談窓口に電話:",
+    "smsAriaLabel": "危機相談窓口にテキスト:",
+    "chatAriaLabel": "チャットを開く:",
+    "dismissAriaLabel": "緊急バナーを閉じる",
+    "allowLocationForBetterResults": "近くの相談窓口を見つけるために位置情報を許可する",
+    "available24h": "24時間365日対応",
+    "internationalFallback": "近くの相談窓口を見つける"
+  },
   "donate": {
     "pageTitle": "寄付 — Open Helplines",
     "pageDescription": "世界中で命を救っているメンタルヘルス相談窓口と危機支援サービスを支援しましょう。",

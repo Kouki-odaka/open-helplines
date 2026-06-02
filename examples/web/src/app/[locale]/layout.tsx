@@ -1,10 +1,12 @@
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { SiteHeader } from '@/components/layout/SiteHeader';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { SUPPORTED_LOCALES, type SupportedLocale } from '@/i18n/config';
 import { LocaleHtmlUpdater } from '@/components/layout/LocaleHtmlUpdater';
+import { EmergencyBannerController } from '@/components/emergency/EmergencyBannerController';
 
 interface LocaleLayoutProps {
   children: React.ReactNode;
@@ -56,6 +58,11 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
       >
         Skip to main content
       </a>
+
+      {/* Emergency First Resolver: useSearchParams requires Suspense in App Router */}
+      <Suspense fallback={null}>
+        <EmergencyBannerController />
+      </Suspense>
 
       <SiteHeader locale={validLocale} />
       <main id="main-content" className="flex-1" tabIndex={-1}>
