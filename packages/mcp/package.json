@@ -1,20 +1,23 @@
 {
   "name": "@open-helplines/mcp",
-  "version": "0.1.0",
-  "description": "MCP server exposing open-helplines data as LLM tools",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "version": "0.2.0",
+  "description": "MCP server exposing open-helplines data as LLM tools — Safe Answer guardrails enabled",
+  "type": "module",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
   "bin": {
-    "open-helplines-mcp": "dist/cli.js"
+    "open-helplines-mcp": "dist/src/cli.js"
   },
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "start": "node dist/cli.js"
+    "test": "npm run build && node --test dist/tests/guardrails.test.js",
+    "start": "node dist/src/cli.js"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.0",
-    "@open-helplines/core": "*"
+    "@open-helplines/core": "*",
+    "zod": "^4.0.0"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",

@@ -41,10 +41,24 @@ The fastest integration path:
 }
 ```
 
-Three tools available: `find_helplines`, `get_helpline`, `list_countries`.  
+Three tools available: `find_helplines`, `get_helpline_by_id`, `list_countries`.  
 See [examples/mcp-claude-desktop/README.md](examples/mcp-claude-desktop/README.md) for full setup.
 
 > **Safety constraint:** All tool descriptions instruct the model to extract phone numbers and URLs verbatim from registry data — never to paraphrase or generate contact information. ([ADR-004](docs/adr/ADR-004-mcp-server-design.md))
+
+#### 🛡️ Safe Answer Guardrails
+
+All MCP tools enforce five guardrails automatically:
+
+| Guardrail | Behaviour |
+|-----------|-----------|
+| **Staleness check** | `verified_at` > 6 months → `STALE_DATA` warning in response |
+| **Misroute prevention** | `record.country` ≠ requested country → `DIFFERENT_COUNTRY_CONTEXT` warning |
+| **Fallback chain** | No data → nearby country → IASP/Befrienders international directory |
+| **Mandatory citation** | Every record includes `source` + `verified_at` + `last_checked_url_status` |
+| **Hallucination refusal** | Unknown country/ID → `DATA_NOT_FOUND` sentinel (never hallucinate) |
+
+See [`docs/features/safe-answer-mcp-guardrails.md`](docs/features/safe-answer-mcp-guardrails.md) for full specification.
 
 ### Type packages
 
