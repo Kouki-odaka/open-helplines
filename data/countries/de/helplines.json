@@ -28,6 +28,7 @@
       ],
       "description": "Germany's national pastoral telephone counselling service, operated jointly by the Protestant and Catholic churches. Two freephone numbers available 24/7. Suicide prevention is a core service.",
       "website": "https://www.telefonseelsorge.de/",
+      "donate_url": "https://www.telefonseelsorge.de/spenden/",
       "verified_at": "2026-06-02",
       "source": "https://www.telefonseelsorge.de/",
       "government_backed": false,

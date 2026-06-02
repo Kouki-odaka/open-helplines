@@ -6,6 +6,7 @@
     "heatmap": "Heatmap",
     "about": "About",
     "contribute": "Contribute",
+    "donate": "Donate ❤️",
     "github": "GitHub",
     "openMenu": "Open navigation menu",
     "closeMenu": "Close menu"
@@ -20,7 +21,8 @@
     "copyright": "Open Helplines contributors",
     "codeLabel": "Code:",
     "viewOnGithub": "View on GitHub",
-    "dataLicenseAriaLabel": "Data: CC0 1.0 Public Domain (opens in new tab)"
+    "dataLicenseAriaLabel": "Data: CC0 1.0 Public Domain (opens in new tab)",
+    "donateLink": "Donate ❤️"
   },
   "common": {
     "loading": "Loading…",
@@ -88,7 +90,8 @@
       "languages": "Languages ({count})",
       "helplines": "Helplines",
       "close": "Close panel",
-      "noRecords": "Detailed records will be available after data merge."
+      "noRecords": "Detailed records will be available after data merge.",
+      "donateHelpline": "Support this helpline ❤️"
     },
     "accessibility": {
       "tableLabel": "Helplines by country — globe data",
@@ -189,5 +192,21 @@
     "chat": "Online Chat",
     "email": "Email",
     "app": "Mobile App"
+  },
+  "donate": {
+    "pageTitle": "Donate — Open Helplines",
+    "pageDescription": "Support the mental health helplines and crisis services that save lives around the world.",
+    "title": "Support Mental Health Helplines",
+    "subtitle": "Every call answered is a life that matters. The helplines in this registry are run by volunteers and non-profits that rely on your support.",
+    "whyTitle": "Why donate?",
+    "whyText": "Crisis helplines operate 24/7 on tight budgets. A single call can take 45 minutes of a trained volunteer's time. Your donation helps keep lines open, trains more counsellors, and expands language support.",
+    "helplinesTitle": "Helplines that accept donations",
+    "helplinesSubtext": "These organisations have public donation pages. 100% of your donation goes directly to the helpline.",
+    "donateButton": "Donate →",
+    "projectTitle": "Support this project",
+    "projectText": "Open Helplines is a free, open-source dataset maintained by volunteers. If you find it useful, consider starring the repository or sponsoring the maintainers.",
+    "ctaGithub": "View on GitHub",
+    "ctaSponsor": "Sponsor on GitHub ❤️",
+    "backToGlobe": "← Back to Globe"
   }
 }

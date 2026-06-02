@@ -1,0 +1,14 @@
+# Funding options for the open-helplines project.
+# See: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/displaying-a-sponsor-button-in-your-repository
+
+# GitHub Sponsors (uncomment and fill in when account is registered)
+# github: [Kouki-odaka]
+
+# Open Collective (uncomment and fill in when organisation is created)
+# open_collective: open-helplines
+
+# Ko-fi (uncomment and fill in when account is created)
+# ko_fi: openhelplinesproject
+
+# Custom funding URL — points to our /donate page on the project site
+custom: ["https://kouki-odaka.github.io/open-helplines/en/donate/"]
