@@ -50,6 +50,7 @@ export function SiteHeader({ locale }: SiteHeaderProps) {
   const menuItems = [
     { href: '/about',      labelKey: 'about' as const },
     { href: '/contribute', labelKey: 'contribute' as const },
+    { href: '/donate',     labelKey: 'donate' as const },
   ] as const;
 
   return (
@@ -94,8 +95,17 @@ export function SiteHeader({ locale }: SiteHeaderProps) {
           </ul>
         </nav>
 
-        {/* Right controls: language switcher + hamburger */}
+        {/* Right controls: donate + language switcher + hamburger */}
         <div className="flex items-center gap-1 flex-shrink-0">
+          {/* Donate CTA — visible on sm+ screens */}
+          <Link
+            href="/donate"
+            className="hidden sm:inline-flex items-center gap-1 px-2.5 py-1.5 bg-rose-800 hover:bg-rose-700 text-white text-xs font-medium rounded-md transition-colors"
+            onClick={closeMenu}
+          >
+            {t('donate')}
+          </Link>
+
           {/* Language switcher */}
           <div className="relative">
             <button

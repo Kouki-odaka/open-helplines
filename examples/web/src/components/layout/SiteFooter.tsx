@@ -1,6 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
+import { Link } from '@/navigation';
 
 export function SiteFooter() {
   const t = useTranslations('footer');
@@ -40,8 +41,14 @@ export function SiteFooter() {
           © {currentYear} {t('copyright')}
         </span>
 
-        {/* Right: GitHub link */}
+        {/* Right: Donate + GitHub links */}
         <div className="flex items-center gap-4">
+          <Link
+            href="/donate"
+            className="text-xs font-medium text-rose-400 hover:text-rose-300 transition-colors"
+          >
+            {t('donateLink')}
+          </Link>
           <a
             href="https://github.com/Kouki-odaka/open-helplines"
             target="_blank"

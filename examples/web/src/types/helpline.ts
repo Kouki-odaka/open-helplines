@@ -37,6 +37,7 @@ export interface HelplineRecord {
   contacts: HelplineContact[];
   description: string;
   website?: string;
+  donate_url?: string;
   verified_at: string;
   source: string;
   government_backed: boolean;

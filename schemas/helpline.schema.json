@@ -200,6 +200,10 @@
           "type": "boolean",
           "description": "True if this service is officially endorsed or funded by a national or regional government"
         },
+        "donate_url": {
+          "$ref": "#/$defs/HttpUrl",
+          "description": "Direct donation page for this helpline organization. Omit if the organization does not accept public donations."
+        },
         "tags": {
           "type": "array",
           "description": "Additional searchable tags. Use lowercase hyphenated slugs.",

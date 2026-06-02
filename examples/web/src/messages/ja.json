@@ -6,6 +6,7 @@
     "heatmap": "ヒートマップ",
     "about": "About",
     "contribute": "データ提供",
+    "donate": "寄付 ❤️",
     "github": "GitHub",
     "openMenu": "ナビゲーションメニューを開く",
     "closeMenu": "メニューを閉じる"
@@ -20,7 +21,8 @@
     "copyright": "Open Helplines コントリビューター",
     "codeLabel": "コード:",
     "viewOnGithub": "GitHubで見る",
-    "dataLicenseAriaLabel": "データ: CC0 1.0 パブリックドメイン（新しいタブで開く）"
+    "dataLicenseAriaLabel": "データ: CC0 1.0 パブリックドメイン（新しいタブで開く）",
+    "donateLink": "寄付 ❤️"
   },
   "common": {
     "loading": "読み込み中…",
@@ -88,7 +90,8 @@
       "languages": "対応言語 ({count})",
       "helplines": "相談窓口一覧",
       "close": "パネルを閉じる",
-      "noRecords": "詳細データはデータマージ後に表示されます。"
+      "noRecords": "詳細データはデータマージ後に表示されます。",
+      "donateHelpline": "この相談窓口を支援する ❤️"
     },
     "accessibility": {
       "tableLabel": "国別相談窓口一覧 — 地球儀データ",
@@ -189,5 +192,21 @@
     "chat": "オンラインチャット",
     "email": "メール",
     "app": "モバイルアプリ"
+  },
+  "donate": {
+    "pageTitle": "寄付 — Open Helplines",
+    "pageDescription": "世界中で命を救っているメンタルヘルス相談窓口と危機支援サービスを支援しましょう。",
+    "title": "メンタルヘルス相談窓口を支援する",
+    "subtitle": "電話に応答するたびに、大切な命があります。このレジストリに掲載されている相談窓口は、皆さんの支援を必要とするボランティアやNPOが運営しています。",
+    "whyTitle": "なぜ寄付するのか？",
+    "whyText": "危機相談窓口は限られた予算で24時間365日稼働しています。1本の電話に訓練されたボランティアが45分以上かかることもあります。ご寄付により、回線の維持、カウンセラーの育成、多言語対応の拡充が可能になります。",
+    "helplinesTitle": "寄付を受け付けている相談窓口",
+    "helplinesSubtext": "これらの団体には公開された寄付ページがあります。寄付金は100%直接相談窓口に届きます。",
+    "donateButton": "寄付する →",
+    "projectTitle": "このプロジェクトを支援する",
+    "projectText": "Open Helplinesはボランティアが維持する無料のオープンソースデータセットです。役に立つと思ったら、リポジトリにスターを付けるか、メンテナーをスポンサーすることをご検討ください。",
+    "ctaGithub": "GitHubで見る",
+    "ctaSponsor": "GitHubでスポンサーになる ❤️",
+    "backToGlobe": "← 地球儀に戻る"
   }
 }

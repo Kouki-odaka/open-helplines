@@ -135,6 +135,16 @@ export function CountryDetailPanel({ countryData, onClose }: CountryDetailPanelP
                     {tCommon('visitWebsite')}
                   </a>
                 )}
+                {record.donate_url && (
+                  <a
+                    href={record.donate_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs text-rose-400 hover:text-rose-300 hover:underline mt-1 ml-3 inline-block"
+                  >
+                    {t('donateHelpline')}
+                  </a>
+                )}
               </li>
             ))}
           </ul>
