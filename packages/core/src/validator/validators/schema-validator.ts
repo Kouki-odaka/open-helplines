@@ -18,23 +18,40 @@ import type { ValidationError, ValidationResult, Validator } from "../index.js";
 // Ajv singleton per schema path (avoid repeated compilation)
 // ---------------------------------------------------------------------------
 
-const compiledValidators = new Map<string, ReturnType<Ajv2020["compile"]>>();
+const compiledRecordValidators = new Map<string, ReturnType<Ajv2020["compile"]>>();
+const compiledRootValidators = new Map<string, ReturnType<Ajv2020["compile"]>>();
 
-function getCompiledValidator(schemaPath: string): ReturnType<Ajv2020["compile"]> {
-  const cached = compiledValidators.get(schemaPath);
-  if (cached !== undefined) return cached;
-
+function buildAjv(): Ajv2020 {
   // strict: false — schema has non-standard annotation keywords (e.g. "version")
   const ajv = new Ajv2020({ allErrors: true, strict: false });
   addFormats(ajv);
+  return ajv;
+}
 
+function loadSchema(schemaPath: string): Record<string, unknown> {
   const schemaContent = readFileSync(schemaPath, "utf8");
-  const schema = JSON.parse(schemaContent) as Record<string, unknown>;
+  return JSON.parse(schemaContent) as Record<string, unknown>;
+}
 
+function getCompiledValidator(schemaPath: string): ReturnType<Ajv2020["compile"]> {
+  const cached = compiledRecordValidators.get(schemaPath);
+  if (cached !== undefined) return cached;
+
+  const schema = loadSchema(schemaPath);
   // Compile the HelplineRecord sub-schema (not the root HelplineDataFile)
   const recordSchema = extractRecordSchema(schema);
-  const compiled = ajv.compile(recordSchema);
-  compiledValidators.set(schemaPath, compiled);
+  const compiled = buildAjv().compile(recordSchema);
+  compiledRecordValidators.set(schemaPath, compiled);
+  return compiled;
+}
+
+function getCompiledRootValidator(schemaPath: string): ReturnType<Ajv2020["compile"]> {
+  const cached = compiledRootValidators.get(schemaPath);
+  if (cached !== undefined) return cached;
+
+  // Compile root schema: validates the full HelplineDataFile (country + records)
+  const compiled = buildAjv().compile(loadSchema(schemaPath));
+  compiledRootValidators.set(schemaPath, compiled);
   return compiled;
 }
 
@@ -91,4 +108,26 @@ function convertAjvError(ajvError: ErrorObject): ValidationError {
 function buildMessage(ajvError: ErrorObject): string {
   const fieldPath = ajvError.instancePath || "(root)";
   return `${fieldPath} ${ajvError.message ?? "failed schema validation"}`;
+}
+
+// ---------------------------------------------------------------------------
+// Root-level file validation (HelplineDataFile — country + records)
+// ---------------------------------------------------------------------------
+
+/**
+ * Validate a full helpline data file against the root HelplineDataFile schema.
+ * Catches errors invisible to per-record validation:
+ *   - country code not matching ^[A-Z]{2}$ (e.g. lowercase "us")
+ *   - records array empty (minItems: 1)
+ *
+ * @internal — exported for CLI and unit-test use only
+ */
+export function validateHelplineFileRoot(
+  schemaPath: string,
+  fileData: unknown,
+): ValidationError[] {
+  const validate = getCompiledRootValidator(schemaPath);
+  const isValid = validate(fileData);
+  if (isValid) return [];
+  return (validate.errors ?? []).map(convertAjvError);
 }

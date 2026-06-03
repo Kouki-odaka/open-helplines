@@ -63,11 +63,11 @@ function applyFilters(
     }
     // Text filter (country name, code, or helpline name)
     if (text.trim().length > 0) {
-      const q = text.toLowerCase();
+      const normalizedQuery = text.trim().toLowerCase();
       const matches =
-        code.toLowerCase().includes(q) ||
-        countryName.toLowerCase().includes(q) ||
-        contact.name.toLowerCase().includes(q);
+        code.toLowerCase().includes(normalizedQuery) ||
+        countryName.toLowerCase().includes(normalizedQuery) ||
+        contact.name.toLowerCase().includes(normalizedQuery);
       if (!matches) {
         return false;
       }
