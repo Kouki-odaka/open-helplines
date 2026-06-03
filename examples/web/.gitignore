@@ -28,3 +28,6 @@ yarn-error.log*
 # TypeScript
 *.tsbuildinfo
 next-env.d.ts
+
+# Demo assets — webm is large source file; mp4/gif are committed for embed use
+public/assets/demo.webm
