@@ -2,6 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 import type { EmergencyContact } from '@/lib/emergency-helplines';
+import { formatPhoneDisplay, buildTelHref } from '@/lib/phone-utils';
 
 interface EmergencyBannerProps {
   contact: EmergencyContact;
@@ -54,15 +55,13 @@ export function EmergencyBanner({ contact, onDismiss }: EmergencyBannerProps) {
           <div className="flex flex-wrap gap-2">
             {contact.phone && (
               <a
-                href={`tel:${contact.phone}`}
+                href={buildTelHref(contact.phone, contact.dialable)}
                 className="inline-flex items-center gap-1.5 bg-[#D55E00] hover:bg-[#e06720] text-white text-xs font-semibold px-3 py-1.5 rounded-md transition-colors"
                 aria-label={`${t('callAriaLabel')} ${contact.name}`}
               >
                 <span aria-hidden="true">📞</span>
                 {t('callButton')}
-                {contact.phone && (
-                  <span className="font-mono">{formatPhoneDisplay(contact.phone)}</span>
-                )}
+                <span className="font-mono">{formatPhoneDisplay(contact.phone)}</span>
               </a>
             )}
             {contact.smsNumber && (
@@ -101,54 +100,4 @@ export function EmergencyBanner({ contact, onDismiss }: EmergencyBannerProps) {
       </div>
     </div>
   );
-}
-
-/**
- * Formats an E.164 phone number for display.
- * Shows the short-code / national format rather than the full E.164 string.
- * e.g. "+18002738255" → "988"  "+44116123" → "116 123"
- */
-function formatPhoneDisplay(e164: string): string {
-  // Short codes (≤ 5 digits after the leading +)
-  const stripped = e164.replace(/^\+[0-9]{1,3}/, '');
-  if (stripped.length <= 4) {
-    return stripped;
-  }
-  // US/CA: well-known short-codes
-  if (e164 === '+1988') {
-    return '988';
-  }
-  if (e164 === '+18002738255') {
-    return '988';
-  }
-  // UK Samaritans
-  if (e164 === '+44116123') {
-    return '116 123';
-  }
-  // Japan Yorisoi
-  if (e164 === '+81120279338') {
-    return '0120-279-338';
-  }
-  // Germany Telefonseelsorge
-  if (e164 === '+498001110111') {
-    return '0800 111 0 111';
-  }
-  // France 3114
-  if (e164 === '+333114') {
-    return '3114';
-  }
-  // Brazil 188
-  if (e164 === '+55188') {
-    return '188';
-  }
-  // Australia Lifeline
-  if (e164 === '+61131114') {
-    return '13 11 14';
-  }
-  // NZ Lifeline
-  if (e164 === '+640800543354') {
-    return '0800 543 354';
-  }
-  // Return last 7 digits as fallback
-  return stripped.slice(-7);
 }
