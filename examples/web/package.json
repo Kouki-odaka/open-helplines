@@ -11,7 +11,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "test": "node --test tests/phone-utils.test.mjs"
   },
   "dependencies": {
     "@fontsource-variable/inter": "^5.2.5",

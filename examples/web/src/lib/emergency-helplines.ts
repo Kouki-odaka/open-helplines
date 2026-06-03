@@ -16,8 +16,14 @@ export interface EmergencyContact {
   countryCode: string;
   /** Organisation name */
   name: string;
-  /** Phone number for tel: links (E.164 or local short-code) */
+  /** Phone number in E.164 format for storage and display */
   phone?: string;
+  /**
+   * Local short-code or national format for `tel:` href one-tap dialling.
+   * When present, use this value for `tel:` links instead of `phone`.
+   * Examples: "988" (US/CA), "188" (BR), "3114" (FR), "119" (ID).
+   */
+  dialable?: string;
   /** SMS number for sms: links */
   smsNumber?: string;
   /** Web chat or app URL */
@@ -58,27 +64,34 @@ export const EMERGENCY_HELPLINES_BY_COUNTRY: Readonly<Record<string, EmergencyCo
     free: false,
   },
   BR: {
+    // canonical: data/countries/br/helplines.json — CVV, id: br-cvv-ligue-188
     countryCode: 'BR',
     name: 'CVV — Ligue 188',
     phone: '+55188',
+    dialable: '188',
     chatUrl: 'https://cvv.org.br/chat/',
     hours: '24/7',
     free: true,
   },
   CA: {
+    // canonical: data/countries/ca/helplines.json — id: ca-988-suicide-crisis-helpline
     countryCode: 'CA',
-    name: 'Talk Suicide Canada',
-    phone: '+18336456428',
-    smsNumber: '45645',
+    name: '9-8-8: Suicide Crisis Helpline',
+    phone: '+1988',
+    dialable: '988',
+    smsNumber: '988',
+    chatUrl: 'https://talksuicide.ca/',
     hours: '24/7',
     free: true,
   },
   CN: {
+    // canonical: data/countries/cn/helplines.json — id: cn-beijing-crisis-hotline
     countryCode: 'CN',
-    name: 'National Hope 24 Hotline',
-    phone: '+864001161161',
+    name: 'Beijing Suicide Research and Prevention Center Hotline',
+    phone: '+864001619995',
+    chatUrl: 'https://www.crisis.org.cn/',
     hours: '24/7',
-    free: true,
+    free: false,
   },
   DE: {
     countryCode: 'DE',
@@ -96,9 +109,11 @@ export const EMERGENCY_HELPLINES_BY_COUNTRY: Readonly<Record<string, EmergencyCo
     free: false,
   },
   FR: {
+    // canonical: data/countries/fr/helplines.json — id: fr-3114-prevention-suicide
     countryCode: 'FR',
     name: '3114 — Numéro national prévention suicide',
     phone: '+333114',
+    dialable: '3114',
     hours: '24/7',
     free: true,
   },
@@ -111,17 +126,21 @@ export const EMERGENCY_HELPLINES_BY_COUNTRY: Readonly<Record<string, EmergencyCo
     free: true,
   },
   ID: {
+    // canonical: data/countries/id/helplines.json — id: id-into-the-light
     countryCode: 'ID',
     name: 'Into The Light Indonesia',
     phone: '+62119',
+    dialable: '119',
     hours: '24/7',
     free: true,
   },
   IN: {
+    // canonical: data/countries/in/helplines.json — id: in-tele-manas
     countryCode: 'IN',
-    name: 'Vandrevala Foundation',
-    phone: '+911860-2662-345',
-    chatUrl: 'https://www.vandrevalafoundation.com/',
+    name: 'Tele MANAS',
+    phone: '+9114416',
+    dialable: '14416',
+    chatUrl: 'https://telemanas.mohfw.gov.in/',
     hours: '24/7',
     free: true,
   },
@@ -133,16 +152,20 @@ export const EMERGENCY_HELPLINES_BY_COUNTRY: Readonly<Record<string, EmergencyCo
     free: true,
   },
   KR: {
+    // canonical: data/countries/kr/helplines.json — id: kr-109-suicide-crisis
+    // Note: 1393 was consolidated into 109 in January 2024.
     countryCode: 'KR',
-    name: '자살예방상담전화 1393',
-    phone: '+821393',
+    name: '109 Suicide Prevention Crisis Line',
+    phone: '+82109',
+    dialable: '109',
     hours: '24/7',
     free: true,
   },
   MX: {
+    // canonical: data/countries/mx/helplines.json — id: mx-saptel
     countryCode: 'MX',
-    name: 'SAPTEL',
-    phone: '+525555259121',
+    name: 'SAPTEL — Suicide & Crisis Intervention',
+    phone: '+525552598121',
     hours: '24/7',
     free: false,
   },
@@ -162,16 +185,20 @@ export const EMERGENCY_HELPLINES_BY_COUNTRY: Readonly<Record<string, EmergencyCo
     free: true,
   },
   PH: {
+    // canonical: data/countries/ph/helplines.json — id: ph-ncmh-crisis-hotline
     countryCode: 'PH',
     name: 'NCMH Crisis Hotline',
-    phone: '+631553',
+    phone: '+6321553',
+    dialable: '1553',
     hours: '24/7',
-    free: true,
+    free: false,
   },
   RU: {
+    // canonical: data/countries/ru/helplines.json — id: ru-national-psychological-helpline
     countryCode: 'RU',
-    name: 'Телефон доверия',
-    phone: '+78002000122',
+    name: 'National Psychological Help Hotline',
+    phone: '+78003334434',
+    chatUrl: 'https://pomoschryadom.ru/',
     hours: '24/7',
     free: true,
   },
@@ -183,9 +210,11 @@ export const EMERGENCY_HELPLINES_BY_COUNTRY: Readonly<Record<string, EmergencyCo
     free: true,
   },
   US: {
+    // canonical: data/countries/us/helplines.json — id: us-988-lifeline
     countryCode: 'US',
     name: '988 Suicide & Crisis Lifeline',
     phone: '+1988',
+    dialable: '988',
     smsNumber: '988',
     chatUrl: 'https://988lifeline.org/chat/',
     hours: '24/7',
