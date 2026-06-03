@@ -11,7 +11,7 @@
     "build": "npm run build --workspaces",
     "test": "npm run test --workspaces --if-present",
     "validate": "npm run -w packages/core validate",
-    "typecheck": "npm run typecheck --workspaces --if-present",
+    "typecheck": "npm run build -w packages/core && npm run typecheck --workspaces --if-present",
     "lint": "eslint packages/*/src --ext .ts",
     "build:types": "node scripts/generate-types.mjs",
     "build:types:python": "python3 scripts/generate_python_models.py"
