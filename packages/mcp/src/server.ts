@@ -102,13 +102,31 @@ function buildFindResult(
   return { found: true, records: guarded, total: guarded.length };
 }
 
-function resolveCountryRecords(
+type CountryRecordsResult = {
+  records: HelplineRecord[];
+  isFallback: boolean;
+  fallbackType: "nearby" | "international" | null;
+};
+
+/**
+ * Resolve records for a country, applying the fallback chain.
+ * Returns null when the country is not in the registry at all —
+ * the caller should return a DATA_NOT_FOUND sentinel rather than hallucinate.
+ *
+ * @internal — exported for unit testing only
+ */
+export function resolveCountryRecords(
   requestedCountry: string,
-): { records: HelplineRecord[]; isFallback: boolean; fallbackType: "nearby" | "international" | null } {
+): CountryRecordsResult | null {
   const registry = getRegistry();
   const direct = registry.getByCountry(requestedCountry);
 
-  if (direct !== null && direct.length > 0) {
+  // Country not in registry at all — signal DATA_NOT_FOUND to caller
+  if (direct === null) {
+    return null;
+  }
+
+  if (direct.length > 0) {
     return { records: direct, isFallback: false, fallbackType: null };
   }
 
@@ -128,13 +146,24 @@ function resolveCountryRecords(
 // Tool handlers
 // ---------------------------------------------------------------------------
 
-function handleFindHelplines(args: {
+/** @internal — exported for unit testing only */
+export function handleFindHelplines(args: {
   country: string;
   category?: string | undefined;
   limit?: number | undefined;
 }): FindHelplinesResult {
   const { country, category, limit = 10 } = args;
-  const { records, isFallback, fallbackType } = resolveCountryRecords(country);
+
+  const resolved = resolveCountryRecords(country);
+
+  // Country is not in the registry — refuse to hallucinate
+  if (resolved === null) {
+    return dataNotFound(
+      `Country '${country}' is not in the registry. Use list_countries to see supported codes.`,
+    );
+  }
+
+  const { records, isFallback, fallbackType } = resolved;
 
   const filtered = category
     ? records.filter(

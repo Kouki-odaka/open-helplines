@@ -11,12 +11,18 @@ import type { HelplineRecord } from "@open-helplines/core";
 
 // ---------------------------------------------------------------------------
 // Path resolution (ESM __dirname equivalent)
+//
+// PACKAGE_DIR resolves to:
+//   - packages/mcp/src/      (development / tsc source)
+//   - packages/mcp/dist/src/ (built / npx)
+// PACKAGE_ROOT is always packages/mcp/ in both cases, so bundled data/
+// (copied by `prebuild` from repo root into packages/mcp/data/) is found.
 // ---------------------------------------------------------------------------
 
 const PACKAGE_DIR = fileURLToPath(new URL(".", import.meta.url));
-const REPO_ROOT = resolve(PACKAGE_DIR, "../../..");
-const COUNTRIES_DIR = join(REPO_ROOT, "data", "countries");
-const URL_HEALTH_FILE = join(REPO_ROOT, "data", "index", "url-health.json");
+const PACKAGE_ROOT = resolve(PACKAGE_DIR, "../..");
+const COUNTRIES_DIR = join(PACKAGE_ROOT, "data", "countries");
+const URL_HEALTH_FILE = join(PACKAGE_ROOT, "data", "index", "url-health.json");
 
 // ---------------------------------------------------------------------------
 // Internal helpers
@@ -63,6 +69,8 @@ export class HelplinesRegistry {
     for (const countryCode of scanCountryDirectories()) {
       const dirPath = join(COUNTRIES_DIR, countryCode.toLowerCase());
       const records = loadCountryFile(dirPath);
+      // Skip stub directories that have no helplines.json or only a .gitkeep
+      if (records.length === 0) continue;
       this.recordsByCountry.set(countryCode, records);
       for (const record of records) {
         this.recordsById.set(record.id, record);

@@ -38,3 +38,7 @@ Thumbs.db
 # Generated types (committed as part of CI artifact, not source)
 # packages/core/src/generated/
 # packages/python/open_helplines/generated/
+
+# MCP package — data/ is copied from repo root during prebuild (npm run build)
+# It is bundled via package.json "files" for npm publish / npx, but not committed.
+packages/mcp/data/

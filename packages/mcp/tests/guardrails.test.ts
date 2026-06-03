@@ -9,6 +9,9 @@
  *   - Fallback chain (direct / nearby / international)
  *   - Mandatory citation (fields present)
  *   - Hallucination refusal (DATA_NOT_FOUND sentinel)
+ *   - Registry build path resolution (bundled data/countries)
+ *   - Stub directory filtering (.gitkeep-only dirs excluded)
+ *   - DATA_NOT_FOUND sentinel for unlisted countries
  */
 
 import { describe, it } from "node:test";
@@ -23,6 +26,8 @@ import {
   getInternationalFallbacks,
 } from "../src/guardrails.js";
 import { HelplinesRegistry } from "../src/registry.js";
+import type { DataNotFoundResult } from "../src/types.js";
+import { handleFindHelplines, resolveCountryRecords } from "../src/server.js";
 
 // ---------------------------------------------------------------------------
 // Fixtures
@@ -252,5 +257,106 @@ describe("getInternationalFallbacks", () => {
     for (const record of getInternationalFallbacks()) {
       assert.strictEqual(record.country, "XX", `${record.id} should use 'XX'`);
     }
+  });
+});
+
+// ---------------------------------------------------------------------------
+// 7. Build path resolution — bundled data/countries accessible from dist/src
+// ---------------------------------------------------------------------------
+
+describe("HelplinesRegistry — build path resolution (bundled data)", () => {
+  /** Canonical 15 countries with complete helplines.json at the time of PR #27 */
+  const CANONICAL_15 = [
+    "BD", "BR", "CA", "CN", "DE",
+    "FR", "GB", "ID", "IN", "JP",
+    "KR", "MX", "PH", "RU", "US",
+  ];
+
+  it("loads exactly the canonical 15 countries from bundled data/countries", () => {
+    const registry = new HelplinesRegistry();
+    const countries = registry.listCountries();
+    assert.strictEqual(
+      countries.length,
+      CANONICAL_15.length,
+      `Expected ${CANONICAL_15.length} countries but got ${countries.length}: ${countries.join(",")}`,
+    );
+    for (const code of CANONICAL_15) {
+      assert.ok(countries.includes(code), `${code} should be in registry`);
+    }
+  });
+
+  it("every listed country has at least one record", () => {
+    const registry = new HelplinesRegistry();
+    for (const code of registry.listCountries()) {
+      const records = registry.getByCountry(code);
+      assert.ok(
+        records !== null && records.length > 0,
+        `Country ${code} should have at least one record`,
+      );
+    }
+  });
+});
+
+// ---------------------------------------------------------------------------
+// 8. Stub directory filtering — .gitkeep-only dirs excluded from list
+// ---------------------------------------------------------------------------
+
+describe("HelplinesRegistry — stub directory filtering", () => {
+  /** These directories have no helplines.json and should never appear */
+  const STUB_COUNTRIES = ["AU", "EG", "NG", "NZ", "PK", "TR", "UA", "VN", "ZA"];
+
+  it("does not include stub directories (no helplines.json) in listCountries", () => {
+    const registry = new HelplinesRegistry();
+    const countries = registry.listCountries();
+    for (const code of STUB_COUNTRIES) {
+      assert.ok(
+        !countries.includes(code),
+        `Stub country ${code} should not be listed (no helplines.json)`,
+      );
+    }
+  });
+
+  it("returns null via getByCountry for stub country codes", () => {
+    const registry = new HelplinesRegistry();
+    for (const code of STUB_COUNTRIES) {
+      assert.strictEqual(
+        registry.getByCountry(code),
+        null,
+        `getByCountry(${code}) should return null`,
+      );
+    }
+  });
+});
+
+// ---------------------------------------------------------------------------
+// 9. Hallucination refusal — DATA_NOT_FOUND for unlisted country codes
+// ---------------------------------------------------------------------------
+
+describe("handleFindHelplines — DATA_NOT_FOUND for unlisted countries", () => {
+  it("returns DATA_NOT_FOUND sentinel for unknown country 'ZZ'", () => {
+    const result = handleFindHelplines({ country: "ZZ" });
+    assert.ok(
+      "sentinel" in result,
+      "Expected DataNotFoundResult but got found:true result",
+    );
+    assert.strictEqual(
+      (result as DataNotFoundResult).sentinel,
+      "DATA_NOT_FOUND",
+    );
+    assert.ok(
+      (result as DataNotFoundResult).reason.includes("ZZ"),
+      "Reason should mention the unknown country code",
+    );
+  });
+
+  it("resolveCountryRecords returns null for unknown country 'ZZ'", () => {
+    const result = resolveCountryRecords("ZZ");
+    assert.strictEqual(result, null, "Unknown country should resolve to null");
+  });
+
+  it("resolveCountryRecords returns null for stub country 'AU'", () => {
+    // AU has a directory but no helplines.json — excluded from registry
+    const result = resolveCountryRecords("AU");
+    assert.strictEqual(result, null, "Stub country AU should resolve to null");
   });
 });

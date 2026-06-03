@@ -9,11 +9,16 @@
     "open-helplines-mcp": "dist/src/cli.js"
   },
   "scripts": {
+    "prebuild": "node -e \"const{cpSync}=require('fs');cpSync('../../data','./data',{recursive:true,force:true})\"",
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "test": "npm run build && node --test dist/tests/guardrails.test.js",
     "start": "node dist/src/cli.js"
   },
+  "files": [
+    "dist/",
+    "data/"
+  ],
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.0",
     "@open-helplines/core": "*",
