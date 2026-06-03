@@ -18,7 +18,7 @@
 [![スター数](https://img.shields.io/github/stars/Kouki-odaka/open-helplines?style=social)](https://star-history.com/#Kouki-odaka/open-helplines&Date)
 
 <!-- DEMO: Task #16 の GIF 完成後にここへ埋め込む -->
-<!-- ![デモ: Claude Desktop + open-helplines MCP](docs/assets/demo.gif) -->
+![デモ: Claude Desktop + open-helplines MCP](examples/web/public/assets/demo.gif)
 
 [🌐 可視化サイト](https://kouki-odaka.github.io/open-helplines/ja/) ·
 [📖 ドキュメント](docs/) ·
@@ -207,7 +207,14 @@ JSON Schema Draft 2020-12 — 型定義・バリデーションの唯一の情�
 
 💬 **[GitHub ディスカッション](https://github.com/Kouki-odaka/open-helplines/discussions)** — 機能リクエスト、カバレッジに関する質問、スキーマ提案、一般的な議論の場です。
 
-特に、各国のデータ精度を検証できるメンタルヘルス専門家・NPO スタッフの参加を歓迎しています。
+特に、各国のデータ精度を検証できる専門家・NPO スタッフの参加を歓迎しています。
+
+| ドキュメント | 内容 |
+|:---|:---|
+| [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) | コミュニティ行動規範（Contributor Covenant 2.1） |
+| [SECURITY.md](SECURITY.md) | 脆弱性報告ポリシー |
+| [GOVERNANCE.md](GOVERNANCE.md) | プロジェクトガバナンスと意思決定フロー |
+| [プレスキット](docs/press-kit/README.md) | ロゴ・説明文・主要事実（メディア向け） |
 
 ---
 

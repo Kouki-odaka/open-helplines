@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 80" width="240" height="80" role="img" aria-label="open-helplines logo (light background)">
+  <title>open-helplines (light)</title>
+  <rect width="240" height="80" fill="#ffffff" rx="8"/>
+  <!-- Globe icon: emerald circle with grid lines -->
+  <circle cx="36" cy="40" r="28" fill="none" stroke="#10b981" stroke-width="2.5"/>
+  <ellipse cx="36" cy="40" rx="12" ry="28" fill="none" stroke="#10b981" stroke-width="1.5"/>
+  <line x1="9" y1="30" x2="63" y2="30" stroke="#10b981" stroke-width="1.5"/>
+  <line x1="9" y1="50" x2="63" y2="50" stroke="#10b981" stroke-width="1.5"/>
+  <!-- Heart overlay: dark grey on light -->
+  <path d="M36 52 C36 52 22 43 22 35 C22 30 26 27 30 27 C32 27 34 28.5 36 31 C38 28.5 40 27 42 27 C46 27 50 30 50 35 C50 43 36 52 36 52Z"
+        fill="#374151" opacity="0.85"/>
+  <!-- Wordmark: dark + emerald -->
+  <text x="74" y="35" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif"
+        font-size="17" font-weight="700" fill="#374151" letter-spacing="-0.3">open-</text>
+  <text x="74" y="56" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif"
+        font-size="17" font-weight="700" fill="#10b981" letter-spacing="-0.3">helplines</text>
+</svg>

@@ -1,0 +1,14 @@
+title: "[Feedback] "
+labels: ["feedback"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Share general feedback about the project.
+  - type: textarea
+    id: feedback
+    attributes:
+      label: Your feedback
+      description: What's on your mind?
+    validations:
+      required: true

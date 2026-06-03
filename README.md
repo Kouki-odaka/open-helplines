@@ -18,7 +18,7 @@
 [![Star History](https://img.shields.io/github/stars/Kouki-odaka/open-helplines?style=social)](https://star-history.com/#Kouki-odaka/open-helplines&Date)
 
 <!-- DEMO: Replace the placeholder below once the demo GIF from Task #16 is ready -->
-<!-- ![Demo: Claude Desktop + open-helplines MCP](docs/assets/demo.gif) -->
+![Demo: Claude Desktop + open-helplines MCP](examples/web/public/assets/demo.gif)
 
 [🌐 Visualization Site](https://kouki-odaka.github.io/open-helplines/en/) ·
 [📖 Docs](docs/) ·
@@ -256,6 +256,13 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for data format, quality requirements, an
 💬 **[GitHub Discussions](https://github.com/Kouki-odaka/open-helplines/discussions)** — feature requests, country coverage questions, schema proposals, and general conversation.
 
 We especially welcome contributions from mental health professionals and NPO staff who can verify data accuracy for their country.
+
+| Document | Description |
+|:---|:---|
+| [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) | Community standards (Contributor Covenant 2.1) |
+| [SECURITY.md](SECURITY.md) | Vulnerability reporting policy |
+| [GOVERNANCE.md](GOVERNANCE.md) | Project governance and decision flow |
+| [Press kit](docs/press-kit/README.md) | Logos, descriptions, and key facts for media use |
 
 ---
 

@@ -1,0 +1,19 @@
+title: "[Show & Tell] "
+labels: ["show-and-tell"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Share something you built or did with this project!
+  - type: textarea
+    id: description
+    attributes:
+      label: What did you build?
+      description: Describe your project or use-case.
+    validations:
+      required: true
+  - type: input
+    id: link
+    attributes:
+      label: Link (optional)
+      description: URL to a repo, demo, or write-up.
