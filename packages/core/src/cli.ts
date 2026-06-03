@@ -19,7 +19,7 @@ import { readdirSync, existsSync, writeFileSync } from "node:fs";
 import { resolve, join } from "node:path";
 import { loadHelplineFile } from "./validator/loader.js";
 import { ValidatorChain } from "./validator/validator-chain.js";
-import { SchemaValidator } from "./validator/validators/schema-validator.js";
+import { SchemaValidator, validateHelplineFileRoot } from "./validator/validators/schema-validator.js";
 import type { ValidationError } from "./validator/types.js";
 
 // ---------------------------------------------------------------------------
@@ -114,7 +114,7 @@ function runValidate(args: CliArgs): void {
     : allCountries;
 
   const reports: ValidationReport[] = targetCountries.map((cc) =>
-    buildReport(cc, dataDir, chain),
+    buildReport(cc, dataDir, chain, schemaPath),
   );
 
   const failCount = reports.filter((r) => r.status === "fail").length;
@@ -136,6 +136,7 @@ function buildReport(
   country: string,
   dataDir: string,
   chain: ValidatorChain,
+  schemaPath: string,
 ): ValidationReport {
   const filePath = join(dataDir, country, HELPLINES_FILE);
 
@@ -152,6 +153,12 @@ function buildReport(
       errors: loaded.errors,
       warnings: [],
     };
+  }
+
+  // Root-level validation: catches invalid country code format and empty records array
+  const rootErrors = validateHelplineFileRoot(schemaPath, loaded.value);
+  if (rootErrors.length > 0) {
+    return { country, status: "fail", records_checked: 0, errors: rootErrors, warnings: [] };
   }
 
   const records = loaded.value.records;
