@@ -1,0 +1,21 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.Kouki-odaka/open-helplines",
+  "description": "Verified community support resource directory with Safe Answer guardrails. Find wellbeing support resources by country (24+ countries), category, or unique ID. Returns DATA_NOT_FOUND sentinel instead of hallucinating — never invents phone numbers or URLs.",
+  "repository": {
+    "url": "https://github.com/Kouki-odaka/open-helplines.git",
+    "source": "github"
+  },
+  "version": "0.2.0",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "@open-helplines/mcp",
+      "version": "0.2.0",
+      "runtimeHint": "npx",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ]
+}

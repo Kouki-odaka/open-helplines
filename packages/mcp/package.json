@@ -1,7 +1,20 @@
 {
   "name": "@open-helplines/mcp",
   "version": "0.2.0",
-  "description": "MCP server exposing open-helplines data as LLM tools — Safe Answer guardrails enabled",
+  "mcpName": "io.github.Kouki-odaka/open-helplines",
+  "description": "MCP server for verified community support resource directory — Safe Answer guardrails enabled (DATA_NOT_FOUND sentinel, staleness checks, fallback chain, mandatory citation)",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "helplines",
+    "community-support",
+    "mental-wellbeing",
+    "open-data",
+    "cc0",
+    "guardrails",
+    "safe-answer"
+  ],
+  "homepage": "https://kouki-odaka.github.io/open-helplines/en/",
   "type": "module",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
