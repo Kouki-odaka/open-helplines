@@ -15,7 +15,9 @@ export function generateStaticParams() {
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: 'Open Helplines — Global Crisis Support Data',
+    // Use absolute to prevent the root layout's template ("%s — Open Helplines")
+    // from appending a suffix to the already-full landing page title.
+    title: { absolute: 'Open Helplines — Global Crisis Support Data' },
     description:
       'Open data registry of mental health and crisis helplines worldwide. Free · CC0 · No API key required.',
     alternates: {

@@ -63,7 +63,7 @@
     }
   },
   "globe": {
-    "pageTitle": "地球儀ビュー — Open Helplines",
+    "pageTitle": "地球儀ビュー",
     "pageDescription": "世界中の危機相談窓口の分布を示すインタラクティブな3D地球儀",
     "ariaLabel": "世界の危機相談窓口の分布を示すインタラクティブな3D地球儀",
     "loadingLabel": "地球儀を読み込み中",
@@ -105,7 +105,7 @@
     }
   },
   "network": {
-    "pageTitle": "ネットワークビュー — Open Helplines",
+    "pageTitle": "ネットワークビュー",
     "pageDescription": "相談窓口・カテゴリ・言語・連絡手段の関係を示す力指向ネットワークグラフ",
     "filterCountry": "国で絞り込む",
     "filterCategory": "カテゴリで絞り込む",
@@ -113,7 +113,7 @@
     "allCategories": "すべてのカテゴリ"
   },
   "heatmap": {
-    "pageTitle": "ヒートマップビュー — Open Helplines",
+    "pageTitle": "ヒートマップビュー",
     "pageDescription": "時系列タイムライン付きの国別相談窓口密度コロプレス図",
     "filterCategory": "カテゴリ:",
     "allCategories": "すべてのカテゴリ",
@@ -126,7 +126,7 @@
     "tooltipHelplines": "件の相談窓口"
   },
   "about": {
-    "pageTitle": "About — Open Helplines",
+    "pageTitle": "About",
     "pageDescription": "Open Helplinesプロジェクトのデータと貢献方法について",
     "title": "Open Helplinesについて",
     "whatIsThisTitle": "このプロジェクトは？",
@@ -151,7 +151,7 @@
     "licenseCodeText": "Apache License 2.0"
   },
   "contribute": {
-    "pageTitle": "データ提供 — Open Helplines",
+    "pageTitle": "データ提供",
     "pageDescription": "Open Helplinesプロジェクトへのデータ提供方法",
     "title": "データを提供する",
     "subtitle": "危機相談リソースの最も包括的なオープンディレクトリの構築にご協力ください。",
@@ -292,7 +292,7 @@
     "internationalFallback": "近くの相談窓口を見つける"
   },
   "donate": {
-    "pageTitle": "寄付 — Open Helplines",
+    "pageTitle": "寄付",
     "pageDescription": "世界中で命を救っているメンタルヘルス相談窓口と危機支援サービスを支援しましょう。",
     "title": "メンタルヘルス相談窓口を支援する",
     "subtitle": "電話に応答するたびに、大切な命があります。このレジストリに掲載されている相談窓口は、皆さんの支援を必要とするボランティアやNPOが運営しています。",

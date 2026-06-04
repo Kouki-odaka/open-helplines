@@ -63,7 +63,7 @@
     }
   },
   "globe": {
-    "pageTitle": "Globe View — Open Helplines",
+    "pageTitle": "Globe View",
     "pageDescription": "Interactive 3D globe showing crisis helpline coverage by country worldwide.",
     "ariaLabel": "Interactive 3D globe showing global crisis helpline coverage by country",
     "loadingLabel": "Loading globe",
@@ -105,7 +105,7 @@
     }
   },
   "network": {
-    "pageTitle": "Network View — Open Helplines",
+    "pageTitle": "Network View",
     "pageDescription": "Force-directed network graph showing relationships between helplines, categories, languages, and contact methods.",
     "filterCountry": "Filter by country",
     "filterCategory": "Filter by category",
@@ -113,7 +113,7 @@
     "allCategories": "All categories"
   },
   "heatmap": {
-    "pageTitle": "Heatmap View — Open Helplines",
+    "pageTitle": "Heatmap View",
     "pageDescription": "Geographic choropleth heatmap showing helpline density by country with a temporal timeline.",
     "filterCategory": "Filter category:",
     "allCategories": "All categories",
@@ -126,7 +126,7 @@
     "tooltipHelplines": "helplines"
   },
   "about": {
-    "pageTitle": "About — Open Helplines",
+    "pageTitle": "About",
     "pageDescription": "Learn about the Open Helplines project, its data, and how to contribute.",
     "title": "About Open Helplines",
     "whatIsThisTitle": "What is this?",
@@ -151,7 +151,7 @@
     "licenseCodeText": "Apache License 2.0"
   },
   "contribute": {
-    "pageTitle": "Contribute — Open Helplines",
+    "pageTitle": "Contribute",
     "pageDescription": "How to contribute helpline data to the Open Helplines project.",
     "title": "Contribute Data",
     "subtitle": "Help us build the most comprehensive open directory of crisis support resources.",
@@ -292,7 +292,7 @@
     "internationalFallback": "Find a helpline near you"
   },
   "donate": {
-    "pageTitle": "Donate — Open Helplines",
+    "pageTitle": "Donate",
     "pageDescription": "Support the mental health helplines and crisis services that save lives around the world.",
     "title": "Support Mental Health Helplines",
     "subtitle": "Every call answered is a life that matters. The helplines in this registry are run by volunteers and non-profits that rely on your support.",

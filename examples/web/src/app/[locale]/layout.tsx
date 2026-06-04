@@ -1,4 +1,3 @@
-import type { Metadata } from 'next';
 import { Suspense } from 'react';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
@@ -18,15 +17,9 @@ export function generateStaticParams() {
   return SUPPORTED_LOCALES.map((locale) => ({ locale }));
 }
 
-export const metadata: Metadata = {
-  title: {
-    default: 'Open Helplines — Global Crisis Support Data',
-    template: '%s — Open Helplines',
-  },
-  description:
-    'Open data registry of mental health and crisis helplines worldwide. ' +
-    'Free · CC0 · No API key required.',
-};
+// Metadata (title template + default) is intentionally defined in the root
+// app/layout.tsx only. Duplicating it here caused the template to apply twice,
+// producing titles like "Globe View — Open Helplines — Open Helplines".
 
 /**
  * Locale layout — wraps all locale-specific pages.
