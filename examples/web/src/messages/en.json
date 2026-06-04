@@ -276,7 +276,7 @@
     "whySection4Body": "All search filters (country, method, text query) are held in React component state. When you navigate away or close the tab, the state is garbage-collected. No write ever occurs to localStorage, sessionStorage, cookies, IndexedDB, or any other persistent browser storage. The URL bar is never updated with your query.",
     "whyCspTitle": "Active Content Security Policy",
     "whyCspBody": "The following CSP is embedded in the <head> of every page via a meta tag:",
-    "whyCspNote": "unsafe-inline is required by Next.js for RSC hydration inline scripts. unsafe-eval is required by Three.js for GLSL shader compilation on the globe view. Neither directive permits loading external scripts."
+    "whyCspNote": "unsafe-inline is required by Next.js for RSC hydration inline scripts. unsafe-eval is required by Three.js for GLSL shader compilation on the globe view. cdn.jsdelivr.net is required to fetch world-atlas TopoJSON data for the heatmap choropleth. Neither script directive permits loading external scripts."
   },
   "emergency": {
     "heading": "Are you in crisis right now? Help is available — you are not alone.",

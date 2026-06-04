@@ -37,7 +37,7 @@ const CONTENT_SECURITY_POLICY = [
   "style-src 'self' 'unsafe-inline'",
   "font-src 'self' data:",
   "img-src 'self' data: blob:",
-  "connect-src 'self' https://nominatim.openstreetmap.org",
+  "connect-src 'self' https://nominatim.openstreetmap.org https://cdn.jsdelivr.net",
   "media-src 'none'",
   "object-src 'none'",
   "frame-src 'none'",
