@@ -19,4 +19,7 @@ Third-party dependencies (report upstream directly).
 
 ## Response Timeline
 
-Best-effort response within **7 days** of receipt.
+| Phase | Target |
+|---|---|
+| Initial response | within **48 hours** of receipt |
+| Patch deployment | within **30 days** (best effort) |
