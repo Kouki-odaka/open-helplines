@@ -276,7 +276,7 @@
     "whySection4Body": "検索フィルター（国、連絡方法、テキストクエリ）はすべてReactコンポーネントの状態として保持されます。ページを離れたりタブを閉じると、状態はガベージコレクションされます。localStorage、sessionStorage、Cookie、IndexedDB、その他の永続的なブラウザストレージへの書き込みは一切行われません。URLバーにクエリが書き込まれることもありません。",
     "whyCspTitle": "有効なコンテンツセキュリティポリシー",
     "whyCspBody": "以下のCSPがmetaタグを通じてすべてのページの<head>に埋め込まれています：",
-    "whyCspNote": "unsafe-evalは地球儀ビューでのGLSLシェーダーコンパイルにThree.jsが必要とするものです。このページには存在せず、外部スクリプトを読み込むことはできません。"
+    "whyCspNote": "unsafe-inlineはNext.jsのRSCハイドレーションインラインスクリプトに必要です。unsafe-evalは地球儀ビューでのGLSLシェーダーコンパイルにThree.jsが必要とするものです。どちらのディレクティブも外部スクリプトの読み込みを許可しません。"
   },
   "emergency": {
     "heading": "今、危機的な状況にいますか？あなたは一人ではありません — 今すぐ支援を受けられます。",
