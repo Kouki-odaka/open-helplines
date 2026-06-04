@@ -107,7 +107,7 @@ export default async function WhyPrivatePage({ params: { locale } }: WhyPrivateP
         <p className="text-xs text-neutral-muted leading-relaxed mb-3">{t('whyCspBody')}</p>
         <pre className="text-[10px] text-emerald-400 bg-emerald-950/30 border border-emerald-900/40 rounded-lg p-3 overflow-x-auto leading-relaxed">
 {`default-src 'self';
-script-src 'self' 'unsafe-eval';
+script-src 'self' 'unsafe-inline' 'unsafe-eval';
 style-src 'self' 'unsafe-inline';
 font-src 'self' data:;
 img-src 'self' data: blob:;

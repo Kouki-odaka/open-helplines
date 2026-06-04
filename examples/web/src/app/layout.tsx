@@ -22,6 +22,7 @@ export const metadata: Metadata = {
  * Blocks all third-party tracking, analytics, and beacon endpoints.
  * Allows:
  *  - 'self'        — same-origin scripts, styles, fonts, data
+ *  - 'unsafe-inline' scripts — Next.js RSC hydration inline scripts (<script>self.__next_f.push</script>)
  *  - 'unsafe-inline' styles — Tailwind/Next.js inline styles
  *  - 'unsafe-eval' scripts — Three.js requires eval for GLSL shader compilation
  *  - blob: / data: — canvas/3D globe textures
@@ -32,7 +33,7 @@ export const metadata: Metadata = {
  */
 const CONTENT_SECURITY_POLICY = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-eval'",
+  "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
   "style-src 'self' 'unsafe-inline'",
   "font-src 'self' data:",
   "img-src 'self' data: blob:",
