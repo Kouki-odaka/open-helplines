@@ -63,7 +63,7 @@
     }
   },
   "globe": {
-    "pageTitle": "Vista de globo — Open Helplines",
+    "pageTitle": "Vista de globo",
     "pageDescription": "Globo 3D interactivo que muestra la cobertura de líneas de crisis por país en todo el mundo.",
     "ariaLabel": "Globo 3D interactivo que muestra la cobertura global de líneas de crisis por país",
     "loadingLabel": "Cargando globo",
@@ -105,7 +105,7 @@
     }
   },
   "network": {
-    "pageTitle": "Vista de red — Open Helplines",
+    "pageTitle": "Vista de red",
     "pageDescription": "Grafo de red de fuerza dirigida que muestra relaciones entre líneas de ayuda, categorías, idiomas y medios de contacto.",
     "filterCountry": "Filtrar por país",
     "filterCategory": "Filtrar por categoría",
@@ -113,7 +113,7 @@
     "allCategories": "Todas las categorías"
   },
   "heatmap": {
-    "pageTitle": "Vista de mapa de calor — Open Helplines",
+    "pageTitle": "Vista de mapa de calor",
     "pageDescription": "Mapa de calor coropleta que muestra la densidad de líneas de ayuda por país con una línea de tiempo temporal.",
     "filterCategory": "Filtrar categoría:",
     "allCategories": "Todas las categorías",
@@ -126,7 +126,7 @@
     "tooltipHelplines": "líneas de ayuda"
   },
   "about": {
-    "pageTitle": "Acerca de — Open Helplines",
+    "pageTitle": "Acerca de",
     "pageDescription": "Información sobre el proyecto Open Helplines, sus datos y cómo contribuir.",
     "title": "Acerca de Open Helplines",
     "whatIsThisTitle": "¿Qué es esto?",
@@ -151,7 +151,7 @@
     "licenseCodeText": "Apache License 2.0"
   },
   "contribute": {
-    "pageTitle": "Contribuir — Open Helplines",
+    "pageTitle": "Contribuir",
     "pageDescription": "Cómo contribuir datos de líneas de ayuda al proyecto Open Helplines.",
     "title": "Contribuir datos",
     "subtitle": "Ayúdanos a construir el directorio abierto más completo de recursos de apoyo en crisis.",
@@ -292,7 +292,7 @@
     "internationalFallback": "Encuentra una línea de ayuda cerca de ti"
   },
   "donate": {
-    "pageTitle": "Donar — Open Helplines",
+    "pageTitle": "Donar",
     "pageDescription": "Apoya las líneas de ayuda de salud mental y los servicios de crisis que salvan vidas en todo el mundo.",
     "title": "Apoya las líneas de ayuda de salud mental",
     "subtitle": "Cada llamada respondida es una vida que importa. Las líneas de ayuda de este registro son gestionadas por voluntarios y organizaciones sin fines de lucro que dependen de tu apoyo.",
