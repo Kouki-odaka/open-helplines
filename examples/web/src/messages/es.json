@@ -276,7 +276,7 @@
     "whySection4Body": "Todos los filtros de búsqueda (país, método, consulta de texto) se mantienen en el estado del componente React. Cuando navegas fuera o cierras la pestaña, el estado es recolectado por el recolector de basura. Nunca se produce ninguna escritura en localStorage, sessionStorage, cookies, IndexedDB ni ningún otro almacenamiento persistente del navegador. La barra de URL nunca se actualiza con tu consulta.",
     "whyCspTitle": "Política de Seguridad de Contenido activa",
     "whyCspBody": "La siguiente CSP está integrada en el <head> de cada página mediante una etiqueta meta:",
-    "whyCspNote": "unsafe-inline es requerido por Next.js para los scripts en línea de hidratación RSC. unsafe-eval es requerido por Three.js para la compilación de shaders GLSL en la vista del globo. Ninguna de las dos directivas permite cargar scripts externos."
+    "whyCspNote": "unsafe-inline es requerido por Next.js para los scripts en línea de hidratación RSC. unsafe-eval es requerido por Three.js para la compilación de shaders GLSL en la vista del globo. cdn.jsdelivr.net es necesario para obtener los datos TopoJSON de world-atlas para el coropleta del mapa de calor. Ninguna de las dos directivas de script permite cargar scripts externos."
   },
   "emergency": {
     "heading": "¿Estás en crisis ahora mismo? Hay ayuda disponible — no estás solo/a.",
