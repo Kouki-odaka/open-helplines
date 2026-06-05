@@ -8,6 +8,7 @@
 
 [![CI](https://github.com/Kouki-odaka/open-helplines/actions/workflows/pr.yml/badge.svg)](https://github.com/Kouki-odaka/open-helplines/actions/workflows/pr.yml)
 [![npm](https://img.shields.io/npm/v/@open-helplines/mcp?label=MCP%20server&color=6941C6)](https://www.npmjs.com/package/@open-helplines/mcp)
+[![Glama MCP](https://glama.ai/mcp/servers/Kouki-odaka/open-helplines/badge)](https://glama.ai/mcp/servers/Kouki-odaka/open-helplines)
 [![npm](https://img.shields.io/npm/v/@open-helplines/core?label=%40open-helplines%2Fcore)](https://www.npmjs.com/package/@open-helplines/core)
 [![PyPI](https://img.shields.io/pypi/v/open-helplines)](https://pypi.org/project/open-helplines/)
 [![Countries](https://img.shields.io/badge/countries%20covered-24-brightgreen)](data/countries/)

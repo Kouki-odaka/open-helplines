@@ -1,7 +1,7 @@
 # Key Facts Sheet — open-helplines
 
 > One-page reference for journalists, bloggers, and conference talks.  
-> Last updated: 2026-06-04
+> Last updated: 2026-06-06
 
 ---
 
@@ -26,6 +26,7 @@
 | **npm package** | `@open-helplines/core` v0.1.0 |
 | **PyPI package** | `open-helplines` (Python) |
 | **Repository** | https://github.com/Kouki-odaka/open-helplines |
+| **Listed on** | [Glama MCP Servers](https://glama.ai/mcp/servers/Kouki-odaka/open-helplines) (quality-scored MCP registry) |
 | **Schema** | JSON Schema (draft-07); CycloneDX SBOM on each release |
 
 ---
