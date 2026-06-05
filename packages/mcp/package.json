@@ -29,15 +29,15 @@
     "start": "node dist/src/cli.js"
   },
   "files": [
-    "dist/",
-    "data/"
+    "dist/src/**",
+    "data/**"
   ],
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.0",
-    "@open-helplines/core": "*",
     "zod": "^4.0.0"
   },
   "devDependencies": {
+    "@open-helplines/core": "*",
     "@types/node": "^20.0.0",
     "typescript": "^5.4.0"
   },
