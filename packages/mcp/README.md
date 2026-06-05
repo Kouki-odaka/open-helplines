@@ -4,6 +4,7 @@
 > **Safe Answer guardrails enabled** — returns `DATA_NOT_FOUND` sentinel instead of hallucinating.
 
 [![npm](https://img.shields.io/npm/v/@open-helplines/mcp?label=npm&color=6941C6)](https://www.npmjs.com/package/@open-helplines/mcp)
+[![Glama MCP](https://glama.ai/mcp/servers/Kouki-odaka/open-helplines/badge)](https://glama.ai/mcp/servers/Kouki-odaka/open-helplines)
 [![CI](https://github.com/Kouki-odaka/open-helplines/actions/workflows/pr.yml/badge.svg)](https://github.com/Kouki-odaka/open-helplines/actions/workflows/pr.yml)
 [![License: Apache-2.0](https://img.shields.io/badge/code-Apache--2.0-green.svg)](../../LICENSE)
 [![Data: CC0](https://img.shields.io/badge/data-CC0--1.0-blue.svg)](../../LICENSE-DATA)
