@@ -1,9 +1,4 @@
 /**
- * Builder module — DistBuilder
- *
- * Compiles all country JSON files into a single distributable index + flat JSON.
- * Detailed implementation lives in Task #8 (se-core).
- * This file is the public interface stub.
+ * Builder module — future home for distribution builder utilities.
+ * Public API will be added in a future release.
  */
-
-export { DistBuilder } from "./dist-builder.js";

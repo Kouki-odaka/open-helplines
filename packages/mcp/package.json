@@ -29,12 +29,12 @@
     "start": "node dist/src/cli.js"
   },
   "files": [
-    "dist/",
-    "data/"
+    "dist/src/**",
+    "data/**"
   ],
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.0",
-    "@open-helplines/core": "*",
+    "@open-helplines/core": "^0.1.0",
     "zod": "^4.0.0"
   },
   "devDependencies": {
