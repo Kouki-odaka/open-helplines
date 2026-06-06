@@ -7,7 +7,6 @@
  */
 
 export type { ValidationResult, ValidationError, Result } from "./types.js";
-export { HelplineValidator } from "./helpline-validator.js";
 export type { Validator } from "./validator-chain.js";
 export { ValidatorChain } from "./validator-chain.js";
 export { loadHelplineFile, loadRecords } from "./loader.js";
