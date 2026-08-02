@@ -33,7 +33,7 @@
     "data/**"
   ],
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.0.0",
+    "@modelcontextprotocol/sdk": "^1.30.0",
     "@open-helplines/core": "^0.1.0",
     "zod": "^4.0.0"
   },
